@@ -17,9 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.testing", "Presentation.testing\Presentation.testing.csproj", "{A8A06DAF-91C5-474C-93D8-7FDEF00962FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.testing", "Presentation.testing\Presentation.testing.csproj", "{A8A06DAF-91C5-474C-93D8-7FDEF00962FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.form", "Presentation.form\Presentation.form.csproj", "{1B418895-57A4-4B23-83A5-F8B0048F11D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.form", "Presentation.form\Presentation.form.csproj", "{1B418895-57A4-4B23-83A5-F8B0048F11D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TSQL files", "TSQL files", "{EFB17FDA-EBC2-44F5-9236-75102094D343}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\CreateTableUser.sql = ..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\CreateTableUser.sql
+		..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\StoredProceduresUser.sql = ..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\StoredProceduresUser.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +63,7 @@ Global
 		{CDF1CB0B-79C2-480C-8D0E-B9465CBDA61F} = {6E906EA0-7098-4A62-99B9-F194DB368AF2}
 		{A8A06DAF-91C5-474C-93D8-7FDEF00962FE} = {0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}
 		{1B418895-57A4-4B23-83A5-F8B0048F11D3} = {0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}
+		{EFB17FDA-EBC2-44F5-9236-75102094D343} = {E0F35934-0EA7-4C88-BF69-06998C98EDAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {511D329C-6234-4263-AF5D-5F6F179DAD7B}
