@@ -1,0 +1,139 @@
+﻿using DataAccess.sql;
+using Entities;
+using System.Data;
+
+namespace BusinessLogic.core
+{
+    public class UserBusinessLogic
+    {
+        #region Private Variable
+
+        private QueryExecuter _query = null;
+
+        #endregion
+
+        #region Index Method
+
+        public void Index() 
+        {
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_Index]",
+                Scalar = false
+            };
+        }
+
+        #endregion
+
+        #region Execute Method
+
+        private void Execute(ref User user) 
+        {
+            _query.Execute(ref _query);
+            if (_query.ErrorMessage == null)
+            {
+                if (_query.Scalar)
+                {
+                    user.ScalarValue = _query.ScalarValue;
+                }
+                else 
+                { 
+                    user.DataSetResult = _query.DataSetResult.Tables[0];
+                    if (user.DataSetResult.Rows.Count > 0) 
+                    {
+                        foreach (DataRow item in user.DataSetResult.Rows)
+                        {
+                            user.UserId = Convert.ToUInt32(item["[UserId]"]);
+                            user.Nickname = item["[UserNickname]"].ToString();
+                            user.Email = item["[Email]"].ToString();
+                            user.Password = item["[Password]"].ToString();
+                            user.ProfilePictureURL = item["[ProfilePictureUrl]"].ToString();
+                            user.MembershipId = Convert.ToByte(item["[MembershipId]"]);
+                        }
+                    }
+                }
+            }
+            else 
+            { 
+                user.ErrorMessage = _query.ErrorMessage;
+            }
+        }
+
+        #endregion
+
+        #region CRUD Methods
+        public void Create(ref User user) 
+        {
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_Create]",
+                Scalar = true
+            };
+
+            _query.DataTableParameters.Rows.Add(@"@UserNickname", "16",user.Nickname);
+            _query.DataTableParameters.Rows.Add(@"@Email", "16",user.Email);
+            _query.DataTableParameters.Rows.Add(@"@Password", "16",user.Password);
+            _query.DataTableParameters.Rows.Add(@"@MembershipId", "2",user.MembershipId);
+
+            Execute(ref user);
+        }
+
+        public void Read(ref User user) 
+        {
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_Read]",
+                Scalar = true
+
+            };
+
+            _query.DataTableParameters.Rows.Add(@"@UserId", "4", user.UserId);
+
+            Execute(ref user);
+
+        }
+
+        public void Update(ref User user)
+        {
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_Update]",
+                Scalar = true
+
+            };
+
+            _query.DataTableParameters.Rows.Add(@"@UserId", "4", user.UserId);
+            _query.DataTableParameters.Rows.Add(@"@UserNickname", "16", user.Nickname);
+            _query.DataTableParameters.Rows.Add(@"@Email", "16", user.Email);
+            _query.DataTableParameters.Rows.Add(@"@Password", "16", user.Password);
+            _query.DataTableParameters.Rows.Add(@"@@ProfilePictureUrl", "16", user.ProfilePictureURL);
+            _query.DataTableParameters.Rows.Add(@"@MembershipId", "2", user.MembershipId);
+
+            Execute(ref user);
+
+        }
+
+        public void Delete(ref User user) 
+        {
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_Delete]",
+                Scalar = true
+
+            };
+
+            _query.DataTableParameters.Rows.Add(@"@UserId", "4", user.UserId);
+
+            Execute(ref user);
+
+        }
+
+        #endregion
+
+    }
+}
