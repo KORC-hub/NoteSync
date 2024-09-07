@@ -34,13 +34,14 @@
             lblPassword = new Label();
             txtNickname = new TextBox();
             txtEmail = new TextBox();
-            txtPassword = new TextBox();
             UserDataGrid = new DataGridView();
             btnDelete = new Button();
             btnUpdate = new Button();
             btnAdd = new Button();
             txtUserId = new TextBox();
             lblUserId = new Label();
+            btnRead = new Button();
+            txtPassword = new TextBox();
             ((System.ComponentModel.ISupportInitialize)UserDataGrid).BeginInit();
             SuspendLayout();
             // 
@@ -135,20 +136,6 @@
             txtEmail.Size = new Size(504, 30);
             txtEmail.TabIndex = 5;
             // 
-            // txtPassword
-            // 
-            txtPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtPassword.BackColor = Color.FromArgb(19, 19, 19);
-            txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Cursor = Cursors.IBeam;
-            txtPassword.Font = new Font("Segoe UI", 10.8F);
-            txtPassword.ForeColor = Color.White;
-            txtPassword.Location = new Point(451, 255);
-            txtPassword.MinimumSize = new Size(0, 30);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(477, 30);
-            txtPassword.TabIndex = 6;
-            // 
             // UserDataGrid
             // 
             UserDataGrid.BackgroundColor = Color.White;
@@ -165,7 +152,7 @@
             btnDelete.Cursor = Cursors.Hand;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 10.8F);
-            btnDelete.Location = new Point(1081, 381);
+            btnDelete.Location = new Point(923, 381);
             btnDelete.Margin = new Padding(0);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(146, 39);
@@ -181,7 +168,7 @@
             btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Segoe UI", 10.8F);
-            btnUpdate.Location = new Point(924, 381);
+            btnUpdate.Location = new Point(760, 381);
             btnUpdate.Margin = new Padding(0);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(146, 39);
@@ -234,12 +221,44 @@
             lblUserId.Text = "User Id:";
             lblUserId.TextAlign = ContentAlignment.TopCenter;
             // 
+            // btnRead
+            // 
+            btnRead.BackColor = Color.FromArgb(162, 175, 248);
+            btnRead.Cursor = Cursors.Hand;
+            btnRead.FlatStyle = FlatStyle.Flat;
+            btnRead.Font = new Font("Segoe UI", 10.8F);
+            btnRead.Location = new Point(1081, 381);
+            btnRead.Margin = new Padding(0);
+            btnRead.Name = "btnRead";
+            btnRead.Size = new Size(146, 39);
+            btnRead.TabIndex = 14;
+            btnRead.Text = "Read";
+            btnRead.TextAlign = ContentAlignment.TopCenter;
+            btnRead.UseVisualStyleBackColor = false;
+            btnRead.Click += btnRead_Click;
+            // 
+            // txtPassword
+            // 
+            txtPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtPassword.BackColor = Color.FromArgb(19, 19, 19);
+            txtPassword.BorderStyle = BorderStyle.None;
+            txtPassword.Cursor = Cursors.IBeam;
+            txtPassword.Font = new Font("Segoe UI", 10.8F);
+            txtPassword.ForeColor = Color.White;
+            txtPassword.Location = new Point(451, 255);
+            txtPassword.MinimumSize = new Size(0, 30);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(477, 30);
+            txtPassword.TabIndex = 6;
+            // 
             // UserRegistration
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1264, 701);
+            Controls.Add(btnRead);
             Controls.Add(txtUserId);
             Controls.Add(lblUserId);
             Controls.Add(btnAdd);
@@ -269,13 +288,14 @@
         private Label lblPassword;
         private TextBox txtNickname;
         private TextBox txtEmail;
-        private TextBox txtPassword;
         private DataGridView UserDataGrid;
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnAdd;
         private TextBox txtUserId;
         private Label lblUserId;
+        private Button btnRead;
+        private TextBox txtPassword;
     }
 
 }
