@@ -14,7 +14,7 @@ namespace BusinessLogic.core
 
         #region Index Method
 
-        public void Index() 
+        public void Index(ref User user) 
         {
             _query = new QueryExecuter
             {
@@ -22,6 +22,7 @@ namespace BusinessLogic.core
                 StoredProcedureName = "[SP_User_Index]",
                 Scalar = false
             };
+
         }
 
         #endregion
@@ -44,12 +45,13 @@ namespace BusinessLogic.core
                     {
                         foreach (DataRow item in user.DataSetResult.Rows)
                         {
-                            user.UserId = Convert.ToUInt32(item["[UserId]"]);
-                            user.Nickname = item["[UserNickname]"].ToString();
-                            user.Email = item["[Email]"].ToString();
-                            user.Password = item["[Password]"].ToString();
-                            user.ProfilePictureURL = item["[ProfilePictureUrl]"].ToString();
-                            user.MembershipId = Convert.ToByte(item["[MembershipId]"]);
+                            user.UserId = Convert.ToUInt32(item[0]);
+                            user.Nickname = item[1].ToString();
+                            user.Email = item[2].ToString();
+                            user.Password = item[3].ToString();
+                            user.CreatedAt = Convert.ToDateTime(item[4]);
+                            user.ProfilePictureURL = item[5].ToString();
+                            user.MembershipId = Convert.ToByte(item[6]);
                         }
                     }
                 }
@@ -75,7 +77,6 @@ namespace BusinessLogic.core
             _query.DataTableParameters.Rows.Add(@"@UserNickname", "16",user.Nickname);
             _query.DataTableParameters.Rows.Add(@"@Email", "16",user.Email);
             _query.DataTableParameters.Rows.Add(@"@Password", "16",user.Password);
-            _query.DataTableParameters.Rows.Add(@"@MembershipId", "2",user.MembershipId);
 
             Execute(ref user);
         }
@@ -86,7 +87,7 @@ namespace BusinessLogic.core
             {
                 TableName = "[User]",
                 StoredProcedureName = "[SP_User_Read]",
-                Scalar = true
+                Scalar = false
 
             };
 
@@ -110,8 +111,6 @@ namespace BusinessLogic.core
             _query.DataTableParameters.Rows.Add(@"@UserNickname", "16", user.Nickname);
             _query.DataTableParameters.Rows.Add(@"@Email", "16", user.Email);
             _query.DataTableParameters.Rows.Add(@"@Password", "16", user.Password);
-            _query.DataTableParameters.Rows.Add(@"@@ProfilePictureUrl", "16", user.ProfilePictureURL);
-            _query.DataTableParameters.Rows.Add(@"@MembershipId", "2", user.MembershipId);
 
             Execute(ref user);
 
