@@ -23,6 +23,8 @@ namespace BusinessLogic.core
                 Scalar = false
             };
 
+            _query.Execute(ref _query);
+            user.DataSetResult = _query.DataSetResult.Tables[0];
         }
 
         #endregion
