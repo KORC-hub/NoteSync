@@ -42,6 +42,7 @@
             lblUserId = new Label();
             btnRead = new Button();
             txtPassword = new TextBox();
+            btnLoad = new Button();
             ((System.ComponentModel.ISupportInitialize)UserDataGrid).BeginInit();
             SuspendLayout();
             // 
@@ -138,7 +139,8 @@
             // 
             // UserDataGrid
             // 
-            UserDataGrid.BackgroundColor = Color.White;
+            UserDataGrid.BackgroundColor = Color.FromArgb(25, 25, 25);
+            UserDataGrid.BorderStyle = BorderStyle.None;
             UserDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             UserDataGrid.Location = new Point(59, 435);
             UserDataGrid.Name = "UserDataGrid";
@@ -152,10 +154,10 @@
             btnDelete.Cursor = Cursors.Hand;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 10.8F);
-            btnDelete.Location = new Point(923, 381);
+            btnDelete.Location = new Point(1055, 381);
             btnDelete.Margin = new Padding(0);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(146, 39);
+            btnDelete.Size = new Size(90, 39);
             btnDelete.TabIndex = 8;
             btnDelete.Text = "Delete";
             btnDelete.TextAlign = ContentAlignment.TopCenter;
@@ -168,10 +170,10 @@
             btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Segoe UI", 10.8F);
-            btnUpdate.Location = new Point(760, 381);
+            btnUpdate.Location = new Point(952, 381);
             btnUpdate.Margin = new Padding(0);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(146, 39);
+            btnUpdate.Size = new Size(93, 39);
             btnUpdate.TabIndex = 9;
             btnUpdate.Text = "Update";
             btnUpdate.TextAlign = ContentAlignment.TopCenter;
@@ -223,14 +225,14 @@
             // 
             // btnRead
             // 
-            btnRead.BackColor = Color.FromArgb(162, 175, 248);
+            btnRead.BackColor = Color.FromArgb(249, 215, 172);
             btnRead.Cursor = Cursors.Hand;
             btnRead.FlatStyle = FlatStyle.Flat;
             btnRead.Font = new Font("Segoe UI", 10.8F);
-            btnRead.Location = new Point(1081, 381);
+            btnRead.Location = new Point(1154, 381);
             btnRead.Margin = new Padding(0);
             btnRead.Name = "btnRead";
-            btnRead.Size = new Size(146, 39);
+            btnRead.Size = new Size(73, 39);
             btnRead.TabIndex = 14;
             btnRead.Text = "Read";
             btnRead.TextAlign = ContentAlignment.TopCenter;
@@ -252,12 +254,29 @@
             txtPassword.Size = new Size(477, 30);
             txtPassword.TabIndex = 6;
             // 
+            // btnLoad
+            // 
+            btnLoad.BackColor = Color.FromArgb(213, 254, 197);
+            btnLoad.Cursor = Cursors.Hand;
+            btnLoad.FlatStyle = FlatStyle.Flat;
+            btnLoad.Font = new Font("Segoe UI", 10.8F);
+            btnLoad.Location = new Point(806, 381);
+            btnLoad.Margin = new Padding(0);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(137, 39);
+            btnLoad.TabIndex = 15;
+            btnLoad.Text = "Load Table";
+            btnLoad.TextAlign = ContentAlignment.TopCenter;
+            btnLoad.UseVisualStyleBackColor = false;
+            btnLoad.Click += btnLoad_Click;
+            // 
             // UserRegistration
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
             ClientSize = new Size(1264, 701);
+            Controls.Add(btnLoad);
             Controls.Add(btnRead);
             Controls.Add(txtUserId);
             Controls.Add(lblUserId);
@@ -275,6 +294,7 @@
             Cursor = Cursors.Hand;
             Name = "UserRegistration";
             Text = "Register";
+            Load += UserRegistration_Load;
             ((System.ComponentModel.ISupportInitialize)UserDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -296,6 +316,7 @@
         private Label lblUserId;
         private Button btnRead;
         private TextBox txtPassword;
+        private Button btnLoad;
     }
 
 }

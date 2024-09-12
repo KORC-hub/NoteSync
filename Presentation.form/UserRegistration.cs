@@ -1,6 +1,8 @@
 ﻿using BusinessLogic.core;
 using Entities;
 using System.ComponentModel;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Presentation.form
 {
@@ -17,7 +19,6 @@ namespace Presentation.form
         public UserRegistration()
         {
             InitializeComponent();
-            UserDataGrid.DataSource = _users;
         }
 
         #region Buttons
@@ -44,7 +45,7 @@ namespace Presentation.form
                 Password = txtPassword.Text
             };
 
-            _userBusinessLogic.Update(ref user); 
+            _userBusinessLogic.Update(ref user);
 
         }
 
@@ -73,9 +74,21 @@ namespace Presentation.form
                 _users.Add(user);
             }
 
+            UserDataGrid.DataSource = _users;
+
+        }
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            User user = new User();
+            _userBusinessLogic.Index(ref user);
+            UserDataGrid.DataSource = user.DataSetResult;
         }
 
         #endregion
 
+        private void UserRegistration_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
