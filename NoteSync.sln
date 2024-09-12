@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TSQL files", "TSQL files", 
 		..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\StoredProceduresUser.sql = ..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\StoredProceduresUser.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.web", "Presentation.web\Presentation.web.csproj", "{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{1B418895-57A4-4B23-83A5-F8B0048F11D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B418895-57A4-4B23-83A5-F8B0048F11D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B418895-57A4-4B23-83A5-F8B0048F11D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{A8A06DAF-91C5-474C-93D8-7FDEF00962FE} = {0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}
 		{1B418895-57A4-4B23-83A5-F8B0048F11D3} = {0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}
 		{EFB17FDA-EBC2-44F5-9236-75102094D343} = {E0F35934-0EA7-4C88-BF69-06998C98EDAB}
+		{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7} = {0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {511D329C-6234-4263-AF5D-5F6F179DAD7B}

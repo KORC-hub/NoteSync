@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Presentation.web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="nav nav-pills py-2 mb-4 px-3 align-items-center">
+            <!-- Left side -->
+            <a class="nav-link me-auto fs-4 verti" asp-controller="Home" asp-action="Index">NoteSync</a>
+
+            <!-- Right side -->
+            <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+
+            <li class="nav-item ms-6">
+                <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+            </li>
+            <li class="nav-item ms-2">
+                <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+            </li>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
