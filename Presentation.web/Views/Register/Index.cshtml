@@ -1,7 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Register";
-}
+﻿@using Presentation.web.Models.DTOs;
+@model LoginUserDTO;
+@{ ViewData["Title"] = "Register"; }
 
-<div class="text-center">
-    <h1>Register</h1>
+<div class="container text-center">
+
+    <h1>Sign up</h1>
+    <form asp-action="Create">
+        <br>
+        <input class="form-control btn-dark" type="text" placeholder="Nickname" asp-for="Nickname">
+        <br>
+        <input class="form-control btn-dark" type="email" placeholder="Correo" asp-for="Email">
+        <br>
+        <input class="form-control btn-dark" type="password" placeholder="Password" asp-for="Password">
+        <br>
+        <input class="btn btn-primary" type="submit" value="Sign up">
+    </form>
+
 </div>
+
+
