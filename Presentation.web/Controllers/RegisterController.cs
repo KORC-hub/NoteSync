@@ -3,6 +3,7 @@ using BusinessLogic.core;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 
 namespace Presentation.web.Controllers
@@ -12,28 +13,29 @@ namespace Presentation.web.Controllers
         #region Private Varieble
 
         private UserBusinessLogic _userBusinessLogic = new UserBusinessLogic();
-        private BindingList<User> _users = new BindingList<User>();
+
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         #endregion
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var beer = new Beer()
-        //        {
-        //            BeerName = model.Name,
-        //            BrandId = model.BrandId,
-        //        };
-        //        _context.Beers.Add(beer);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["Brands"] = new SelectList(_context.Brands, "BrandId", "BrandName", model.BrandId);
-        //    return View(model);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(User user)
+        {
+            user = new User()
+            {
+                Nickname = user.Nickname,
+                Email = user.Email,
+                Password = user.Password,
+            };
+
+            _userBusinessLogic.Create(ref user);
+
+            return View("~/Views/Auth/Login.cshtml");
+        }
 
     }
 }

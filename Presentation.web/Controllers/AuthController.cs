@@ -6,7 +6,7 @@ using Presentation.web.Models.VOs;
 
 namespace Presentation.web.Controllers
 {
-    public class LoginController : Controller
+    public class AuthController : Controller
     {
         private const string LoginForm = "login-form";
 
@@ -27,6 +27,11 @@ namespace Presentation.web.Controllers
 
             LoggedInUserVO User = new LoggedInUserVO(1,"","");
 
+        }
+
+        public IActionResult Login()
+        {
+            return View();
         }
 
     }
