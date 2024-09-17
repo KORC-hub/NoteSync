@@ -14,8 +14,8 @@ CREATE TABLE [Membership] (
 CREATE TABLE [User] (
 	[UserId] INT IDENTITY (1,1) PRIMARY KEY,
 	[UserNickname] NVARCHAR(15) NOT NULL,
-	[Email] NVARCHAR(100) NOT NULL,
-	[Password] NVARCHAR(60) NOT NULL, -- para bcrypt
+	[Email] NVARCHAR(100) NOT NULL UNIQUE,
+	[Password] NVARCHAR(MAX) NOT NULL, -- para bcrypt
 	[CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(),
 	[ProfilePictureUrl] NVARCHAR(255),
 	[MembershipId] TINYINT NOT NULL DEFAULT 1,
@@ -25,7 +25,6 @@ CREATE TABLE [User] (
 	CONSTRAINT user_plan_fk FOREIGN KEY ([MembershipId]) REFERENCES [Membership]([MembershipId])
 	--CONSTRAINT user_status_fk FOREIGN KEY ([MembershipStatusId]) REFERENCES [Status]([StatusId])
 )
-
 
 -- Insert for membership table
 
