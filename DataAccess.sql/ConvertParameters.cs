@@ -2,73 +2,47 @@
 
 namespace DataAccess.sql
 {
-    internal static class ConvertParameters
+    internal class ConvertParameters
     {
+
+        private static Dictionary<string, SqlDbType> sqlDataTypeDictionary = new Dictionary<string, SqlDbType>()
+        {
+            { "1", SqlDbType.Bit },
+            { "2", SqlDbType.TinyInt },
+            { "3", SqlDbType.SmallInt },
+            { "4", SqlDbType.Int },
+            { "5", SqlDbType.BigInt },
+            { "6", SqlDbType.Decimal },
+            { "7", SqlDbType.SmallMoney },
+            { "8", SqlDbType.Money },
+            { "9", SqlDbType.Float },
+            { "10", SqlDbType.Real },
+            { "11", SqlDbType.Date },
+            { "12", SqlDbType.Time },
+            { "13", SqlDbType.SmallDateTime },
+            { "14", SqlDbType.Char },
+            { "15", SqlDbType.VarChar },
+            { "16", SqlDbType.NVarChar }
+        };
+
+
         /// <summary>
         /// Converts a string representing a data type to its equivalent in <see cref="SqlDbType"/>.
         /// </summary>
         /// <param name="DataType"></param>
         /// <returns>The corresponding value of <see cref="SqlDbType"/> based on the string provided. If the string does not match any expected value, the default value of <see cref="SqlDbType"/> is returned.</returns>
-        public static SqlDbType ToSQLDatatype(string? DataType) 
+        public static SqlDbType ToSQLDatatype(string DataType) 
         {
             SqlDbType SQLDatatype = new SqlDbType();
 
-            switch (DataType)
+            if (sqlDataTypeDictionary.TryGetValue(DataType, out SQLDatatype))
             {
-                case "1":
-                    SQLDatatype = SqlDbType.Bit;
-                    break;
-                case "2":
-                    SQLDatatype = SqlDbType.TinyInt;
-                    break;
-                case "3":
-                    SQLDatatype = SqlDbType.SmallInt;
-                    break;
-                case "4":
-                    SQLDatatype = SqlDbType.Int;
-                    break;
-                case "5":
-                    SQLDatatype = SqlDbType.BigInt;
-                    break;
-                case "6":
-                    SQLDatatype = SqlDbType.Decimal;
-                    break;
-                case "7":
-                    SQLDatatype = SqlDbType.SmallMoney;
-                    break;
-                case "8":
-                    SQLDatatype = SqlDbType.Money;
-                    break;
-                case "9":
-                    SQLDatatype = SqlDbType.Float;
-                    break;
-                case "10":
-                    SQLDatatype = SqlDbType.Real;
-                    break;
-                case "11":
-                    SQLDatatype = SqlDbType.Date;
-                    break;
-                case "12":
-                    SQLDatatype = SqlDbType.Time;
-                    break;
-                case "13":
-                    SQLDatatype = SqlDbType.SmallDateTime;
-                    break;
-                case "14":
-                    SQLDatatype = SqlDbType.Char;
-                    break;
-                case "15":
-                    SQLDatatype = SqlDbType.VarChar;
-                    break;
-                case "16":
-                    SQLDatatype = SqlDbType.NVarChar;
-                    break;
-                default:
-                    break;
+                return SQLDatatype;
             }
-
-            return SQLDatatype;
-
+            else
+            {
+                throw new ArgumentException($"The value '{DataType}' is not a valid data type.", nameof(DataType));
+            }
         }
 
     }
