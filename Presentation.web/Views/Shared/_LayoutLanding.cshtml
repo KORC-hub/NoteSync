@@ -1,6 +1,4 @@
-﻿@using System.Security.Claims;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,17 +12,16 @@
     <header>
         <nav class="nav nav-pills py-2 mb-4 px-3 align-items-center">
             <!-- Left side -->
-            @if (User.Identity!.IsAuthenticated)
-            {
-                <a class="nav-link me-auto fs-4 verti" asp-controller="Home" asp-action="Index">
-                    
-                    @User.Claims.Where(u => u.Type == ClaimTypes.Name).Select(u => u.Value).SingleOrDefault()
+            <a class="nav-link me-auto fs-4 verti" asp-controller="Landing" asp-action="Index">NoteSync</a>
 
-                </a>
-            }
+            <!-- Right side -->
+            <a class="nav-link" asp-controller="Landing" asp-action="About">About</a>
 
+            <li class="nav-item ms-6">
+                <a class="nav-link active" asp-area="" asp-controller="Access" asp-action="Register">Sign up</a>
+            </li>
             <li class="nav-item ms-2">
-                <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                <a class="nav-link active" asp-area="" asp-controller="Access" asp-action="Login">Sign in</a>
             </li>
         </nav>
     </header>

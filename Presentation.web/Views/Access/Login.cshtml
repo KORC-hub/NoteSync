@@ -1,0 +1,44 @@
+﻿@using Presentation.web.Models.ViewModels;
+@model LoginVM;
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+
+<html>
+    <head>
+        <title>Sign in</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div class="container text-center mt-5">
+            <h1>Sign in</h1>
+
+            <form asp-controller="Access" asp-action="Login" method="post">
+
+                <!-- todavia falta agregar los estilos, este form es por ahora para testing -->
+                <br>
+            <input class="form-control btn-dark" type="email" placeholder="Correo" asp-for="Email">
+                <br>
+            <input class="form-control btn-dark" type="password" placeholder="Password" asp-for="Password">
+                <br>
+                <input class="btn btn-primary" type="submit" value="Sign in">
+                <br>
+                @if (ViewData["Message"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["Message"]
+                    </div>
+                }
+                <br>
+            <p>¿No tienes una cuenta? <a asp-controller="Access" asp-action="Register">Sign up</a></p>
+
+            </form>
+
+        </div>
+    </body>
+</html>
+
+
