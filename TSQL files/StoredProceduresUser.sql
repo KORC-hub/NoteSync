@@ -74,6 +74,19 @@ END
 SELECT Scope_identity()
 GO
 
+CREATE PROCEDURE SP_User_By_Email
+(
+@Email NVARCHAR(100),
+@Password NVARCHAR(MAX)
+)
+AS
+BEGIN
+	SELECT * FROM [user] where [Email]=@Email AND [Password]=@Password
+END
+---Retorna el identificador de la tabla
+SELECT Scope_identity()
+GO
+
 SELECT name, object_id, create_date, modify_date
 FROM sys.procedures
 ORDER BY name;
