@@ -1,0 +1,49 @@
+﻿@using Presentation.web.Models.ViewModels;
+@model RegisterVM;
+@{ 
+    ViewData["Title"] = "Sign up";
+    Layout = null;
+}
+
+<html>
+    <head>
+        <title>Sign up</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </head>
+    <body>
+    <div class="container text-center mt-5">
+
+        <!-- todavia falta agregar los estilos, este form es por ahora para testing -->
+        <h1>Sign up</h1>
+
+        <form asp-controller="Access" asp-action="Register" method="post">
+
+            <br>
+            <input class="form-control btn-dark" type="text" placeholder="Nickname" asp-for="Nickname">
+            <br>
+            <input class="form-control btn-dark" type="email" placeholder="Correo" asp-for="Email">
+            <br>
+            <input class="form-control btn-dark" type="password" placeholder="Password" asp-for="Password">
+            <br>
+            <input class="form-control btn-dark" type="password" placeholder="Confirm Password" asp-for="ConfirmPassword">
+            <br>
+            <input class="btn btn-primary" type="submit" value="Sign up">
+            <br>
+            @if (ViewData["Message"] != null)
+            {
+                <div class="alert alert-danger " role="alert">
+                    @ViewData["Message"]
+                </div>
+            }
+            <br>
+            <p>¿ya tienes una cuenta? <a asp-controller="Access" asp-action="Login">Sign in</a></p>
+
+        </form>
+
+    </div>
+    </body>
+</html>
+
+
+

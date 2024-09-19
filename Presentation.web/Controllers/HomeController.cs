@@ -2,8 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.web.Models;
 using System.Diagnostics;
 
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+
+
 namespace Presentation.web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -18,19 +24,10 @@ namespace Presentation.web.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> Logout()
         {
-            return View();
-        }
-
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        public IActionResult Login()
-        {
-            return View();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Landing");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

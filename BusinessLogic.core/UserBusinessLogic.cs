@@ -136,5 +136,24 @@ namespace BusinessLogic.core
 
         #endregion
 
+        #region Find methods
+
+        public void UserByEmail(ref User user)
+        {
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_By_Email]",
+                Scalar = false
+            };
+
+            _query.DataTableParameters.Rows.Add(@"@Email", "16", user.Email);
+            _query.DataTableParameters.Rows.Add(@"@Password", "16", user.Password);
+
+            Execute(ref user);
+        }
+
+        #endregion
+
     }
 }
