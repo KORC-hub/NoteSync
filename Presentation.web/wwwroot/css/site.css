@@ -1,3 +1,5 @@
+@import url("palette.css");
+
 html {
     font-size: 14px;
 }
@@ -5,7 +7,7 @@ html {
 @media (min-width: 768px) {
     html {
         font-size: 16px;
-        background: #191919;
+        background: var(--Primary-color);
     }
 }
 
@@ -20,10 +22,10 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: #191919;
+    background: var(--primary-color);
     color: white;
 }
 
 nav {
-    background: #131313;
+    background-color: var(--second-color);
 }

@@ -1,0 +1,128 @@
+﻿@import url("palette.css");
+
+:root {
+    --background-color: #1e1e1e;
+    --second-background: #2a2a2a;
+    --text-color-light: #e0e0e0;
+    --text-color-secondary: #b0b0b0;
+    --hover-background: #3a3a3a;
+    --text-color-dark: #ffffff;
+    --pinFile-color: #5fffc7;
+}
+
+* {
+    /* Reset CSS */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-color);
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 96vh;
+}
+
+.content {
+    flex-grow: 1;
+    margin-left: 25px;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}
+
+.sidebar {
+    width: 256px;
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--second-background);
+    gap: 20px;
+    padding: 24px;
+    margin-left: 15px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    border-radius: 30px;
+}
+
+.sidebar .head {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.user-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 30%;
+    overflow: hidden;
+}
+
+.user-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.user-details .membership {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-color-light);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.menu .title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color-light);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.nav {
+    flex: 1;
+}
+
+.user-details .name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color-light);
+}
+
+.menu ul {
+    margin-top: 15px;
+}
+
+.menu ul li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color-light);
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 8px;
+}
+
+.menu ul li:hover a,
+.menu ul li:active a {
+    color: var(--text-color-dark);
+    background-color: var(--hover-background);
+}
+
+.file .square {
+    background-color: var(--pinFile-color);
+    height: 22px;
+    margin: 2px;
+    aspect-ratio: 1/1;
+    border-radius: 3px;
+}
