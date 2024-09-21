@@ -23,6 +23,15 @@ namespace Presentation.web.Controllers
         {
             return View();
         }
+        public IActionResult Files()
+        {
+            return View();
+        }
+        public IActionResult UserSettings()
+        {
+            return View();
+        }
+
 
         public async Task<IActionResult> Logout()
         {

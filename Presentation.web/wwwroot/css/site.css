@@ -1,12 +1,7 @@
+@import url("palette.css");
+
 html {
     font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-        background: #191919;
-    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -20,10 +15,10 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: #191919;
+    background: var(--primary-color);
     color: white;
 }
 
 nav {
-    background: #131313;
+    background-color: var(--second-color);
 }
