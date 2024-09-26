@@ -2,6 +2,21 @@
     ViewData["Title"] = "My Files";
     Layout = "_LayoutHome";
 }
+<link rel="stylesheet" href="~/css/viewStyle/fileStyle.css" />
 <div class="text-center">
-    <h1>My Files</h1>
+    <h1>Files</h1>
+    <div class="container">
+        <input class="input-text" type="text" placeholder="Search" />
+        <button class="button primary-button">New file</button>
+        <button class="button transparent-button">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="35"
+                 height="35"
+                 fill="currentColor"
+                 class="bi bi-filter"
+                 viewBox="0 2 16 16">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+            </svg>
+        </button>
+    </div>
 </div>
