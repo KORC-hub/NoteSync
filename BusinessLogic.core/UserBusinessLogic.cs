@@ -53,7 +53,7 @@ namespace BusinessLogic.core
                             user.Password = item[3].ToString();
                             user.CreatedAt = Convert.ToDateTime(item[4]);
                             user.ProfilePictureURL = item[5].ToString();
-                            user.MembershipId = Convert.ToByte(item[6]);
+                            user.Membership = item[6].ToString();
                         }
                     }
                 }

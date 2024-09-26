@@ -12,7 +12,7 @@ namespace Entities
         private string _password;
         private DateTime? _createdAt;
         private string? _profilePictureURL;
-        private byte _membershipId;
+        private string _membership;
 
         private string _errorMessage, _scalarValue;
         private DataTable _dataSetResultado;
@@ -26,7 +26,7 @@ namespace Entities
         public string Password { get => _password; set => _password = value; }
         public DateTime? CreatedAt { get => _createdAt; set => _createdAt = value; }
         public string? ProfilePictureURL { get => _profilePictureURL; set => _profilePictureURL = value; }
-        public byte MembershipId { get => _membershipId; set => _membershipId = value; }
+        public string Membership { get => _membership; set => _membership = value; }
 
 
         public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
@@ -38,14 +38,14 @@ namespace Entities
         #region Constructors
         public User() { }
 
-        public User(uint userId, string nickname, string email, string password, string? profilePictureURL, byte membershipId, DateTime? createdAt)
+        public User(uint userId, string nickname, string email, string password, string? profilePictureURL, string membership, DateTime? createdAt)
         {
             _userId = userId;
             _nickname = nickname;
             _email = email;
             _password = password;
             _profilePictureURL = profilePictureURL;
-            _membershipId = membershipId;
+            _membership = membership;
             _createdAt = createdAt;
         }
         #endregion
