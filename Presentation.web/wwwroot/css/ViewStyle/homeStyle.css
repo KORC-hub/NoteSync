@@ -1,0 +1,135 @@
+﻿@import url("../BasicStyle/palette.css");
+
+* {
+    /* Reset CSS */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", monospace;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    min-height: 96vh;
+    background-color: var(--background);
+}
+
+.content {
+    flex-grow: 1;
+    margin: 0 40px;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    color: var(--text-color);
+}
+
+.sidebar {
+    width: 256px;
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--second-background);
+    gap: 20px;
+    padding: 24px;
+    margin-left: 15px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    border-radius: 30px;
+}
+
+.sidebar .sidebar-head {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 5px;
+}
+
+.user-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 30%;
+    overflow: hidden;
+}
+
+.user-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.user-details .user-membership {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-bottom: 1px;
+}
+
+.user-details .user-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.user-setting {
+    margin-top: auto;
+}
+
+.user-setting a {
+    padding: 8px 8px 3px 8px;
+    color: var(--unselect-text);
+    margin-left: 20px;
+    border-radius: 8px;
+}
+
+.user-setting .bi {
+    width: 17px;
+    height: 17px;
+}
+
+.sidebar-menu {
+    padding-top: 10px;
+    border-top: 2px solid #7c7c7c33;
+}
+
+.sidebar-menu .sidebar-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.sidebar-nav {
+    flex: 1;
+}
+
+.sidebar-menu ul li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.sidebar-menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--unselect-text);
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 8px;
+}
+
+
+.sidebar-menu ul li:hover a,
+.sidebar-menu ul li:active a,
+.user-setting:hover a {
+    color: var(--text-color);
+    background-color: var(--hover-background);
+    cursor: pointer;
+}
+
+.sidebar-menu .bi {
+    width: 30px;
+    height: 22px;
+}

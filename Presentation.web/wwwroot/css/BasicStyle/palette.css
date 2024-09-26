@@ -1,0 +1,30 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+
+/*Light mode*/
+/*
+:root {
+    --background-color: #5b6677;
+    --sidebar-background: #fff;
+    --text-color-light: #757575;
+    --hover-background: #f6f6f6;
+    --text-color-dark: #000;
+    --pinFile-color: #5fffc7;
+}
+*/
+
+
+/*Dark mode*/
+:root {
+    --primary-color: #5fffc7;
+    --background: #1e1e1e;
+    --second-background: #2a2a2a;
+    --textbox-background: #1b1b1b;
+    --text-color: #fff;
+    --unselect-text: #aaaaaa;
+    --text-color-secondary: #b0b0b0;
+    --hover-background: #3a3a3a;
+    --text-color-dark: #ffffff;
+    --primary-button-hover: #48bd94;
+}

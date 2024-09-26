@@ -1,0 +1,17 @@
+﻿.setting {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.setting-buttons {
+    display: flex;
+    margin-top: auto; /* Empuja los botones hacia la parte inferior */
+    gap: 1rem; /* Espacio entre los botones */
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+}
+
+.input-text {
+    display: block;
+}

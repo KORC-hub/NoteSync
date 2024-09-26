@@ -1,0 +1,13 @@
+﻿.container {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    margin-right: 20%;
+    gap: 1rem;
+    margin: 20px 0;
+}
+
+.input-text {
+    flex-grow: 1; /* hace que el input ocupe el espacio disponible*/
+}
+
