@@ -25,6 +25,8 @@
     --unselect-text: #aaaaaa;
     --text-color-secondary: #b0b0b0;
     --hover-background: #3a3a3a;
-    --text-color-dark: #ffffff;
+    --text-color-dark: #262626;
     --primary-button-hover: #48bd94;
+    --link-color: #6495ed;
+    --error-color: #c05f5fa7;
 }

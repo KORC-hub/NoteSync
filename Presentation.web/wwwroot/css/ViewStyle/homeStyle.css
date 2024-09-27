@@ -133,3 +133,11 @@ body {
     width: 30px;
     height: 22px;
 }
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    gap: 20px;
+}
+

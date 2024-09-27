@@ -4,29 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/ViewStyle/landingStyle.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/BasicStyle/componentsStyle.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Presentation.web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ViewStyle/landingStyle.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="nav nav-pills py-2 mb-4 px-3 align-items-center">
+        <nav class="topbar">
             <!-- Left side -->
-            <a class="nav-link me-auto fs-4 verti" asp-controller="Landing" asp-action="Index">NoteSync</a>
-
+            <a class="Logo" asp-controller="Landing" asp-action="Index">NoteSync</a>
             <!-- Right side -->
-            <a class="nav-link" asp-controller="Landing" asp-action="About">About</a>
-
-            <li class="nav-item ms-6">
-                <a class="nav-link active" asp-area="" asp-controller="Access" asp-action="Register">Sign up</a>
-            </li>
-            <li class="nav-item ms-2">
-                <a class="nav-link active" asp-area="" asp-controller="Access" asp-action="Login">Sign in</a>
-            </li>
+            <div>
+                <button class="button primary-button" onclick="location.href='@Url.Action("Register", "Access")'">Sign up</button>
+                <button class="button primary-button" onclick="location.href='@Url.Action("Login", "Access")'">Sign in</button>
+            </div>
         </nav>
     </header>
-    <div class="container-fluid">
+    <div class="content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -34,7 +27,6 @@
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

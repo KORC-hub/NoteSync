@@ -14,7 +14,7 @@
 }
 
 .input-text::placeholder {
-    color: var(--text-color-light);
+    color: var(--unselect-text);
 }
 
 .input-text:focus {
@@ -23,7 +23,7 @@
 }
 
 input[type="file"] {
-    color: var(--text-color-light);
+    color: var(--unselect-text);
     background-color: var(--textbox-background);
 }
 

@@ -5,13 +5,23 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Entities;
+using BusinessLogic.core;
 
 
 namespace Presentation.web.Controllers
 {
+
     [Authorize]
     public class HomeController : Controller
     {
+        #region Private variable
+
+        private UserBusinessLogic _userBusinessLogic = new UserBusinessLogic();
+        private User userSession = new User();
+
+        #endregion
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -29,9 +39,12 @@ namespace Presentation.web.Controllers
         }
         public IActionResult UserSettings()
         {
+            userSession.UserId = Convert.ToUInt32(User.FindFirst("Id")?.Value);
+
+            _userBusinessLogic.Read(ref userSession);
+            ViewBag.User = userSession;
             return View();
         }
-
 
         public async Task<IActionResult> Logout()
         {

@@ -18,6 +18,7 @@ namespace Presentation.web.Controllers
         #region Private Variable
 
         private UserBusinessLogic _userBusinessLogic = new UserBusinessLogic();
+        private User user = new User();
 
         #endregion
 
@@ -71,11 +72,8 @@ namespace Presentation.web.Controllers
         [HttpPost]
         public IActionResult Login(LoginVM model)
         {
-            User user = new User()
-            {
-                Email = model.Email,
-                Password = model.Password,
-            };
+            user.Email= model.Email;
+            user.Password= model.Password;
 
             _userBusinessLogic.UserByEmail(ref user);
 
@@ -96,6 +94,7 @@ namespace Presentation.web.Controllers
             {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.Nickname),
+                new Claim("Id", user.UserId.ToString()),
             };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -1,4 +1,5 @@
 using System.Security.Policy;
+using Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Presentation.web
@@ -7,6 +8,7 @@ namespace Presentation.web
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -23,12 +25,10 @@ namespace Presentation.web
                     options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // la cookie solo se enviará a través de conexiones HTTPS,previene que se transmita en texto plano a través de HTTP
                     options.Cookie.SameSite = SameSiteMode.Strict; // la cookie no se enviará junto con solicitudes de sitios externos, previene ataques Cross-Site Request Forgery
 
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5); // Establece el tiempo de expiración de la cookie (1 día).
+                    options.ExpireTimeSpan = TimeSpan.FromDays(1); // Establece el tiempo de expiración de la cookie (1 día).
                     options.SlidingExpiration = true; // Cada vez que el usuario interactúa con la aplicación, el tiempo de expiración se renueva,
 
                 });
-
-
 
             var app = builder.Build();
 

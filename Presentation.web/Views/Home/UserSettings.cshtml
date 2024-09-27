@@ -3,13 +3,16 @@
     Layout = "_LayoutHome";
 
 }
-<link rel="stylesheet" href="~/css/viewStyle/userSettingStyle.css" />
 <div class="text-center">
     <h1>User Settings</h1>
-    <div class="setting">
-        <input class="input-text" type="text" placeholder="Nickname" />
-        <input class="input-text" type="password" placeholder="Password" />
-        <input class="input-text" type="email" placeholder="Email" />
+    <div class="settings">
+        <input class="input-text" type="text" placeholder="@ViewBag.User.Nickname" />
+        <input class="input-text" type="email" placeholder="@ViewBag.User.Email" />
+        <div class="setting-password">
+            <input class="input-text" type="password" placeholder="New password" />
+            <input class="input-text" type="password" placeholder="Confim new password" />
+        </div>
+        
         <input class="input-text" type="file" />
         <div class="setting-buttons">
             <button class="button primary-button">Save</button>

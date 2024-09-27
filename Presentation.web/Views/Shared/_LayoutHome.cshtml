@@ -8,7 +8,8 @@
         <title>@ViewData["Title"]</title>
         <link rel="stylesheet" href="~/css/BasicStyle/componentsStyle.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/ViewStyle/homeStyle.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/Presentation.web.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/viewStyle/userSettingStyle.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/viewStyle/fileStyle.css" asp-append-version="true"/>
     </head>
     <body>
         <div class="sidebar">
@@ -18,7 +19,9 @@
                 </div>
                 <div class="user-details">
                     <p class="user-membership">Basic</p>
-                    <p class="user-name">Rogers</p>
+                    <p class="user-name">
+                        @User.Claims.Where(u => u.Type == ClaimTypes.Name).Select(u => u.Value).SingleOrDefault()
+                    </p>
                 </div>
                 <div class="user-setting">
                     <a asp-controller="Home" asp-action="UserSettings">
