@@ -68,7 +68,15 @@ CREATE PROCEDURE SP_User_Read
 )
 AS
 BEGIN
-	SELECT * FROM [user] where [UserId]=@UserId
+	SELECT 
+	UserId,
+	UserNickname, 
+	Email, 
+	[Password], 
+	CreatedAt, 
+	ProfilePictureUrl, 
+	(SELECT MembershipName FROM Membership WHERE MembershipId=[User].MembershipId) AS Membership 
+	FROM [user] where [UserId]=@UserId
 END
 ---Retorna el identificador de la tabla
 SELECT Scope_identity()
