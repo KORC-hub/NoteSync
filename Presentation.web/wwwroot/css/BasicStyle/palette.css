@@ -29,4 +29,8 @@
     --primary-button-hover: #48bd94;
     --link-color: #6495ed;
     --error-color: #c05f5fa7;
+    --scrollbar-track: #404040;
+    --scrollbar-thumb: #727272;
+    --scrollbar-thumb-hover: #9e9e9e;
+}
 }

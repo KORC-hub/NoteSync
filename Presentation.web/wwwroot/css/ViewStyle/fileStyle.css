@@ -11,3 +11,38 @@
     flex-grow: 1; /* hace que el input ocupe el espacio disponible*/
 }
 
+.filters {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.file-list {
+    width: 100%;
+    margin-top: 1em;
+    border-collapse: collapse;
+}
+
+.file-list table {
+    width: 100%;
+}
+
+.file-list th,
+.file-list td {
+    padding: 12px;
+    text-align: left;
+}
+
+.file-list th {
+    background-color: var(--background);
+    border-bottom: 2px solid var(--second-background);
+}
+
+.file-list td {
+    border-bottom: 10px solid var(--background);
+    padding-left: 10px;
+}
+
+.file-list tr:hover {
+    background-color: var(--textbox-background);
+}

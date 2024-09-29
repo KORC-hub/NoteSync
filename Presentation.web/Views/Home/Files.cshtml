@@ -3,20 +3,93 @@
     Layout = "_LayoutHome";
 }
 
-<div class="text-center">
-    <h1>Files</h1>
-    <div class="container">
-        <input class="input-text" type="text" placeholder="Search" />
-        <button class="button primary-button">New file</button>
-        <button class="button transparent-button">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 width="35"
-                 height="35"
-                 fill="currentColor"
-                 class="bi bi-filter"
-                 viewBox="0 2 16 16">
-                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
-            </svg>
-        </button>
+
+<h1>Files</h1>
+<div class="container">
+    <input class="input-text" type="text" placeholder="Search" />
+    <button class="button primary-button">New file</button>
+    <button class="button transparent-button">
+        <svg xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                fill="currentColor"
+                class="bi bi-filter"
+                viewBox="0 2 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+        </svg>
+    </button>
+</div>
+
+<div class="filters">
+    <div class="custom-select">
+        <div class="select">
+            <span class="selected">Recent Documents</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="select-menu">
+            <li class="active" data-value="recent">Recent Documents</li>
+            <li data-value="alphabetical-asc">Alphabetical (A-Z)</li>
+            <li data-value="alphabetical-desc">Alphabetical (Z-A)</li>
+            <li data-value="date-created-newest">Date Created (Newest First)</li>
+            <li data-value="date-created-oldest">Date Created (Oldest First)</li>
+            <li data-value="date-modified-newest">Date Modified (Newest First)</li>
+            <li data-value="date-modified-oldest">Date Modified (Oldest First)</li>
+        </ul>
+    </div>
+    <div class="custom-select">
+        <div class="select">
+            <span class="selected"><div class="tag" style="background-color: brown">To do</div></span>
+            <div class="caret"></div>
+        </div>
+        <ul class="select-menu">
+            <li class="active" data-value="tag">
+                <div class="tag" style="background-color: brown">To do</div>
+            </li>
+            <li data-value="tag">
+                <div class="tag" style="background-color: chocolate">In progress</div>
+            </li>
+            <li data-value="tag"><div class="tag" style="background-color: darkcyan">Finish</div></li>
+            <li data-value="tag">
+                <div class="tag" style="background-color: cornflowerblue">Math</div>
+            </li>
+            <li data-value="tag">
+                <div class="tag" style="background-color: cadetblue">Programming</div>
+            </li>
+        </ul>
     </div>
 </div>
+
+<div class="file-list">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Tags</th>
+                <th>Date Created</th>
+                <th>Date Modified</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Documento1.pdf</td>
+                <td>
+                    <div class="tag" style="background-color: brown">To do</div>
+                    <div class="tag" style="background-color: cadetblue">Programming</div>
+                </td>
+                <td>2024-09-28</td>
+                <td>2024-09-29</td>
+            </tr>
+            <tr>
+                <td>InformeFinal.docx</td>
+                <td>
+                    <div class="tag" style="background-color: darkcyan">Finished</div>
+                    <div class="tag" style="background-color: cornflowerblue">Math</div>
+                </td>
+                <td>2024-08-15</td>
+                <td>2024-09-01</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="~/js/customSelectInteractive.js"></script>

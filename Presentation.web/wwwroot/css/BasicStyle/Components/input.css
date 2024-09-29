@@ -1,0 +1,36 @@
+﻿/* Input style */
+
+.input-text {
+    margin: 0;
+    width: auto;
+    background-color: var(--textbox-background);
+    color: var(--text-color);
+    font-size: 16px;
+    padding: 0.7em 1em;
+    border: solid var(--second-background) 2px;
+    border-radius: 4px;
+}
+
+.input-text::placeholder {
+    color: var(--unselect-text);
+}
+
+.input-text:focus {
+    outline: none;
+    border: solid var(--primary-color) 1px;
+}
+
+input[type="file"] {
+    color: var(--unselect-text);
+    background-color: var(--textbox-background);
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: var(--second-background);
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: var(--text-color-light);
+    cursor: pointer;
+}
