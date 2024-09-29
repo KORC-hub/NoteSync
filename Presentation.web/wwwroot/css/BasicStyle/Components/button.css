@@ -1,0 +1,29 @@
+﻿/* button style */
+
+.button {
+    width: auto;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.7em 1em;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: var(--background);
+}
+
+.transparent-button {
+    background-color: transparent;
+    color: var(--text-color-light);
+}
+
+.primary-button:hover {
+    background-color: var(--primary-button-hover);
+}
+
+.transparent-button:hover {
+    background-color: var(--second-background);
+}
