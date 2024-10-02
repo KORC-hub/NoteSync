@@ -164,6 +164,7 @@ namespace DataAccess.sql
             if (Query.Scalar)
             {
                 CommandExecuter(ref Query);
+
             }
             else
             {
