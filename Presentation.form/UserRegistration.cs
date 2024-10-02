@@ -12,7 +12,7 @@ namespace Presentation.form
         #region Private Varieble
 
         private UserBusinessLogic _userBusinessLogic = new UserBusinessLogic();
-        private BindingList<User> _users = new BindingList<User>();
+        //private BindingList<User> _users = new BindingList<User>();
 
         #endregion
 
@@ -21,74 +21,100 @@ namespace Presentation.form
             InitializeComponent();
         }
 
-        #region Buttons
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            User user = new User()
-            {
-                Nickname = txtNickname.Text,
-                Email = txtEmail.Text,
-                Password = txtPassword.Text,
-            };
+        //private void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    User user = new User()
+        //    {
+        //        Nickname = txtNickname.Text,
+        //        Email = txtEmail.Text,
+        //        Password = txtPassword.Text,
+        //    };
 
-            _userBusinessLogic.Create(ref user);
-        }
+        //    _userBusinessLogic.Create(ref user);
+        //}
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            User user = new User()
-            {
-                UserId = Convert.ToUInt32(txtUserId.Text),
-                Nickname = txtNickname.Text,
-                Email = txtEmail.Text,
-                Password = txtPassword.Text
-            };
+        //private void btnUpdate_Click(object sender, EventArgs e)
+        //{
+        //    User user = new User()
+        //    {
+        //        UserId = Convert.ToUInt32(txtUserId.Text),
+        //        Nickname = txtNickname.Text,
+        //        Email = txtEmail.Text,
+        //        Password = txtPassword.Text
+        //    };
 
-            _userBusinessLogic.Update(ref user);
+        //    _userBusinessLogic.Update(ref user);
 
-        }
+        //}
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            User user = new User()
-            {
-                UserId = Convert.ToUInt32(txtUserId.Text)
-            };
+        //private void btnDelete_Click(object sender, EventArgs e)
+        //{
+        //    User user = new User()
+        //    {
+        //        UserId = Convert.ToUInt32(txtUserId.Text)
+        //    };
 
-            _userBusinessLogic.Delete(ref user);
+        //    _userBusinessLogic.Delete(ref user);
 
-        }
-        private void btnRead_Click(object sender, EventArgs e)
-        {
-            User user = new User()
-            {
-                UserId = Convert.ToUInt32(txtUserId.Text)
-            };
+        //}
+        //private void btnRead_Click(object sender, EventArgs e)
+        //{
+        //    User user = new User()
+        //    {
+        //        UserId = Convert.ToUInt32(txtUserId.Text)
+        //    };
 
-            _userBusinessLogic.Read(ref user);
+        //    _userBusinessLogic.Read(ref user);
 
 
-            if (!_users.Any(u => u.UserId == user.UserId))
-            {
-                _users.Add(user);
-            }
+        //    if (!_users.Any(u => u.UserId == user.UserId))
+        //    {
+        //        _users.Add(user);
+        //    }
 
-            UserDataGrid.DataSource = _users;
+        //}
 
-        }
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            User user = new User();
-            _userBusinessLogic.Index(ref user);
-            UserDataGrid.DataSource = user.DataSetResult;
-        }
-
-        #endregion
 
         private void UserRegistration_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLogIn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+            User user = new User
+            {
+                Email = txtNickname.Text,
+                Password = txtPassword.Text
+            };
+
+            if (_userBusinessLogic.Login(ref user))
+            {
+                this.Hide(); 
+                Menu menu = new Menu();
+                menu.ShowDialog(); 
+                this.Close(); 
+            }
+            else
+            {
+                MessageBox.Show("Credenciales incorrectas. Inténtalo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

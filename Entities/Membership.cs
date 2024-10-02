@@ -2,7 +2,7 @@
 {
     public class Membership
     {
-        #region Private Vriable
+        #region Private Variable
 
         private byte _membershipId;
         private string _membershipName;

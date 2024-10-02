@@ -1,6 +1,8 @@
 ﻿using DataAccess.sql;
 using Entities;
 using System.Data;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace BusinessLogic.core
 {
@@ -14,7 +16,7 @@ namespace BusinessLogic.core
 
         #region Index Method
 
-        public void Index(ref User user) 
+        public void Index(ref User user)
         {
             _query = new QueryExecuter
             {
@@ -31,7 +33,7 @@ namespace BusinessLogic.core
 
         #region Execute Method
 
-        private void Execute(ref User user) 
+        private void Execute(ref User user)
         {
             _query.Execute(ref _query);
             if (_query.ErrorMessage == null)
@@ -40,10 +42,10 @@ namespace BusinessLogic.core
                 {
                     user.ScalarValue = _query.ScalarValue;
                 }
-                else 
-                { 
+                else
+                {
                     user.DataSetResult = _query.DataSetResult.Tables[0];
-                    if (user.DataSetResult.Rows.Count > 0) 
+                    if (user.DataSetResult.Rows.Count > 0)
                     {
                         foreach (DataRow item in user.DataSetResult.Rows)
                         {
@@ -58,8 +60,8 @@ namespace BusinessLogic.core
                     }
                 }
             }
-            else 
-            { 
+            else
+            {
                 user.ErrorMessage = _query.ErrorMessage;
             }
         }
@@ -67,7 +69,7 @@ namespace BusinessLogic.core
         #endregion
 
         #region CRUD Methods
-        public void Create(ref User user) 
+        public void Create(ref User user)
         {
             _query = new QueryExecuter
             {
@@ -76,14 +78,14 @@ namespace BusinessLogic.core
                 Scalar = true
             };
 
-            _query.DataTableParameters.Rows.Add(@"@UserNickname", "16",user.Nickname);
-            _query.DataTableParameters.Rows.Add(@"@Email", "16",user.Email);
-            _query.DataTableParameters.Rows.Add(@"@Password", "16",user.Password);
+            _query.DataTableParameters.Rows.Add(@"@UserNickname", "16", user.Nickname);
+            _query.DataTableParameters.Rows.Add(@"@Email", "16", user.Email);
+            _query.DataTableParameters.Rows.Add(@"@Password", "16", user.Password);
 
             Execute(ref user);
         }
 
-        public void Read(ref User user) 
+        public void Read(ref User user)
         {
             _query = new QueryExecuter
             {
@@ -118,7 +120,7 @@ namespace BusinessLogic.core
 
         }
 
-        public void Delete(ref User user) 
+        public void Delete(ref User user)
         {
             _query = new QueryExecuter
             {
@@ -155,5 +157,39 @@ namespace BusinessLogic.core
 
         #endregion
 
+
+        public bool Login(ref User user)
+        {
+            string errorMessage = string.Empty;
+            uint userId = 0;
+
+            _query = new QueryExecuter
+            {
+                TableName = "[User]",
+                StoredProcedureName = "[SP_User_Login]",
+                Scalar = false
+            };
+
+            _query.DataTableParameters.Rows.Add(@"@Email", "16", user.Email);
+            _query.DataTableParameters.Rows.Add(@"@Password", "16", user.Password);
+
+            Execute(ref user);
+
+            if (!string.IsNullOrEmpty(_query.ErrorMessage))
+            {
+                errorMessage = _query.ErrorMessage;
+
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(_query.ScalarValue))
+            {
+                userId = uint.Parse(_query.ScalarValue);
+                user.UserId = userId; 
+                return true;
+            }
+
+            return false;
+        }
     }
 }
