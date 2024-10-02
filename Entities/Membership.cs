@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using System.Data;
+
+namespace Entities
 {
     public class Membership
     {
@@ -7,6 +9,9 @@
         private byte _membershipId;
         private string _membershipName;
         private double _membershipPrice;
+
+        private string _errorMessage, _scalarValue;
+        private DataTable _dataSetResultado;
 
         #endregion
 
