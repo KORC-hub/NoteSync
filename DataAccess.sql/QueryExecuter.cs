@@ -66,7 +66,7 @@ namespace DataAccess.sql
 
         #region Private Methods
 
-        private void AddParameter(ref QueryExecuter Query) 
+        private void AddParameter(ref QueryExecuter Query)
         {
             if (Query.DataTableParameters != null)
             {

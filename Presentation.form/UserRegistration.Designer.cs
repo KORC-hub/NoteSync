@@ -28,86 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblTitle = new Label();
-            lblNickName = new Label();
-            lblEmail = new Label();
-            lblPassword = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserRegistration));
             txtNickname = new TextBox();
-            txtEmail = new TextBox();
-            UserDataGrid = new DataGridView();
-            btnDelete = new Button();
-            btnUpdate = new Button();
-            btnAdd = new Button();
-            txtUserId = new TextBox();
-            lblUserId = new Label();
-            btnRead = new Button();
             txtPassword = new TextBox();
-            btnLoad = new Button();
-            ((System.ComponentModel.ISupportInitialize)UserDataGrid).BeginInit();
+            pictureBox1 = new PictureBox();
+            lblAppName = new Label();
+            lblLogIn = new Label();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            txtPssword = new TextBox();
+            btnLogIn = new Button();
+            lblExit = new Label();
+            lblCreateAccount = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblTitle.AutoSize = true;
-            lblTitle.BackColor = Color.Transparent;
-            lblTitle.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(451, 9);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(382, 62);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "User Registration";
-            // 
-            // lblNickName
-            // 
-            lblNickName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblNickName.AutoSize = true;
-            lblNickName.BackColor = Color.FromArgb(19, 19, 19);
-            lblNickName.Font = new Font("Segoe UI", 10.8F);
-            lblNickName.ForeColor = Color.White;
-            lblNickName.Location = new Point(348, 123);
-            lblNickName.Margin = new Padding(0);
-            lblNickName.MaximumSize = new Size(0, 30);
-            lblNickName.MinimumSize = new Size(110, 30);
-            lblNickName.Name = "lblNickName";
-            lblNickName.Size = new Size(110, 30);
-            lblNickName.TabIndex = 1;
-            lblNickName.Text = "Nickname:";
-            lblNickName.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // lblEmail
-            // 
-            lblEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblEmail.AutoSize = true;
-            lblEmail.BackColor = Color.FromArgb(19, 19, 19);
-            lblEmail.Font = new Font("Segoe UI", 10.8F);
-            lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(348, 190);
-            lblEmail.Margin = new Padding(0);
-            lblEmail.MaximumSize = new Size(80, 0);
-            lblEmail.MinimumSize = new Size(80, 30);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(80, 30);
-            lblEmail.TabIndex = 2;
-            lblEmail.Text = "Email:";
-            lblEmail.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // lblPassword
-            // 
-            lblPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblPassword.AutoSize = true;
-            lblPassword.BackColor = Color.FromArgb(19, 19, 19);
-            lblPassword.Font = new Font("Segoe UI", 10.8F);
-            lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(348, 255);
-            lblPassword.Margin = new Padding(0);
-            lblPassword.MinimumSize = new Size(107, 30);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(107, 30);
-            lblPassword.TabIndex = 3;
-            lblPassword.Text = "Password:";
-            lblPassword.TextAlign = ContentAlignment.TopCenter;
             // 
             // txtNickname
             // 
@@ -117,127 +53,12 @@
             txtNickname.Cursor = Cursors.IBeam;
             txtNickname.Font = new Font("Segoe UI", 10.8F);
             txtNickname.ForeColor = Color.White;
-            txtNickname.Location = new Point(451, 123);
+            txtNickname.Location = new Point(162, 272);
+            txtNickname.Margin = new Padding(3, 2, 3, 2);
             txtNickname.MinimumSize = new Size(0, 30);
             txtNickname.Name = "txtNickname";
-            txtNickname.Size = new Size(477, 30);
+            txtNickname.Size = new Size(275, 30);
             txtNickname.TabIndex = 4;
-            // 
-            // txtEmail
-            // 
-            txtEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtEmail.BackColor = Color.FromArgb(19, 19, 19);
-            txtEmail.BorderStyle = BorderStyle.None;
-            txtEmail.Cursor = Cursors.IBeam;
-            txtEmail.Font = new Font("Segoe UI", 10.8F);
-            txtEmail.ForeColor = Color.White;
-            txtEmail.Location = new Point(424, 190);
-            txtEmail.MinimumSize = new Size(0, 30);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(504, 30);
-            txtEmail.TabIndex = 5;
-            // 
-            // UserDataGrid
-            // 
-            UserDataGrid.BackgroundColor = Color.FromArgb(25, 25, 25);
-            UserDataGrid.BorderStyle = BorderStyle.None;
-            UserDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            UserDataGrid.Location = new Point(59, 435);
-            UserDataGrid.Name = "UserDataGrid";
-            UserDataGrid.RowHeadersWidth = 51;
-            UserDataGrid.Size = new Size(1168, 188);
-            UserDataGrid.TabIndex = 7;
-            // 
-            // btnDelete
-            // 
-            btnDelete.BackColor = Color.FromArgb(243, 178, 175);
-            btnDelete.Cursor = Cursors.Hand;
-            btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Font = new Font("Segoe UI", 10.8F);
-            btnDelete.Location = new Point(1055, 381);
-            btnDelete.Margin = new Padding(0);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(90, 39);
-            btnDelete.TabIndex = 8;
-            btnDelete.Text = "Delete";
-            btnDelete.TextAlign = ContentAlignment.TopCenter;
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.BackColor = Color.FromArgb(162, 175, 248);
-            btnUpdate.Cursor = Cursors.Hand;
-            btnUpdate.FlatStyle = FlatStyle.Flat;
-            btnUpdate.Font = new Font("Segoe UI", 10.8F);
-            btnUpdate.Location = new Point(952, 381);
-            btnUpdate.Margin = new Padding(0);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(93, 39);
-            btnUpdate.TabIndex = 9;
-            btnUpdate.Text = "Update";
-            btnUpdate.TextAlign = ContentAlignment.TopCenter;
-            btnUpdate.UseVisualStyleBackColor = false;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.BackColor = Color.FromArgb(47, 206, 254);
-            btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAdd.Location = new Point(513, 313);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(267, 39);
-            btnAdd.TabIndex = 11;
-            btnAdd.Text = "Create Account";
-            btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += btnAdd_Click;
-            // 
-            // txtUserId
-            // 
-            txtUserId.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtUserId.BackColor = Color.FromArgb(19, 19, 19);
-            txtUserId.BorderStyle = BorderStyle.None;
-            txtUserId.Cursor = Cursors.IBeam;
-            txtUserId.Font = new Font("Segoe UI", 10.8F);
-            txtUserId.ForeColor = Color.White;
-            txtUserId.Location = new Point(166, 390);
-            txtUserId.MinimumSize = new Size(0, 30);
-            txtUserId.Name = "txtUserId";
-            txtUserId.Size = new Size(107, 30);
-            txtUserId.TabIndex = 13;
-            // 
-            // lblUserId
-            // 
-            lblUserId.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblUserId.AutoSize = true;
-            lblUserId.BackColor = Color.FromArgb(19, 19, 19);
-            lblUserId.Font = new Font("Segoe UI", 10.8F);
-            lblUserId.ForeColor = Color.White;
-            lblUserId.Location = new Point(63, 390);
-            lblUserId.Margin = new Padding(0);
-            lblUserId.MinimumSize = new Size(107, 30);
-            lblUserId.Name = "lblUserId";
-            lblUserId.Size = new Size(107, 30);
-            lblUserId.TabIndex = 12;
-            lblUserId.Text = "User Id:";
-            lblUserId.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // btnRead
-            // 
-            btnRead.BackColor = Color.FromArgb(249, 215, 172);
-            btnRead.Cursor = Cursors.Hand;
-            btnRead.FlatStyle = FlatStyle.Flat;
-            btnRead.Font = new Font("Segoe UI", 10.8F);
-            btnRead.Location = new Point(1154, 381);
-            btnRead.Margin = new Padding(0);
-            btnRead.Name = "btnRead";
-            btnRead.Size = new Size(73, 39);
-            btnRead.TabIndex = 14;
-            btnRead.Text = "Read";
-            btnRead.TextAlign = ContentAlignment.TopCenter;
-            btnRead.UseVisualStyleBackColor = false;
-            btnRead.Click += btnRead_Click;
             // 
             // txtPassword
             // 
@@ -247,76 +68,163 @@
             txtPassword.Cursor = Cursors.IBeam;
             txtPassword.Font = new Font("Segoe UI", 10.8F);
             txtPassword.ForeColor = Color.White;
-            txtPassword.Location = new Point(451, 255);
+            txtPassword.Location = new Point(261, 343);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.MinimumSize = new Size(0, 30);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(477, 30);
+            txtPassword.Size = new Size(0, 30);
             txtPassword.TabIndex = 6;
             // 
-            // btnLoad
+            // pictureBox1
             // 
-            btnLoad.BackColor = Color.FromArgb(213, 254, 197);
-            btnLoad.Cursor = Cursors.Hand;
-            btnLoad.FlatStyle = FlatStyle.Flat;
-            btnLoad.Font = new Font("Segoe UI", 10.8F);
-            btnLoad.Location = new Point(806, 381);
-            btnLoad.Margin = new Padding(0);
-            btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(137, 39);
-            btnLoad.TabIndex = 15;
-            btnLoad.Text = "Load Table";
-            btnLoad.TextAlign = ContentAlignment.TopCenter;
-            btnLoad.UseVisualStyleBackColor = false;
-            btnLoad.Click += btnLoad_Click;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(111, 35);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(96, 87);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            // 
+            // lblAppName
+            // 
+            lblAppName.AutoSize = true;
+            lblAppName.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAppName.ForeColor = SystemColors.ControlLight;
+            lblAppName.Location = new Point(247, 64);
+            lblAppName.Name = "lblAppName";
+            lblAppName.Size = new Size(179, 43);
+            lblAppName.TabIndex = 8;
+            lblAppName.Text = "NoteSync";
+            // 
+            // lblLogIn
+            // 
+            lblLogIn.AutoSize = true;
+            lblLogIn.Font = new Font("Consolas", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLogIn.ForeColor = SystemColors.ControlLight;
+            lblLogIn.Location = new Point(216, 182);
+            lblLogIn.Name = "lblLogIn";
+            lblLogIn.Size = new Size(104, 32);
+            lblLogIn.TabIndex = 9;
+            lblLogIn.Text = "LOG IN";
+            lblLogIn.Click += lblLogIn_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(85, 266);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(41, 42);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 10;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(85, 363);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(41, 44);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 11;
+            pictureBox3.TabStop = false;
+            // 
+            // txtPssword
+            // 
+            txtPssword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtPssword.BackColor = Color.FromArgb(19, 19, 19);
+            txtPssword.BorderStyle = BorderStyle.None;
+            txtPssword.Cursor = Cursors.IBeam;
+            txtPssword.Font = new Font("Segoe UI", 10.8F);
+            txtPssword.ForeColor = Color.White;
+            txtPssword.Location = new Point(162, 370);
+            txtPssword.Margin = new Padding(3, 2, 3, 2);
+            txtPssword.MinimumSize = new Size(0, 30);
+            txtPssword.Name = "txtPssword";
+            txtPssword.PasswordChar = '*';
+            txtPssword.Size = new Size(275, 30);
+            txtPssword.TabIndex = 12;
+            txtPssword.UseSystemPasswordChar = true;
+            // 
+            // btnLogIn
+            // 
+            btnLogIn.BackColor = Color.DodgerBlue;
+            btnLogIn.FlatAppearance.BorderSize = 0;
+            btnLogIn.FlatStyle = FlatStyle.Flat;
+            btnLogIn.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogIn.ForeColor = SystemColors.ControlLight;
+            btnLogIn.Location = new Point(73, 494);
+            btnLogIn.Name = "btnLogIn";
+            btnLogIn.Size = new Size(378, 47);
+            btnLogIn.TabIndex = 13;
+            btnLogIn.Text = "LOG IN";
+            btnLogIn.UseVisualStyleBackColor = false;
+            btnLogIn.Click += btnLogIn_Click;
+            // 
+            // lblExit
+            // 
+            lblExit.AutoSize = true;
+            lblExit.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblExit.ForeColor = SystemColors.ControlLight;
+            lblExit.Location = new Point(240, 567);
+            lblExit.Name = "lblExit";
+            lblExit.Size = new Size(45, 19);
+            lblExit.TabIndex = 14;
+            lblExit.Text = "Exit";
+            lblExit.Click += lblExit_Click;
+            // 
+            // lblCreateAccount
+            // 
+            lblCreateAccount.AutoSize = true;
+            lblCreateAccount.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCreateAccount.ForeColor = SystemColors.ControlLight;
+            lblCreateAccount.Location = new Point(262, 465);
+            lblCreateAccount.Name = "lblCreateAccount";
+            lblCreateAccount.Size = new Size(189, 15);
+            lblCreateAccount.TabIndex = 15;
+            lblCreateAccount.Text = "Don't have an account yet?";
             // 
             // UserRegistration
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(1264, 701);
-            Controls.Add(btnLoad);
-            Controls.Add(btnRead);
-            Controls.Add(txtUserId);
-            Controls.Add(lblUserId);
-            Controls.Add(btnAdd);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnDelete);
-            Controls.Add(UserDataGrid);
+            ClientSize = new Size(533, 626);
+            Controls.Add(lblCreateAccount);
+            Controls.Add(lblExit);
+            Controls.Add(btnLogIn);
+            Controls.Add(txtPssword);
+            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(lblLogIn);
+            Controls.Add(lblAppName);
+            Controls.Add(pictureBox1);
             Controls.Add(txtPassword);
-            Controls.Add(txtEmail);
             Controls.Add(txtNickname);
-            Controls.Add(lblPassword);
-            Controls.Add(lblEmail);
-            Controls.Add(lblNickName);
-            Controls.Add(lblTitle);
             Cursor = Cursors.Hand;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "UserRegistration";
             Text = "Register";
             Load += UserRegistration_Load;
-            ((System.ComponentModel.ISupportInitialize)UserDataGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lblTitle;
-        private Label lblNickName;
-        private Label lblEmail;
-        private Label lblPassword;
         private TextBox txtNickname;
-        private TextBox txtEmail;
-        private DataGridView UserDataGrid;
-        private Button btnDelete;
-        private Button btnUpdate;
-        private Button btnAdd;
-        private TextBox txtUserId;
-        private Label lblUserId;
-        private Button btnRead;
         private TextBox txtPassword;
-        private Button btnLoad;
+        private PictureBox pictureBox1;
+        private Label lblAppName;
+        private Label lblLogIn;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private TextBox txtPssword;
+        private Button btnLogIn;
+        private Label lblExit;
+        private Label lblCreateAccount;
     }
 
 }
