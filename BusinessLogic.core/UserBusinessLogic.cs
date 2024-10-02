@@ -160,9 +160,6 @@ namespace BusinessLogic.core
 
         public bool Login(ref User user)
         {
-            string errorMessage = string.Empty;
-            uint userId = 0;
-
             _query = new QueryExecuter
             {
                 TableName = "[User]",
@@ -182,14 +179,7 @@ namespace BusinessLogic.core
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(_query.ScalarValue))
-            {
-                userId = uint.Parse(_query.ScalarValue);
-                user.UserId = userId; 
-                return true;
-            }
-
-            return false;
+            return true;
         }
     }
 }
