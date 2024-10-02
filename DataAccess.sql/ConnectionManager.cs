@@ -20,7 +20,7 @@ namespace DataAccess.sql
             switch (DatabaseName)
             {
                 case "NoteSyncDB":
-                    SqlConnection = new SqlConnection("Data Source=Jhonatan\\SQLEXPRESS;Initial Catalog=NoteSyncDB;Integrated Security=True;TrustServerCertificate=True");
+                    SqlConnection = new SqlConnection("Data Source=KEVINROGERSPC\\SQLEXPRESS;Initial Catalog=NoteSyncDB;Integrated Security=True;TrustServerCertificate=True");
                     break;
             }
 

@@ -1,4 +1,5 @@
 ﻿using DataAccess.Abstractions.Repositories.Specific;
+using DataAccess.sql;
 using Entities;
 using System.Data;
 
@@ -26,24 +27,11 @@ namespace DataAccess.SQLServer.Repositories
 
         #endregion
 
-        #region Index Method
-
-        public void GetAll(ref User entity)
-        {
-            _query.TableName = "[User]";
-            _query.StoredProcedureName = "[SP_User_Index]";
-            _query.Scalar = false;
-
-            StoredProcedureExecute(ref entity);
-        }
-
-        #endregion
-
         #region Execute Method
 
         private void StoredProcedureExecute(ref User entity)
         {
-            _query.Execute();
+            //_query.Execute();
             if (_query.ErrorMessage == null)
             {
                 if (_query.Scalar)
@@ -70,6 +58,19 @@ namespace DataAccess.SQLServer.Repositories
             {
                 entity.ErrorMessage = _query.ErrorMessage;
             }
+        }
+
+        #endregion
+
+        #region Index Method
+
+        public void GetAll(ref User entity)
+        {
+            _query.TableName = "[User]";
+            _query.StoredProcedureName = "[SP_User_Index]";
+            _query.Scalar = false;
+
+            StoredProcedureExecute(ref entity);
         }
 
         #endregion
@@ -135,6 +136,17 @@ namespace DataAccess.SQLServer.Repositories
         {
             _query.TableName = "[User]";
             _query.StoredProcedureName = "[SP_User_By_Email]";
+            _query.Scalar = false;
+
+            _query.DataTableParameters.Rows.Add(@"@Email", "16", entity.Email);
+
+            StoredProcedureExecute(ref entity);
+        }
+
+        public void AuthenticateUser(User entity)
+        {
+            _query.TableName = "[User]";
+            _query.StoredProcedureName = "[SP_User_Authenticate]";
             _query.Scalar = false;
 
             _query.DataTableParameters.Rows.Add(@"@Email", "16", entity.Email);
