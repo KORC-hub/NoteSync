@@ -22,7 +22,9 @@ namespace DataAccess.sql
             { "13", SqlDbType.SmallDateTime },
             { "14", SqlDbType.Char },
             { "15", SqlDbType.VarChar },
-            { "16", SqlDbType.NVarChar }
+            { "16", SqlDbType.NVarChar },
+            { "17", SqlDbType.DateTime },
+            { "18", SqlDbType.DateTime2 }
         };
 
 
