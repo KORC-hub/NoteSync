@@ -17,7 +17,7 @@ namespace Presentation.web.Controllers
     {
         #region Private variable
 
-        private UserBusinessLogic _userBusinessLogic = new UserBusinessLogic();
+        private UserAuthentication _userBusinessLogic = new UserAuthentication();
         private User userSession = new User();
 
         #endregion

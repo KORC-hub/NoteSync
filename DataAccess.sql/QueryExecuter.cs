@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DataAccess.sql
 {
-    public class QueryExecuter
+    internal class QueryExecuter
     {
         #region Private Variable
         // Information needed to make queries
@@ -19,7 +19,6 @@ namespace DataAccess.sql
         #endregion
 
         #region Public Variable
-        internal ConnectionManager Connection { get => _Connection; set => _Connection = value; }
 
         /// <summary>
         /// Used to select queries
@@ -66,11 +65,11 @@ namespace DataAccess.sql
 
         #region Private Methods
 
-        private void AddParameter(ref QueryExecuter Query)
+        private void AddParameter()
         {
-            if (Query.DataTableParameters != null)
+            if (this.DataTableParameters != null)
             {
-                foreach (DataRow item in Query.DataTableParameters.Rows)
+                foreach (DataRow item in this.DataTableParameters.Rows)
                 {
 
                     Dictionary<string, string> Parameters = new Dictionary<string, string>
@@ -83,74 +82,74 @@ namespace DataAccess.sql
                     bool ItsParameterValueNull = Parameters["Value"].Equals(string.Empty);
                     SqlDbType ParameterSQLType = ConvertParameters.ToSQLDatatype(Parameters["DataType"]);
 
-                    if (Query.Scalar)
+                    if (this.Scalar)
                     {
                         //  ternary(?)                                                                      condition       ?  consequent  : alternative
-                        Query.SqlCommand.Parameters.Add(Parameters["Name"], ParameterSQLType).Value = ItsParameterValueNull ? DBNull.Value : Parameters["Value"];
+                        this.SqlCommand.Parameters.Add(Parameters["Name"], ParameterSQLType).Value = ItsParameterValueNull ? DBNull.Value : Parameters["Value"];
                     }
                     else
                     {
-                        Query.SqlDataAdapter.SelectCommand.Parameters.Add(Parameters["Name"], ParameterSQLType).Value = ItsParameterValueNull ? DBNull.Value : Parameters["Value"];
+                        this.SqlDataAdapter.SelectCommand.Parameters.Add(Parameters["Name"], ParameterSQLType).Value = ItsParameterValueNull ? DBNull.Value : Parameters["Value"];
                     }
                 }
             }
         }
 
-        private void DataAdapterExecuter(ref QueryExecuter Query)
+        private void DataAdapterExecuter()
         {
             try
             {
-                Connection.StartDatabaseConnection(Query.DatabaseName);
-                Query.SqlDataAdapter = new SqlDataAdapter(Query.StoredProcedureName, Connection.SqlConnection);
-                Query.SqlDataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-                AddParameter(ref Query);
-                Query.DataSetResult = new DataSet();
-                Query.SqlDataAdapter.Fill(Query.DataSetResult, Query.DatabaseName);
+                _Connection.StartDatabaseConnection(this.DatabaseName);
+                this.SqlDataAdapter = new SqlDataAdapter(this.StoredProcedureName, _Connection.SqlConnection);
+                this.SqlDataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                AddParameter();
+                this.DataSetResult = new DataSet();
+                this.SqlDataAdapter.Fill(this.DataSetResult, this.DatabaseName);
 
             }
             catch (Exception ex)
             {
-                Query.ErrorMessage = ex.Message.ToString();
+                this.ErrorMessage = ex.Message.ToString();
             }
             finally
             {
-                if (Query.Connection.SqlConnection.State == ConnectionState.Open)
+                if (this._Connection.SqlConnection.State == ConnectionState.Open)
                 {
-                    Query.Connection.CheckConnectionStatus();
+                    this._Connection.CheckConnectionStatus();
                 }
             }
 
         }
 
-        private void CommandExecuter(ref QueryExecuter Query)
+        private void CommandExecuter()
         {
             try
             {
-                Connection.StartDatabaseConnection(Query.DatabaseName);
-                Query.SqlCommand = new SqlCommand(Query.StoredProcedureName, Connection.SqlConnection)
+                _Connection.StartDatabaseConnection(this.DatabaseName);
+                this.SqlCommand = new SqlCommand(this.StoredProcedureName, _Connection.SqlConnection)
                 {
                     CommandType = CommandType.StoredProcedure,
                 };
 
-                AddParameter(ref Query);
-                if (Query.Scalar)
+                AddParameter();
+                if (this.Scalar)
                 {
-                    Query.ScalarValue = Query.SqlCommand.ExecuteScalar().ToString().Trim(); // is used when the SQL query returns only a single value 
+                    this.ScalarValue = this.SqlCommand.ExecuteScalar().ToString().Trim(); // is used when the SQL query returns only a single value 
                 }
                 else
                 {
-                    Query.SqlCommand.ExecuteNonQuery().ToString().Trim(); // executes a SQL statement that does not return any result set.
+                    this.SqlCommand.ExecuteNonQuery().ToString().Trim(); // executes a SQL statement that does not return any result set.
                 }
             }
             catch (Exception ex)
             {
-                Query.ErrorMessage = ex.Message.ToString();
+                this.ErrorMessage = ex.Message.ToString();
             }
             finally
             {
-                if (Query._Connection.SqlConnection.State == ConnectionState.Open)
+                if (this._Connection.SqlConnection.State == ConnectionState.Open)
                 {
-                    Connection.CheckConnectionStatus();
+                    _Connection.CheckConnectionStatus();
                 }
             }
         }
@@ -159,20 +158,20 @@ namespace DataAccess.sql
 
         #region Public Methods
 
-        public void Execute(ref QueryExecuter Query)
+        public void Execute()
         {
-            if (Query.Scalar)
+            if (this.Scalar)
             {
-                CommandExecuter(ref Query);
-
+                CommandExecuter();
             }
             else
             {
-                DataAdapterExecuter(ref Query);
+                DataAdapterExecuter();
             }
         }
 
         #endregion
+
 
     }
 }
