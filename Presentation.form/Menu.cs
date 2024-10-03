@@ -91,7 +91,8 @@ namespace Presentation.form
         private void btnLoad_Click(object sender, EventArgs e)
         {
             _file = new Entities.File();
-            _CRUDFile.GetAll(ref _file); 
+            _CRUDFile.GetAll(ref _file);
+            _files.Clear();
 
             foreach (DataRow row in _file.DataSetResultado.Rows)
             {

@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+	<ProjectGuid>{7878B9EB-A4C1-48E1-86BF-55BCB5EF3D8A}</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
