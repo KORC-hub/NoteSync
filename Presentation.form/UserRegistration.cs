@@ -11,7 +11,7 @@ namespace Presentation.form
 
         #region Private Varieble
 
-        private UserBusinessLogic _userBusinessLogic = new UserBusinessLogic();
+        private UserAuthentication _userAuthentication = new UserAuthentication();
         //private BindingList<User> _users = new BindingList<User>();
 
         #endregion
@@ -104,7 +104,7 @@ namespace Presentation.form
                 Password = txtPassword.Text
             };
 
-            if (_userBusinessLogic.Login(ref user))
+            if (_userAuthentication.Login(ref user))
             {
                 this.Hide(); 
                 Menu menu = new Menu();
@@ -113,7 +113,7 @@ namespace Presentation.form
             }
             else
             {
-                MessageBox.Show("Credenciales incorrectas. Inténtalo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(user.ErrorMessage, "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
