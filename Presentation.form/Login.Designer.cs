@@ -1,6 +1,6 @@
 ﻿namespace Presentation.form
 {
-    partial class UserRegistration
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserRegistration));
-            txtNickname = new TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            txtEmail = new TextBox();
             pictureBox1 = new PictureBox();
             lblAppName = new Label();
             lblLogIn = new Label();
@@ -44,27 +44,28 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
-            // txtNickname
+            // txtEmail
             // 
-            txtNickname.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtNickname.BackColor = Color.FromArgb(19, 19, 19);
-            txtNickname.BorderStyle = BorderStyle.None;
-            txtNickname.Cursor = Cursors.IBeam;
-            txtNickname.Font = new Font("Segoe UI", 10.8F);
-            txtNickname.ForeColor = Color.White;
-            txtNickname.Location = new Point(185, 363);
-            txtNickname.MinimumSize = new Size(0, 30);
-            txtNickname.Name = "txtNickname";
-            txtNickname.Size = new Size(314, 24);
-            txtNickname.TabIndex = 4;
+            txtEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEmail.BackColor = Color.FromArgb(19, 19, 19);
+            txtEmail.BorderStyle = BorderStyle.None;
+            txtEmail.Cursor = Cursors.IBeam;
+            txtEmail.Font = new Font("Segoe UI", 10.8F);
+            txtEmail.ForeColor = Color.White;
+            txtEmail.Location = new Point(158, 274);
+            txtEmail.Margin = new Padding(3, 2, 3, 2);
+            txtEmail.MinimumSize = new Size(0, 30);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Email Address";
+            txtEmail.Size = new Size(275, 30);
+            txtEmail.TabIndex = 4;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(127, 47);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(125, 35);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(110, 116);
+            pictureBox1.Size = new Size(82, 80);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
@@ -74,9 +75,9 @@
             lblAppName.AutoSize = true;
             lblAppName.Font = new Font("Consolas", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAppName.ForeColor = SystemColors.ControlLight;
-            lblAppName.Location = new Point(282, 85);
+            lblAppName.Location = new Point(239, 56);
             lblAppName.Name = "lblAppName";
-            lblAppName.Size = new Size(232, 55);
+            lblAppName.Size = new Size(179, 43);
             lblAppName.TabIndex = 8;
             lblAppName.Text = "NoteSync";
             // 
@@ -85,20 +86,19 @@
             lblLogIn.AutoSize = true;
             lblLogIn.Font = new Font("Consolas", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogIn.ForeColor = SystemColors.ControlLight;
-            lblLogIn.Location = new Point(247, 243);
+            lblLogIn.Location = new Point(216, 182);
             lblLogIn.Name = "lblLogIn";
-            lblLogIn.Size = new Size(131, 40);
+            lblLogIn.Size = new Size(119, 32);
             lblLogIn.TabIndex = 9;
-            lblLogIn.Text = "LOG IN";
+            lblLogIn.Text = "Sign In";
             lblLogIn.Click += lblLogIn_Click;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(97, 355);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Location = new Point(85, 266);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(47, 56);
+            pictureBox2.Size = new Size(41, 42);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 10;
             pictureBox2.TabStop = false;
@@ -106,10 +106,9 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(97, 484);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Location = new Point(85, 363);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(47, 59);
+            pictureBox3.Size = new Size(41, 44);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 11;
             pictureBox3.TabStop = false;
@@ -122,25 +121,27 @@
             txtPassword.Cursor = Cursors.IBeam;
             txtPassword.Font = new Font("Segoe UI", 10.8F);
             txtPassword.ForeColor = Color.White;
-            txtPassword.Location = new Point(185, 493);
+            txtPassword.Location = new Point(158, 371);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.MinimumSize = new Size(0, 30);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(314, 30);
+            txtPassword.PlaceholderText = "Password";
+            txtPassword.Size = new Size(275, 30);
             txtPassword.TabIndex = 12;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogIn
             // 
             btnLogIn.BackColor = Color.DodgerBlue;
+            btnLogIn.Cursor = Cursors.Hand;
             btnLogIn.FlatAppearance.BorderSize = 0;
             btnLogIn.FlatStyle = FlatStyle.Flat;
             btnLogIn.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogIn.ForeColor = SystemColors.ControlLight;
-            btnLogIn.Location = new Point(83, 659);
-            btnLogIn.Margin = new Padding(3, 4, 3, 4);
+            btnLogIn.Location = new Point(73, 499);
             btnLogIn.Name = "btnLogIn";
-            btnLogIn.Size = new Size(432, 63);
+            btnLogIn.Size = new Size(378, 47);
             btnLogIn.TabIndex = 13;
             btnLogIn.Text = "LOG IN";
             btnLogIn.UseVisualStyleBackColor = false;
@@ -149,11 +150,12 @@
             // lblExit
             // 
             lblExit.AutoSize = true;
+            lblExit.Cursor = Cursors.Hand;
             lblExit.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblExit.ForeColor = SystemColors.ControlLight;
-            lblExit.Location = new Point(274, 756);
+            lblExit.Location = new Point(240, 573);
             lblExit.Name = "lblExit";
-            lblExit.Size = new Size(54, 23);
+            lblExit.Size = new Size(45, 19);
             lblExit.TabIndex = 14;
             lblExit.Text = "Exit";
             lblExit.Click += lblExit_Click;
@@ -161,20 +163,22 @@
             // lblCreateAccount
             // 
             lblCreateAccount.AutoSize = true;
+            lblCreateAccount.Cursor = Cursors.Hand;
             lblCreateAccount.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCreateAccount.ForeColor = SystemColors.ControlLight;
-            lblCreateAccount.Location = new Point(299, 620);
+            lblCreateAccount.Location = new Point(262, 473);
             lblCreateAccount.Name = "lblCreateAccount";
-            lblCreateAccount.Size = new Size(243, 20);
+            lblCreateAccount.Size = new Size(189, 15);
             lblCreateAccount.TabIndex = 15;
             lblCreateAccount.Text = "Don't have an account yet?";
+            lblCreateAccount.Click += lblCreateAccount_Click;
             // 
-            // UserRegistration
+            // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(609, 835);
+            ClientSize = new Size(533, 626);
             Controls.Add(lblCreateAccount);
             Controls.Add(lblExit);
             Controls.Add(btnLogIn);
@@ -184,9 +188,9 @@
             Controls.Add(lblLogIn);
             Controls.Add(lblAppName);
             Controls.Add(pictureBox1);
-            Controls.Add(txtNickname);
-            Cursor = Cursors.Hand;
-            Name = "UserRegistration";
+            Controls.Add(txtEmail);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "Login";
             Text = "Register";
             Load += UserRegistration_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -197,7 +201,7 @@
         }
 
         #endregion
-        private TextBox txtNickname;
+        private TextBox txtEmail;
         private PictureBox pictureBox1;
         private Label lblAppName;
         private Label lblLogIn;

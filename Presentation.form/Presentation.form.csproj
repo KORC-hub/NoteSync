@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic.core\BusinessLogic.core.csproj" />
-    <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\..\..\..\source\repos\NoteSync\BusinessLogic.core\BusinessLogic.core.csproj" />
+    <ProjectReference Include="..\..\..\..\source\repos\NoteSync\Presentation.testing\Presentation.testing.csproj" />
   </ItemGroup>
 
 </Project>

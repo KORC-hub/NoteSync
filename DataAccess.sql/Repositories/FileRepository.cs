@@ -63,7 +63,15 @@ namespace DataAccess.sql.Repositories
 
         public void GetAll(ref Entities.File file)
         {
-            throw new NotImplementedException();
+            _query = new QueryExecuter
+            {
+                TableName = "[File]",
+                StoredProcedureName = "[SP_File_Index]",
+                Scalar = false
+            };
+
+            _query.Execute();
+            file.DataSetResultado = _query.DataSetResult.Tables[0];
         }
 
         #endregion
@@ -76,7 +84,7 @@ namespace DataAccess.sql.Repositories
             {
                 TableName = "[File]",
                 StoredProcedureName = "[SP_File_Read]",
-                Scalar = true
+                Scalar = false
             };
 
             _query.DataTableParameters.Rows.Add(@"@FileId", "4", file.FileId);
