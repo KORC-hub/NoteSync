@@ -32,7 +32,6 @@
             splitContainer1 = new SplitContainer();
             panel2 = new Panel();
             panel1 = new Panel();
-            pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             lblSettings = new Label();
             pictureBox1 = new PictureBox();
@@ -51,7 +50,6 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridFile).BeginInit();
@@ -71,12 +69,12 @@
             splitContainer1.Panel1.BackColor = Color.FromArgb(19, 19, 19);
             splitContainer1.Panel1.Controls.Add(panel2);
             splitContainer1.Panel1.Controls.Add(panel1);
-            splitContainer1.Panel1.Controls.Add(pictureBox3);
             splitContainer1.Panel1.Controls.Add(pictureBox2);
             splitContainer1.Panel1.Controls.Add(lblSettings);
             splitContainer1.Panel1.Controls.Add(pictureBox1);
             splitContainer1.Panel1.Controls.Add(lblSignOut);
             splitContainer1.Panel1.Controls.Add(lblWelcome);
+            splitContainer1.Panel1.Paint += splitContainer1_Panel1_Paint;
             // 
             // splitContainer1.Panel2
             // 
@@ -89,7 +87,7 @@
             splitContainer1.Panel2.Controls.Add(btnLoad);
             splitContainer1.Panel2.Controls.Add(dataGridFile);
             splitContainer1.Panel2.Controls.Add(lblMyFiles);
-            splitContainer1.Size = new Size(1272, 679);
+            splitContainer1.Size = new Size(1386, 679);
             splitContainer1.SplitterDistance = 291;
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 0;
@@ -97,7 +95,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlLight;
-            panel2.Location = new Point(32, 407);
+            panel2.Location = new Point(32, 573);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
             panel2.Size = new Size(229, 3);
@@ -106,27 +104,16 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLight;
-            panel1.Location = new Point(32, 111);
+            panel1.Location = new Point(32, 69);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
             panel1.Size = new Size(229, 3);
             panel1.TabIndex = 12;
             // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(16, 40);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(35, 48);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 11;
-            pictureBox3.TabStop = false;
-            // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(43, 172);
+            pictureBox2.Location = new Point(32, 90);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(35, 40);
@@ -140,7 +127,7 @@
             lblSettings.Cursor = Cursors.Hand;
             lblSettings.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSettings.ForeColor = SystemColors.ControlLight;
-            lblSettings.Location = new Point(95, 175);
+            lblSettings.Location = new Point(84, 93);
             lblSettings.Name = "lblSettings";
             lblSettings.Size = new Size(134, 32);
             lblSettings.TabIndex = 5;
@@ -150,7 +137,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(43, 440);
+            pictureBox1.Location = new Point(43, 606);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(35, 40);
@@ -164,7 +151,7 @@
             lblSignOut.Cursor = Cursors.Hand;
             lblSignOut.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSignOut.ForeColor = SystemColors.ControlLight;
-            lblSignOut.Location = new Point(95, 445);
+            lblSignOut.Location = new Point(95, 611);
             lblSignOut.Name = "lblSignOut";
             lblSignOut.Size = new Size(134, 32);
             lblSignOut.TabIndex = 3;
@@ -176,10 +163,11 @@
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWelcome.ForeColor = SystemColors.ControlLight;
-            lblWelcome.Location = new Point(67, 49);
+            lblWelcome.Location = new Point(32, 26);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(0, 32);
+            lblWelcome.Size = new Size(119, 32);
             lblWelcome.TabIndex = 0;
+            lblWelcome.Text = "Welcome";
             // 
             // btnRead
             // 
@@ -189,7 +177,7 @@
             btnRead.FlatStyle = FlatStyle.Flat;
             btnRead.Font = new Font("Consolas", 12.25F, FontStyle.Bold);
             btnRead.ForeColor = SystemColors.ControlLight;
-            btnRead.Location = new Point(689, 109);
+            btnRead.Location = new Point(806, 111);
             btnRead.Margin = new Padding(3, 4, 3, 4);
             btnRead.Name = "btnRead";
             btnRead.Size = new Size(98, 43);
@@ -222,7 +210,7 @@
             txtFileId.MaxLength = 15;
             txtFileId.MinimumSize = new Size(0, 30);
             txtFileId.Name = "txtFileId";
-            txtFileId.Size = new Size(140, 30);
+            txtFileId.Size = new Size(156, 30);
             txtFileId.TabIndex = 26;
             // 
             // btnCreate
@@ -233,7 +221,7 @@
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Consolas", 12.25F, FontStyle.Bold);
             btnCreate.ForeColor = SystemColors.ControlLight;
-            btnCreate.Location = new Point(319, 109);
+            btnCreate.Location = new Point(436, 111);
             btnCreate.Margin = new Padding(3, 4, 3, 4);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(98, 43);
@@ -250,7 +238,7 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Consolas", 12.25F, FontStyle.Bold);
             btnUpdate.ForeColor = SystemColors.ControlLight;
-            btnUpdate.Location = new Point(440, 109);
+            btnUpdate.Location = new Point(557, 111);
             btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(98, 43);
@@ -267,7 +255,7 @@
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Consolas", 12.25F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.ControlLight;
-            btnDelete.Location = new Point(565, 109);
+            btnDelete.Location = new Point(682, 111);
             btnDelete.Margin = new Padding(3, 4, 3, 4);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(98, 43);
@@ -284,7 +272,7 @@
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Consolas", 12.25F, FontStyle.Bold);
             btnLoad.ForeColor = SystemColors.ControlLight;
-            btnLoad.Location = new Point(816, 109);
+            btnLoad.Location = new Point(933, 111);
             btnLoad.Margin = new Padding(3, 4, 3, 4);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(132, 43);
@@ -295,11 +283,12 @@
             // 
             // dataGridFile
             // 
+            dataGridFile.BackgroundColor = Color.FromArgb(25, 25, 25);
             dataGridFile.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridFile.Location = new Point(67, 172);
             dataGridFile.Name = "dataGridFile";
             dataGridFile.RowHeadersWidth = 51;
-            dataGridFile.Size = new Size(881, 451);
+            dataGridFile.Size = new Size(998, 451);
             dataGridFile.TabIndex = 8;
             // 
             // lblMyFiles
@@ -318,19 +307,17 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(1272, 679);
+            ClientSize = new Size(1386, 679);
             Controls.Add(splitContainer1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Menu";
             Text = "Menu";
-            Load += Menu_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridFile).EndInit();
@@ -346,7 +333,6 @@
         private PictureBox pictureBox1;
         private Label lblSignOut;
         private Label lblMyFiles;
-        private PictureBox pictureBox3;
         private Panel panel1;
         private Panel panel2;
         private DataGridView dataGridFile;

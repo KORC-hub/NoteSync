@@ -49,9 +49,9 @@
             lblEditProfile.AutoSize = true;
             lblEditProfile.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEditProfile.ForeColor = SystemColors.ControlLight;
-            lblEditProfile.Location = new Point(263, 30);
+            lblEditProfile.Location = new Point(301, 40);
             lblEditProfile.Name = "lblEditProfile";
-            lblEditProfile.Size = new Size(207, 34);
+            lblEditProfile.Size = new Size(259, 43);
             lblEditProfile.TabIndex = 0;
             lblEditProfile.Text = "Edit Profile";
             // 
@@ -60,12 +60,11 @@
             lblNickname.AutoSize = true;
             lblNickname.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNickname.ForeColor = SystemColors.ControlLight;
-            lblNickname.Location = new Point(48, 137);
+            lblNickname.Location = new Point(55, 183);
             lblNickname.Name = "lblNickname";
-            lblNickname.Size = new Size(90, 22);
+            lblNickname.Size = new Size(116, 28);
             lblNickname.TabIndex = 1;
             lblNickname.Text = "Nickname";
-            lblNickname.Click += label1_Click;
             // 
             // txtNickname
             // 
@@ -75,12 +74,11 @@
             txtNickname.Cursor = Cursors.IBeam;
             txtNickname.Font = new Font("Segoe UI", 10.8F);
             txtNickname.ForeColor = Color.White;
-            txtNickname.Location = new Point(48, 169);
-            txtNickname.Margin = new Padding(3, 2, 3, 2);
+            txtNickname.Location = new Point(55, 225);
             txtNickname.MaxLength = 15;
             txtNickname.MinimumSize = new Size(0, 30);
             txtNickname.Name = "txtNickname";
-            txtNickname.Size = new Size(243, 30);
+            txtNickname.Size = new Size(278, 24);
             txtNickname.TabIndex = 12;
             // 
             // txtPassword
@@ -91,12 +89,11 @@
             txtPassword.Cursor = Cursors.IBeam;
             txtPassword.Font = new Font("Segoe UI", 10.8F);
             txtPassword.ForeColor = Color.White;
-            txtPassword.Location = new Point(48, 294);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
+            txtPassword.Location = new Point(55, 392);
             txtPassword.MaxLength = 15;
             txtPassword.MinimumSize = new Size(0, 30);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(243, 30);
+            txtPassword.Size = new Size(278, 24);
             txtPassword.TabIndex = 14;
             // 
             // txtEmail
@@ -107,12 +104,11 @@
             txtEmail.Cursor = Cursors.IBeam;
             txtEmail.Font = new Font("Segoe UI", 10.8F);
             txtEmail.ForeColor = Color.White;
-            txtEmail.Location = new Point(366, 169);
-            txtEmail.Margin = new Padding(3, 2, 3, 2);
-            txtEmail.MaxLength = 15;
+            txtEmail.Location = new Point(418, 225);
+            txtEmail.MaxLength = 100;
             txtEmail.MinimumSize = new Size(0, 30);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(243, 30);
+            txtEmail.Size = new Size(278, 24);
             txtEmail.TabIndex = 15;
             // 
             // txtCreationDate
@@ -123,12 +119,11 @@
             txtCreationDate.Cursor = Cursors.IBeam;
             txtCreationDate.Font = new Font("Segoe UI", 10.8F);
             txtCreationDate.ForeColor = Color.White;
-            txtCreationDate.Location = new Point(366, 294);
-            txtCreationDate.Margin = new Padding(3, 2, 3, 2);
+            txtCreationDate.Location = new Point(418, 392);
             txtCreationDate.MaxLength = 15;
             txtCreationDate.MinimumSize = new Size(0, 30);
             txtCreationDate.Name = "txtCreationDate";
-            txtCreationDate.Size = new Size(243, 30);
+            txtCreationDate.Size = new Size(278, 24);
             txtCreationDate.TabIndex = 16;
             // 
             // label1
@@ -136,9 +131,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(366, 137);
+            label1.Location = new Point(418, 183);
             label1.Name = "label1";
-            label1.Size = new Size(140, 22);
+            label1.Size = new Size(181, 28);
             label1.TabIndex = 17;
             label1.Text = "Email Address";
             // 
@@ -147,9 +142,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ControlLight;
-            label2.Location = new Point(48, 263);
+            label2.Location = new Point(55, 351);
             label2.Name = "label2";
-            label2.Size = new Size(90, 22);
+            label2.Size = new Size(116, 28);
             label2.TabIndex = 18;
             label2.Text = "Password";
             // 
@@ -158,18 +153,19 @@
             label3.AutoSize = true;
             label3.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ControlLight;
-            label3.Location = new Point(366, 263);
+            label3.Location = new Point(418, 351);
             label3.Name = "label3";
-            label3.Size = new Size(140, 22);
+            label3.Size = new Size(181, 28);
             label3.TabIndex = 19;
             label3.Text = "Creation Date";
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(210, 28);
+            pictureBox2.Location = new Point(240, 37);
+            pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(40, 39);
+            pictureBox2.Size = new Size(46, 52);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 20;
             pictureBox2.TabStop = false;
@@ -182,9 +178,10 @@
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpdate.ForeColor = SystemColors.ControlLight;
-            btnUpdate.Location = new Point(124, 383);
+            btnUpdate.Location = new Point(142, 511);
+            btnUpdate.Margin = new Padding(3, 4, 3, 4);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(190, 32);
+            btnUpdate.Size = new Size(217, 43);
             btnUpdate.TabIndex = 21;
             btnUpdate.Text = "Update and Exit";
             btnUpdate.UseVisualStyleBackColor = false;
@@ -198,9 +195,10 @@
             btnDeleteAccount.FlatStyle = FlatStyle.Flat;
             btnDeleteAccount.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDeleteAccount.ForeColor = SystemColors.ControlLight;
-            btnDeleteAccount.Location = new Point(343, 383);
+            btnDeleteAccount.Location = new Point(392, 511);
+            btnDeleteAccount.Margin = new Padding(3, 4, 3, 4);
             btnDeleteAccount.Name = "btnDeleteAccount";
-            btnDeleteAccount.Size = new Size(193, 32);
+            btnDeleteAccount.Size = new Size(221, 43);
             btnDeleteAccount.TabIndex = 22;
             btnDeleteAccount.Text = "Delete Account";
             btnDeleteAccount.UseVisualStyleBackColor = false;
@@ -208,10 +206,10 @@
             // 
             // Settings
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(25, 25, 25);
-            ClientSize = new Size(665, 449);
+            ClientSize = new Size(760, 599);
             Controls.Add(btnDeleteAccount);
             Controls.Add(btnUpdate);
             Controls.Add(pictureBox2);
@@ -224,9 +222,9 @@
             Controls.Add(txtNickname);
             Controls.Add(lblNickname);
             Controls.Add(lblEditProfile);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Settings";
             Text = "Settings";
-            Load += Settings_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();

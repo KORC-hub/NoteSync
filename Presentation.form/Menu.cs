@@ -3,6 +3,7 @@
 using BusinessLogic.core;
 using System.ComponentModel;
 using System.Data;
+using System.Security.Permissions;
 
 namespace Presentation.form
 {
@@ -20,11 +21,6 @@ namespace Presentation.form
             dataGridFile.DataSource = _files;
         }
 
-        private void Menu_Load(object sender, EventArgs e)
-        {
-            lblWelcome.Text = "Hi " + _loggedUser.Nickname + "!";
-        }
-
         private void lblSignOut_Click(object sender, EventArgs e)
         {
             _loggedUser = null;
@@ -38,6 +34,7 @@ namespace Presentation.form
 
         private void lblSettings_Click(object sender, EventArgs e)
         {
+
             Settings settings = new Settings(ref _loggedUser);
             settings.Show();
 
@@ -76,6 +73,7 @@ namespace Presentation.form
             };
 
             _CRUDFile.Update(ref _file);
+            this.btnRead_Click(sender, e);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -109,5 +107,9 @@ namespace Presentation.form
 
         }
 
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

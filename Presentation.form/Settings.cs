@@ -15,9 +15,13 @@ namespace Presentation.form
     {
         private UserAuthentication _userAuthentication = new UserAuthentication();
         private Entities.User _loggedUser;
+        private Label _lblWelcom;
+        private Menu _menu;
 
         public Settings(ref Entities.User user)
         {
+            _userAuthentication.GetById(ref user);
+
             InitializeComponent();
             _loggedUser = user;
             txtNickname.Text = user.Nickname;
@@ -26,28 +30,30 @@ namespace Presentation.form
             txtCreationDate.Text = Convert.ToString(user.CreatedAt);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Settings_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Entities.User user = new Entities.User()
-            {
-                UserId = _loggedUser.UserId,
-                Nickname = txtNickname.Text,
-                Email = txtEmail.Text,
-                Password = txtPassword.Text
-            };
 
-            _userAuthentication.Update(ref user);
-            this.Hide();
+            if (String.IsNullOrEmpty(txtNickname.Text) || String.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Fields are empty.", "Empty fields", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(!_userAuthentication.IsValidEmail(txtEmail.Text)) 
+            {
+                MessageBox.Show("The email doesn't have the correct format", "Email error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else 
+            { 
+                Entities.User user = new Entities.User()
+                {
+                    UserId = _loggedUser.UserId,
+                    Nickname = txtNickname.Text,
+                    Email = txtEmail.Text,
+                    Password = txtPassword.Text
+                };
+
+                _userAuthentication.Update(ref user);
+                this.Hide();
+            }
         }
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
@@ -62,6 +68,7 @@ namespace Presentation.form
             this.Hide();
             Login login = new Login();
             login.Show();
+
         }
     }
 }

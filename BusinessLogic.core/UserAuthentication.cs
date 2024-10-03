@@ -16,6 +16,11 @@ namespace BusinessLogic.core
 
         #region CRUD Method
 
+        public void GetById(ref User user)
+        {
+            _user.GetById(ref user);
+        }
+
         public void Create(ref User user)
         {
             _user.Create(ref user);
