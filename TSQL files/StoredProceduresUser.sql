@@ -78,8 +78,22 @@ SELECT Scope_identity()
 GO
 
 CREATE PROCEDURE SP_User_By_Email
-	@Email NVARCHAR(100),
-	@Password NVARCHAR(MAX)
+(
+	@Email NVARCHAR(100)
+)
+AS
+BEGIN
+	SELECT * FROM [user] where [Email]=@Email
+END
+---Retorna el identificador de la tabla
+SELECT Scope_identity()
+GO
+
+CREATE PROCEDURE SP_User_Authenticate
+(
+@Email NVARCHAR(100),
+@Password NVARCHAR(MAX)
+)
 AS
 BEGIN
 	SELECT * FROM [user] where [Email]=@Email AND [Password]=@Password
