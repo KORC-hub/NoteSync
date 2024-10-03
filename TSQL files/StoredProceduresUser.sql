@@ -2,6 +2,19 @@ USE NoteSyncDB;
 GO
 
 ---------------- STORED PROCEDURES FOR USERS --------------------
+
+ALTER PROCEDURE SP_User_Login
+    @Email NVARCHAR(100),
+    @Password NVARCHAR(MAX)
+AS
+BEGIN
+    SELECT * FROM [User]
+    WHERE Email = @Email AND Password = @Password;
+END
+
+EXEC SP_User_Login @Email = 'rataEssss222@gmail.com', @Password = 'pepesurxd1'
+GO
+
 -- Procedure to consult the table of users
 CREATE PROCEDURE SP_User_Index
 AS
@@ -10,8 +23,8 @@ BEGIN
 END
 GO
 
---Procedimiento para insertar socios
-ALTER PROCEDURE SP_User_Create
+
+CREATE PROCEDURE SP_User_Create
 	@UserNickname NVARCHAR(15), 
 	@Email NVARCHAR(100),
 	@Password NVARCHAR(60)

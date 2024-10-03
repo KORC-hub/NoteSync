@@ -1,5 +1,6 @@
 ﻿using DataAccess.sql;
 using Entities;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
@@ -160,6 +161,8 @@ namespace BusinessLogic.core
 
         public bool Login(ref User user)
         {
+            string errorMessage = string.Empty;
+
             _query = new QueryExecuter
             {
                 TableName = "[User]",
@@ -175,11 +178,20 @@ namespace BusinessLogic.core
             if (!string.IsNullOrEmpty(_query.ErrorMessage))
             {
                 errorMessage = _query.ErrorMessage;
-
                 return false;
             }
 
-            return true;
+            if (_query.DataSetResult != null && _query.DataSetResult.Tables[0].Rows.Count > 0)
+            {
+                return true; 
+            }
+
+            return false;
+        }
+
+        public bool IsValidEmail(string source)
+        {
+            return new EmailAddressAttribute().IsValid(source);
         }
     }
 }

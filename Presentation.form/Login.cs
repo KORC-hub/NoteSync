@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Presentation.form
 {
-    public partial class UserRegistration : Form
+    public partial class Login : Form
     {
 
         #region Private Varieble
@@ -16,9 +16,10 @@ namespace Presentation.form
 
         #endregion
 
-        public UserRegistration()
+        public Login()
         {
             InitializeComponent();
+            this.AcceptButton = btnLogIn;
         }
 
 
@@ -100,21 +101,33 @@ namespace Presentation.form
         {
             User user = new User
             {
-                Email = txtNickname.Text,
+                Email = txtEmail.Text,
                 Password = txtPassword.Text
             };
 
             if (_userBusinessLogic.Login(ref user))
             {
-                this.Hide(); 
-                Menu menu = new Menu();
-                menu.ShowDialog(); 
-                this.Close(); 
+                this.Hide();
+                Menu menu = new Menu(ref user);
+                menu.ShowDialog();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Credenciales incorrectas. Inténtalo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The account doesn't exist or credentials are incorrect", "Sign in error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblCreateAccount_Click(object sender, EventArgs e)
+        {
+            CreateAccount createAccount = new CreateAccount();
+            this.Hide();
+            createAccount.Show();
         }
     }
 }
