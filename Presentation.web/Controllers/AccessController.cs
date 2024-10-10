@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 
 namespace Presentation.web.Controllers
@@ -17,7 +18,7 @@ namespace Presentation.web.Controllers
 
         #region Private Variable
 
-        private UserAuthentication _userBusinessLogic = new UserAuthentication();
+        private UserAuthentication _userAuthentication = new UserAuthentication();
         private User user = new User();
 
         #endregion
@@ -46,7 +47,8 @@ namespace Presentation.web.Controllers
                 Email = model.Email,
                 Password = model.Password,
             };
-            _userBusinessLogic.Create(ref user);
+
+            _userAuthentication.Create(ref user);
 
 
             if (user.ErrorMessage == null)
@@ -61,7 +63,7 @@ namespace Presentation.web.Controllers
 
         #endregion
 
-        #region Register methods
+        #region Login methods
 
         [HttpGet]
         public IActionResult Login()
@@ -72,14 +74,12 @@ namespace Presentation.web.Controllers
         [HttpPost]
         public IActionResult Login(LoginVM model)
         {
-            user.Email= model.Email;
-            user.Password= model.Password;
+            user.Email = model.Email;
+            user.Password = model.Password;
 
-            _userBusinessLogic.UserByEmail(ref user);
-
-            if (user.UserId == 0)
+            if (!_userAuthentication.Login(ref user))
             {
-                ViewData["Message"] = "No se encontro el usuario";
+                ViewData["Message"] = user.ErrorMessage;
                 return View();
             }
 

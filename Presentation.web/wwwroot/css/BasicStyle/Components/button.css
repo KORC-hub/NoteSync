@@ -12,12 +12,12 @@
 
 .primary-button {
     background-color: var(--primary-color);
-    color: var(--background);
+    color: var(--text-button-color);
 }
 
 .transparent-button {
     background-color: transparent;
-    color: var(--text-color-light);
+    color: var(--text-color);
 }
 
 .primary-button:hover {
@@ -26,4 +26,5 @@
 
 .transparent-button:hover {
     background-color: var(--second-background);
+    color: var(--text-color);
 }

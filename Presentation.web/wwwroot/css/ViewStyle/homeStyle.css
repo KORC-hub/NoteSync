@@ -14,14 +14,15 @@ body {
     width: 100%;
     min-height: 96vh;
     background-color: var(--background);
+    overflow: hidden;
 }
 
 .content {
     flex-grow: 1;
-    margin: 0 40px;
-    margin-top: 4vh;
-    margin-bottom: 4vh;
+    margin: 0 0 0 10px;
     color: var(--text-color);
+    overflow: auto;
+    height: 100vh;
 }
 
 .sidebar {
@@ -47,7 +48,7 @@ body {
 .user-img {
     width: 44px;
     height: 44px;
-    border-radius: 30%;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -65,23 +66,22 @@ body {
 }
 
 .user-details .user-name {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 500;
     color: var(--text-color);
 }
 
-.user-setting {
+.setting-button {
     margin-top: auto;
 }
 
-.user-setting a {
+.setting-button a {
     padding: 8px 8px 3px 8px;
     color: var(--unselect-text);
-    margin-left: 20px;
     border-radius: 8px;
 }
 
-.user-setting .bi {
+.setting-button .bi {
     width: 17px;
     height: 17px;
 }
@@ -134,10 +134,13 @@ body {
     height: 22px;
 }
 
-.settings {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-    gap: 20px;
+.content::-webkit-scrollbar {
+    width: 10px;
+}
+.content::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
 }
 
+.content::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}

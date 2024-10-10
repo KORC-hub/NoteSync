@@ -1,7 +1,6 @@
 ﻿const customSelects = document.querySelectorAll(".custom-select");
 
 customSelects.forEach((customSelect) => {
-    console.log("Pass");
     const select = customSelect.querySelector(".select");
     const caret = customSelect.querySelector(".caret");
     const selectMenu = customSelect.querySelector(".select-menu");
@@ -30,6 +29,14 @@ customSelects.forEach((customSelect) => {
                 option.classList.remove("active");
             });
             option.classList.add("active");
+
+            if (tagDiv) {
+                document.getElementById('SortSelectedValue').value = tagDiv.textContent; 
+            } else {
+                document.getElementById('SortSelectedValue').value = option.getAttribute('data-value');
+            }
+
+            document.getElementById('filterForm').submit();
         });
     });
 

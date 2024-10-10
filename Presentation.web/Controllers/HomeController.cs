@@ -17,9 +17,6 @@ namespace Presentation.web.Controllers
     {
         #region Private variable
 
-        private UserAuthentication _userBusinessLogic = new UserAuthentication();
-        private User userSession = new User();
-
         #endregion
 
         private readonly ILogger<HomeController> _logger;
@@ -31,18 +28,6 @@ namespace Presentation.web.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-        public IActionResult Files()
-        {
-            return View();
-        }
-        public IActionResult UserSettings()
-        {
-            userSession.UserId = Convert.ToUInt32(User.FindFirst("Id")?.Value);
-
-            _userBusinessLogic.Read(ref userSession);
-            ViewBag.User = userSession;
             return View();
         }
 

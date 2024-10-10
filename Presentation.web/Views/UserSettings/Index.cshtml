@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "User Settings";
+    Layout = "_LayoutHome";
+}
+
+<div class="user-setting">
+    <h1>User Settings</h1>
+    <form asp-controller="UserSettings" asp-action="UpdateUser" method="post">
+        <div class="settings">
+            <h3>Nickname:</h3>
+            <input class="input-text" type="text" maxlength="15" placeholder="@ViewBag.User.Nickname   (max. 15 characters) " />
+            <h3>Email:</h3>
+            <input class="input-text" type="email" placeholder="@ViewBag.User.Email" readonly/>
+            <h3>Password:</h3>
+            <div class="setting-password">
+                <input class="input-text" type="password" placeholder="New password" />
+                <input class="input-text" type="password" placeholder="Confim new password" />
+            </div>
+            <h3>Picture:</h3>
+            <input class="input-text" type="file" />
+            <div class="setting-buttons">
+                <button class="button primary-button">Save</button>
+                <button class="button primary-button">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
