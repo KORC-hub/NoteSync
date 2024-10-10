@@ -17,12 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{0FE703AB-7669-4F3B-A43A-C1C2BEA32FB6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TSQL files", "TSQL files", "{EFB17FDA-EBC2-44F5-9236-75102094D343}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\CreateTableUser.sql = ..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\CreateTableUser.sql
-		..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\StoredProceduresUser.sql = ..\..\..\OneDrive\Documentos\SQL Server Management Studio\PIA SQLQueries\StoredProceduresUser.sql
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation.web", "Presentation.web\Presentation.web.csproj", "{B2F7EE5F-19FC-420E-AF57-C9197C9AE8D7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Abstractions", "DataAccess.Abstractions\DataAccess.Abstractions.csproj", "{EDBD9B6E-AB65-4CB3-9E81-1D692E6F3119}"
