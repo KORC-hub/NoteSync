@@ -8,6 +8,6 @@ namespace DataAccess.Abstractions.Repositories.Generic
 {
     public interface IDeleteRepository<T>
     {
-        void Delete(ref T entity);
+        Task DeleteAsync(int id);
     }
 }

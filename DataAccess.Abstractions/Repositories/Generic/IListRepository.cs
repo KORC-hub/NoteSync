@@ -8,6 +8,6 @@ namespace DataAccess.Abstractions.Repositories.Generic
 {
     public interface IListRepository<T>
     {
-        IEnumerable<T> GetAll(ref IEnumerable<T> entities);
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }
