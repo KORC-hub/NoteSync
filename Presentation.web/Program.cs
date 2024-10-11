@@ -1,6 +1,12 @@
 using System.Security.Policy;
-using Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using DataAccess.SqlServer;
+using DataAccess.Abstractions.Repositories.Specific;
+using DataAccess.SqlServer.Repositories;
+using DataAccess.SqlServer.Models;
+using BusinessLogic.core;
+using BusinessLogic.core.Service;
+using BusinessLogic.core.UseCases;
 
 namespace Presentation.web
 {
@@ -10,9 +16,12 @@ namespace Presentation.web
         {
 
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("SQLServer");
+            builder.Services.AddDataAccessServices(connectionString);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IUserUseCases, UserService>();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // autenticación basada en cookies.
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -29,6 +38,9 @@ namespace Presentation.web
                     options.SlidingExpiration = true; // Cada vez que el usuario interactúa con la aplicación, el tiempo de expiración se renueva,
 
                 });
+
+            // Add services to the container.
+            builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 

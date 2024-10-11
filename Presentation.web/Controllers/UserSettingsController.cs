@@ -1,4 +1,4 @@
-﻿using BusinessLogic.core;
+﻿using BusinessLogic.core.Service;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,27 +6,27 @@ namespace Presentation.web.Controllers
 {
     public class UserSettingsController : Controller
     {
-        private UserAuthentication _userAuthentication = new UserAuthentication();
-        private User userSession = new User();
+        //private UserService _userAuthentication = new UserService();
+        //private UserDto userSession = new UserDto();
 
-        public IActionResult Index()
-        {
-            userSession.UserId = Convert.ToUInt32(User.FindFirst("Id")?.Value);
+        //public IActionResult Index()
+        //{
+        //    userSession.UserId = Convert.ToUInt32(User.FindFirst("Id")?.Value);
 
-            _userAuthentication.GetById(ref userSession);
-            ViewBag.User = userSession;
-            return View();
-        }
+        //    //_userAuthentication.GetById(ref userSession);
+        //    ViewBag.User = userSession;
+        //    return View();
+        //}
 
-        public IActionResult UpdateUser()
-        {
+        //public IActionResult UpdateUser()
+        //{
         
-            //if (user.ErrorMessage == null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-            return View();
-        }
+        //    //if (user.ErrorMessage == null)
+        //    //{
+        //    //    return RedirectToAction("Index", "Home");
+        //    //}
+        //    return View();
+        //}
 
     }
 }

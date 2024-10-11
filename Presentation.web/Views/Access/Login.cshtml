@@ -1,5 +1,5 @@
-﻿@using Presentation.web.Models.ViewModels;
-@model LoginVM;
+﻿@using Entities;
+@model UserDto;
 @{
     ViewData["Title"] = "Login";
     Layout = null;
@@ -19,7 +19,6 @@
             <form asp-controller="Access" asp-action="Login" method="post">
                 <!-- todavia falta agregar los estilos, este form es por ahora para testing -->
                 <input
-                    class="input-text"
                     class="input-text"
                     type="email"
                     placeholder="Correo"
