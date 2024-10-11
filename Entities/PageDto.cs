@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class Page
+    public class PageDto
     {
         #region Private Variable
 
@@ -40,11 +40,11 @@ namespace Entities
         #endregion
 
         #region Constructors
-        public Page()
+        public PageDto()
         {
 
         }
-        public Page(int pageId, string content, int fileId, string title)
+        public PageDto(int pageId, string content, int fileId, string title)
         {
             _pageId = pageId;
             _content = content;

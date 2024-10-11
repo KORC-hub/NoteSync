@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class File
+    public class FolderDto
     {
         #region Private Variable
 
@@ -31,12 +31,12 @@ namespace Entities
         #endregion
 
         #region Constructors
-        public File()
+        public FolderDto()
         {
 
         }
 
-        public File(int fileId, DateTime createdAt, DateTime lastModifiedAt, int userId)
+        public FolderDto(int fileId, DateTime createdAt, DateTime lastModifiedAt, int userId)
         {
             _fileId = fileId;
             _CreatedAt = createdAt;

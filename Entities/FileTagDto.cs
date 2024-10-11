@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class FileTag
+    public class FileTagDto
     {
         #region Private Variable
 
@@ -28,11 +28,11 @@ namespace Entities
 
         #region Constructors
 
-        public FileTag()
+        public FileTagDto()
         {
 
         }
-        public FileTag(int fileId, int tagId)
+        public FileTagDto(int fileId, int tagId)
         {
             _fileId = fileId;
             _tagId = tagId;

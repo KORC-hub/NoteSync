@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Tag
+    public class TagDto
     {
         #region Private Variable
 
@@ -62,12 +62,12 @@ namespace Entities
         #endregion
 
         #region Constructors
-        public Tag()
+        public TagDto()
         {
 
         }
 
-        public Tag(int tagId, int userId, string tagContent, string color)
+        public TagDto(int tagId, int userId, string tagContent, string color)
         {
             _tagId = tagId;
             _userId = userId;
