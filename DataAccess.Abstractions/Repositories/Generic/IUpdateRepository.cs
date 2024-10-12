@@ -8,6 +8,6 @@ namespace DataAccess.Abstractions.Repositories.Generic
 {
     public interface IUpdateRepository<T>
     {
-        void Update(ref T entity);
+        Task UpdateAsync(T model);
     }
 }

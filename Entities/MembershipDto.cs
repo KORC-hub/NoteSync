@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class Membership
+    public class MembershipDto
     {
         #region Private Variable
 
@@ -25,7 +25,7 @@ namespace Entities
 
         #region Constructor
 
-        public Membership(byte MembershipId, string MembershipName, double MembershipPrice)
+        public MembershipDto(byte MembershipId, string MembershipName, double MembershipPrice)
         {
             _membershipId = MembershipId;
             _membershipName = MembershipName;

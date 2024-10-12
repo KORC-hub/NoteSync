@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Presentation.web.Models.ViewModels;
 // layers
-using BusinessLogic.core;
 using Entities;
 // Authentication
 using System.Security.Claims;
@@ -9,6 +8,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using BusinessLogic.core.Service;
+using BusinessLogic.core.UseCases;
 
 
 namespace Presentation.web.Controllers
@@ -18,8 +19,16 @@ namespace Presentation.web.Controllers
 
         #region Private Variable
 
-        private UserAuthentication _userAuthentication = new UserAuthentication();
-        private User user = new User();
+        private IUserUseCases _userService;
+
+        #endregion
+
+        #region Constructors
+
+        public AccessController(IUserUseCases userService)
+        {
+            _userService = userService;
+        }
 
         #endregion
 
@@ -32,33 +41,24 @@ namespace Presentation.web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterVM model)
+        public async Task<IActionResult> Register(UserDto user)
         {
-
-            if (model.Password != model.ConfirmPassword)
+            if (user.Password != user.ConfirmPassword)
             {
                 ViewData["Message"] = "la contraseña no coincide";
                 return View();
             }
 
-            User user = new User()
+            try
             {
-                Nickname = model.Nickname,
-                Email = model.Email,
-                Password = model.Password,
-            };
-
-            _userAuthentication.Create(ref user);
-
-
-            if (user.ErrorMessage == null)
-            {
+                await _userService.RegisterAsync(user);
                 return RedirectToAction(nameof(Login));
             }
-
-            ViewData["Message"] = "No se pudo crear el usuario por un error: " + user.ErrorMessage;
-            return View();
-
+            catch(Exception ex) 
+            { 
+                ViewData["Message"] = ex.Message;
+                return View();
+            }
         }
 
         #endregion
@@ -72,29 +72,30 @@ namespace Presentation.web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginVM model)
+        public async Task<IActionResult> Login(UserDto user)
         {
-            user.Email = model.Email;
-            user.Password = model.Password;
-
-            if (!_userAuthentication.Login(ref user))
+            try
             {
-                ViewData["Message"] = user.ErrorMessage;
+                user = await _userService.LoginAsync(user);
+            }
+            catch (Exception ex) 
+            {
+                ViewData["Message"] = ex.Message;
                 return View();
             }
 
-            Authentication(user);
+            await Authentication(user);
 
             return RedirectToAction("Index","Home");
         }
 
-        public async void Authentication(User user) 
+        public async Task Authentication(UserDto user) 
         {
             List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.Nickname),
-                new Claim("Id", user.UserId.ToString()),
+                new Claim("ProfilePictureURL", user.ProfilePictureURL),
             };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic.core\BusinessLogic.core.csproj" />
+    <ProjectReference Include="..\DataAccess.SqlServer\DataAccess.SqlServer.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 

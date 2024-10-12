@@ -8,6 +8,6 @@ namespace DataAccess.Abstractions.Repositories.Generic
 {
     public interface ICreateRepository<T>
     {
-        void Create(ref T entity);
+        Task CreateAsync(T model);
     }
 }
