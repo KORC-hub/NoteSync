@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Backend\src\BusinessLogic.core\BusinessLogic.core.csproj" />
+    <ProjectReference Include="..\..\..\Backend\src\DataAccess.SqlServer\DataAccess.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\Shared\DTOs\DTOs.csproj" />
+  </ItemGroup>
+
+</Project>
