@@ -10,8 +10,6 @@ namespace DTOs
         private string _tagContent;
         private string _color;
 
-        
-
         #endregion
 
         #region Public Variable
@@ -51,10 +49,7 @@ namespace DTOs
         #endregion
 
         #region Constructors
-        public TagDto()
-        {
-
-        }
+        public TagDto() { }
 
         public TagDto(int tagId, int userId, string tagContent, string color)
         {
