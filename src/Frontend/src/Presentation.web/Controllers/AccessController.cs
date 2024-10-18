@@ -75,6 +75,8 @@ namespace Presentation.web.Controllers
             try
             {
                 user = await _userService.LoginAsync(user);
+                user.Membership = "basic";
+                user.ProfilePictureURL = "";
             }
             catch (Exception ex) 
             {

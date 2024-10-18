@@ -29,3 +29,13 @@
     display: block;
 }
 
+.delete-account {
+    margin: 10px 0px;
+    background-color: transparent;
+    color: var(--delete-color);
+}
+
+.delete-account:hover {
+    background-color: red;
+    color: var(--delete-color);
+}

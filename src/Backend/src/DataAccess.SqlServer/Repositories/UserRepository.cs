@@ -110,7 +110,7 @@ namespace DataAccess.SqlServer.Repositories
                     throw new Exception("The password is incorrect");
                 }
 
-                return user;
+                return verifyUser;
             }
             catch (Exception ex)
             {

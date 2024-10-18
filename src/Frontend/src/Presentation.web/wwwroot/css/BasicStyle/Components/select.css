@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: solid var(--second-background) 2px;
+    border: 2px solid var(--second-background);
     border-radius: 0.5em;
     padding: 0.6em;
     cursor: pointer;
@@ -24,11 +24,11 @@
 }
 
 .select:hover {
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .select-clicked {
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .caret {
@@ -105,8 +105,10 @@
 .tag {
     display: inline-block;
     width: auto;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-color);
     padding: 0.3em 1em;
     border-radius: 0.5em;
+    border: 2px solid var(--tag-color);
 }
+

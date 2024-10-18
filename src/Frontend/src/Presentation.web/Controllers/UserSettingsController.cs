@@ -1,24 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLogic.core.UseCases;
+using DTOs;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Presentation.web.Controllers
 {
     public class UserSettingsController : Controller
     {
-        //private UserService _userAuthentication = new UserService();
-        //private UserDto userSession = new UserDto();
+        private IUserUseCases _userService;
+        private UserDto userSession = new UserDto();
 
-        //public IActionResult Index()
-        //{
-        //    userSession.UserId = Convert.ToUInt32(User.FindFirst("Id")?.Value);
+        public IActionResult Index()
+        {
+            userSession.Email = User.FindFirst(ClaimTypes.Email)?.Value;
+            userSession.Nickname = User.FindFirst(ClaimTypes.Name)?.Value;
+            userSession.ProfilePictureURL = User.FindFirst("ProfilePictureURL")?.Value;
 
-        //    //_userAuthentication.GetById(ref userSession);
-        //    ViewBag.User = userSession;
-        //    return View();
-        //}
+            ViewBag.User = userSession;
+            return View();
+        }
 
         //public IActionResult UpdateUser()
         //{
-        
+
         //    //if (user.ErrorMessage == null)
         //    //{
         //    //    return RedirectToAction("Index", "Home");

@@ -37,10 +37,17 @@ namespace BusinessLogic.core.Service
 
             await _userRepository.CreateAsync(user);
         }
+        public async Task<UserDto> UpdateDataAsync(UserDto userDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteAccountAsync(UserDto userDto)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
-
-
 
         public async Task<UserDto> LoginAsync(UserDto userDto)
         {
@@ -62,14 +69,5 @@ namespace BusinessLogic.core.Service
             }
         }
 
-        public async Task<UserDto> UpdateDataAsync(UserDto userDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task DeleteAccountAsync(UserDto userDto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

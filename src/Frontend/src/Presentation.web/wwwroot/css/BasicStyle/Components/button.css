@@ -25,6 +25,5 @@
 }
 
 .transparent-button:hover {
-    background-color: var(--second-background);
-    color: var(--text-color);
+    color: var(--primary-color);
 }
