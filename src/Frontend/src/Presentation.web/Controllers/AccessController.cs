@@ -41,11 +41,11 @@ namespace Presentation.web.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserDto user)
         {
-            if (user.Password != user.ConfirmPassword)
-            {
-                ViewData["Message"] = "la contraseña no coincide";
-                return View();
-            }
+            //if (user.Password != user.ConfirmPassword)
+            //{
+            //    ViewData["Message"] = "la contraseña no coincide";
+            //    return View();
+            //}
 
             try
             {

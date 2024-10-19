@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstractions.Repositories.Specific;
+﻿using DataAccess.Abstractions.Models;
+using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.SqlServer.Repositories
@@ -23,16 +25,37 @@ namespace DataAccess.SqlServer.Repositories
 
                 if (user == null)
                 {
-                    throw new Exception("User not found");
+                    throw new Exception();
                 }
+
                 return user;
 
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while retrieving the user.", ex);
+                throw new Exception("An error occurred while retrieving the user from the database.", ex);
+            }
+        }       
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            try
+            {
+                User? user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+                if (user == null)
+                {
+                    throw new Exception();
+                }
+
+                return user;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the user from the database.", ex);
             }
         }
+
 
         public async Task CreateAsync(User user)
         {
@@ -43,21 +66,21 @@ namespace DataAccess.SqlServer.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An unexpected error occurred when trying to add the user.", ex);
+                throw new Exception("An unexpected error occurred when trying to add the user to the database.", ex);
             }
         }
 
-        public async Task UpdateAsync(User model)
+        public async Task UpdateAsync(User user)
         {
             try
             {
-                _context.Users.Update(model);
+                _context.Users.Update(user);
                 await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not update user", ex);
+                throw new Exception("Could not update user from database", ex);
             }
 
         }
@@ -73,48 +96,39 @@ namespace DataAccess.SqlServer.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("User could not be deleted", ex);
+                throw new Exception("User could not be deleted from database", ex);
             }
         }
 
         #endregion
 
         #region Veridy Method
-        public async Task<User?> UserByEmailAsync(string email)
+        public async Task<bool> VerifyUserByEmailAsync(string email)
         {
             try
             {
-                var user = await _context.Users
-                    .Where((u) => u.Email == email)
-                    .FirstOrDefaultAsync();
+                bool exists = await _context.Users.AnyAsync(u => u.Email == email);
 
-                if (user == null)
-                {
-                    throw new Exception("This user's email address is not registered yet.");
-                }
-                return user;
+                return exists;
+
             }
             catch (Exception ex)
             {
-                throw new Exception("Error verifying the user by mail.", ex);
+                throw new Exception("Error when trying to verify user's email from database.");
             }
         }
-        public async Task<User?> AuthenticateUserAsync(User user)
+        public async Task<bool> AuthenticateUserAsync(string email, string password)
         {
             try
             {
-                var verifyUser = await UserByEmailAsync(user.Email);
+                bool exists = await _context.Users.AnyAsync(u => u.Email == email && u.Password == password);
 
-                if (verifyUser.Password != user.Password)
-                {
-                    throw new Exception("The password is incorrect");
-                }
+                return exists;
 
-                return verifyUser;
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception("Error when trying to verify user from database.");
             }
         }
 

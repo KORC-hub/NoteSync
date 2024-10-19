@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstractions.Repositories.Specific;
+﻿using DataAccess.Abstractions.Models;
+using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
 using DataAccess.SqlServer.Repositories;
 using Microsoft.EntityFrameworkCore;

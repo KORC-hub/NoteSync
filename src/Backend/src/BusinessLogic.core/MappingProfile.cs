@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.Abstractions.Models;
 using DataAccess.SqlServer.Models;
 using DomainModel;
 using DTOs;

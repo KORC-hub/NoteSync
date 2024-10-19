@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DataAccess.Abstractions.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DataAccess.SqlServer.Models;
 
-public partial class User
+public partial class User : IUser
 {
     public int UserId { get; set; }
 

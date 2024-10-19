@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.core.UseCases;
+using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
 using DomainModel;
@@ -33,9 +34,9 @@ namespace BusinessLogic.core.Service
             UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
 
             // Mapeo de DomainModel a DataModel (User)
-            User user = _mapper.Map<User>(userDomainModel);
+            User _user = _mapper.Map<User>(userDomainModel);
 
-            await _userRepository.CreateAsync(user);
+            await _userRepository.CreateAsync(_user);
         }
         public async Task<UserDto> UpdateDataAsync(UserDto userDto)
         {
@@ -54,10 +55,26 @@ namespace BusinessLogic.core.Service
             try
             {
                 UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
+                User user = null;
+                
+                bool isCorrectCredentials = await _userRepository.AuthenticateUserAsync(userDomainModel.Email, userDomainModel.Password);
 
-                User? user = _mapper.Map<User>(userDomainModel);
+                if (isCorrectCredentials) 
+                {
+                    user = await _userRepository.GetUserByEmailAsync(userDomainModel.Email);
+                }
+                else
+                {
+                    bool isCorrectEmail = await _userRepository.VerifyUserByEmailAsync(userDomainModel.Email);
 
-                user = await _userRepository.AuthenticateUserAsync(user);
+                    if (!isCorrectEmail)
+                    {
+                        throw new Exception("This user's email address is not registered yet.");
+                    }
+
+                    throw new Exception("the password is incorrect.");
+                }
+
 
                 userDomainModel = _mapper.Map<UserDomainModel>(user);
 
