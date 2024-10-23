@@ -1,7 +1,6 @@
 ﻿@import url("../BasicStyle/palette.css");
 
 * {
-    /* Reset CSS */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -122,8 +121,7 @@ body {
 
 
 .sidebar-menu ul li:hover a,
-.sidebar-menu ul li:active a,
-.user-setting:hover a {
+.sidebar-menu ul li:active a {
     color: var(--text-color);
     background-color: var(--hover-background);
     cursor: pointer;

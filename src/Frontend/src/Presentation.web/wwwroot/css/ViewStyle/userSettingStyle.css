@@ -25,17 +25,26 @@
     flex: 1;
     width: 50%;
 }
-.input-text {
+
+.settings .input-text {
     display: block;
 }
 
-.delete-account {
-    margin: 10px 0px;
+
+.settings .delete-account {
     background-color: transparent;
-    color: var(--delete-color);
+    margin: 10px 0px;
+    padding: 10px;
 }
 
-.delete-account:hover {
-    background-color: red;
+.settings .delete-account a {
+    text-decoration: none;
     color: var(--delete-color);
+    opacity: 0.7;
 }
+
+.settings .delete-account:hover a {
+    cursor:pointer;
+    opacity: 1;
+}
+

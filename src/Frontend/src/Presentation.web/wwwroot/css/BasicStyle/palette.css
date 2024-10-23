@@ -30,7 +30,10 @@
     --primary-button-hover: #b100cd;
     --text-button-color: #fff;
     --link-color: #6495ed;
-    --error-color: #c05f5fa7;
+    --error-color: #bf4040;
+    --error-color-focus: #b21b1b;
+    --correct-color: #76c175;
+    --correct-color-focus: #22c120;
     --delete-color: #d51a1aa7;
     --scrollbar-track: #404040;
     --scrollbar-thumb: #727272;

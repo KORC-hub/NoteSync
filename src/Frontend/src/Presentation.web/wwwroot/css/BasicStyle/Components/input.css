@@ -1,23 +1,66 @@
-﻿/* Input style */
+﻿.input {
+    padding: 20px;
+}
 
-.input-text {
-    margin: 0;
+.input-message {
     width: auto;
+    font-size: 12px;
+    color: var(--error-color);
+}
+
+.input-text,
+.input-error,
+.input-correct {
+    width: auto; 
     background-color: var(--textbox-background);
     color: var(--text-color);
     font-size: 16px;
     padding: 0.7em 1em;
-    border: solid var(--second-background) 2px;
     border-radius: 4px;
+    border: solid 2px var(--second-background); 
 }
 
-.input-text::placeholder {
+.input-text::placeholder,
+.input-error::placeholder,
+.input-correct::placeholder {
     color: var(--unselect-text);
 }
 
-.input-text:focus {
+.input-text:focus,
+.input-error:focus,
+.input-correct:focus {
     outline: none;
-    border: solid var(--primary-color) 1px;
+    border: 2px solid;
+}
+
+.input-text:focus {
+    border-color: var(--primary-color);
+}
+
+.input-error {
+    border-color: var(--error-color); 
+}
+
+.input-error:focus {
+    border-color: var(--error-color-focus);
+}
+
+.input-correct {
+    border-color: var(--correct-color);
+}
+
+.input-correct:focus {
+    border-color: var(--correct-color-focus);
+}
+
+input[type="button"] {
+    width: auto;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.7em 1em;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
 }
 
 input[type="file"] {
@@ -33,4 +76,26 @@ input[type="file"]::file-selector-button {
     border-radius: 4px;
     color: var(--text-color-light);
     cursor: pointer;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--background);
+    border: 2px solid var(--second-background);
+    border-radius: 8px;
+    height: auto;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 13px;
+    border: none;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
 }

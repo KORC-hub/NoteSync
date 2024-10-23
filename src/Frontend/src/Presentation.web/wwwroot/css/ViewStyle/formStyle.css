@@ -1,15 +1,5 @@
 ﻿@import url("../BasicStyle/palette.css");
 
-* {
-    /* Reset CSS */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Outfit", monospace;
-    font-style: normal;
-    color: var(--text-color);
-}
-
 body {
     background-color: var(--background);
 }
@@ -22,24 +12,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: transparent;
+    text-align:center;
     padding: 15px;
-    width: 100%;
-}
-
-form {
-    width: 50%;
-}
-
-    form .input-text {
-        margin: 1em 0;
-        width: 100%;
-    }
-
-form .button {
-    font-size: 16px;
-    margin: 20px 0;
-    width: 30%;
 }
 
 form a {
