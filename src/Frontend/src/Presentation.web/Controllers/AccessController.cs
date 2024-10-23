@@ -41,12 +41,6 @@ namespace Presentation.web.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserDto user)
         {
-            //if (user.Password != user.ConfirmPassword)
-            //{
-            //    ViewData["Message"] = "la contraseña no coincide";
-            //    return View();
-            //}
-
             try
             {
                 await _userService.RegisterAsync(user);
@@ -93,6 +87,7 @@ namespace Presentation.web.Controllers
         {
             List<Claim> claims = new List<Claim>()
             {
+                new Claim("Id", user.UserId),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.Nickname),
                 new Claim("ProfilePictureURL", user.ProfilePictureURL),

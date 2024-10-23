@@ -20,11 +20,16 @@
             <h3>Picture:</h3>
             <input class="input-text" type="file" />
             -->
-            <a class="delete-account">Delete Account</a>
+            <div class ="delete-account">
+                <a href="#" onclick="DeleteUser(event, '/UserSettings/DeleteUser')">Delete Account</a>
+            </div>    
             <div class="setting-buttons">
-                <button class="button primary-button">Save</button>
+                <button class="button primary-button">Save changes</button>
                 <button class="button primary-button">Cancel</button>
             </div>
         </div>
     </form>
 </div>
+
+<script src="~/js/UserSettings.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

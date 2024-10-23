@@ -43,9 +43,16 @@ namespace BusinessLogic.core.Service
             throw new NotImplementedException();
         }
 
-        public async Task DeleteAccountAsync(UserDto userDto)
+        public async Task DeleteAccountAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _userRepository.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the user", ex);
+            }
         }
 
         #endregion
@@ -74,7 +81,6 @@ namespace BusinessLogic.core.Service
 
                     throw new Exception("the password is incorrect.");
                 }
-
 
                 userDomainModel = _mapper.Map<UserDomainModel>(user);
 
