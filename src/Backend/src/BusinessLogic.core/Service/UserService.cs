@@ -12,16 +12,22 @@ namespace BusinessLogic.core.Service
     {
         #region Private Variable
 
-        private readonly IUserRepository<User> _userRepository;
+        private readonly IUserRepository<IUser> _userRepository;
+        private readonly IMembershipRepository<IMembership> _MembershipRepository;
         private readonly IMapper _mapper;
+        private IUser _user;
+        private IMembership _membership;
 
         #endregion
 
         #region Constructor
-        public UserService(IUserRepository<User> userRepository, IMapper mapper)
+        public UserService(IUserRepository<IUser> userRepository, IMembershipRepository<IMembership> membershipRepository, IMapper mapper, IUser user, IMembership membership)
         {
             _userRepository = userRepository;
+            _MembershipRepository = membershipRepository;
             _mapper = mapper;
+            _user = user;
+            _membership = membership;
         }
 
         #endregion
@@ -34,7 +40,7 @@ namespace BusinessLogic.core.Service
             UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
 
             // Mapeo de DomainModel a DataModel (User)
-            User _user = _mapper.Map<User>(userDomainModel);
+            _user = _mapper.Map<User>(userDomainModel);
 
             await _userRepository.CreateAsync(_user);
         }
@@ -62,13 +68,12 @@ namespace BusinessLogic.core.Service
             try
             {
                 UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
-                User user = null;
                 
                 bool isCorrectCredentials = await _userRepository.AuthenticateUserAsync(userDomainModel.Email, userDomainModel.Password);
 
                 if (isCorrectCredentials) 
                 {
-                    user = await _userRepository.GetUserByEmailAsync(userDomainModel.Email);
+                    _user = await _userRepository.GetUserByEmailAsync(userDomainModel.Email);
                 }
                 else
                 {
@@ -82,7 +87,13 @@ namespace BusinessLogic.core.Service
                     throw new Exception("the password is incorrect.");
                 }
 
-                userDomainModel = _mapper.Map<UserDomainModel>(user);
+                _membership = await _MembershipRepository.GetByIdAsync(_user.MembershipId);
+
+                userDomainModel.UserId = Convert.ToUInt32(_user.UserId);
+                userDomainModel.Nickname = _user.Nickname;
+                userDomainModel.Email = _user.Email;
+                userDomainModel.Membership = _membership.MembershipName;
+                userDomainModel.ProfilePictureURL = _user.ProfilePictureUrl;
 
                 return _mapper.Map<UserDto>(userDomainModel);
             }

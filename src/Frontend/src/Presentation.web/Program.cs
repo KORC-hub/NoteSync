@@ -18,6 +18,7 @@ namespace Presentation.web
             builder.Services.AddScoped<IUserUseCases, UserService>();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddAutoMapper(typeof(DataAccessMappingProfile));
 
             // autenticación basada en cookies.
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

@@ -15,7 +15,10 @@ namespace DataAccess.SqlServer
                 options.UseSqlServer(connectionString));
 
             // Registro de UserRepository
-            services.AddScoped<IUserRepository<User>, UserRepository>();
+            services.AddScoped<IUserRepository<IUser>, UserRepository>();
+            services.AddScoped<IMembershipRepository<IMembership>, MembershipRepository>();
+            services.AddScoped<IUser, User>();
+            services.AddScoped<IMembership, Membership>();
 
             return services;
         }

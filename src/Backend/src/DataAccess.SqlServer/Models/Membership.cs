@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataAccess.Abstractions.Models;
 
 namespace DataAccess.SqlServer.Models;
 
-public partial class Membership
+public partial class Membership : IMembership
 {
     public byte MembershipId { get; set; }
 
