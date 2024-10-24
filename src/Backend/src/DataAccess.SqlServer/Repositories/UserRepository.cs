@@ -79,8 +79,19 @@ namespace DataAccess.SqlServer.Repositories
         {
             try
             {
-                User userDataModel = _mapper.Map<User>(user);
-                _context.Users.Update(userDataModel);
+                User userDataModel = _context.Users.Local.FirstOrDefault(e => e.Email == user.Email);
+                if (userDataModel != null)
+                {
+                    userDataModel.Nickname = user.Nickname;
+                    userDataModel.Password = user.Password;
+                } 
+                else
+                { 
+                    userDataModel = _mapper.Map<User>(user);
+                    _context.Attach(userDataModel);
+                    _context.Entry(userDataModel).Property(p => p.Nickname).IsModified = true;
+                    _context.Entry(userDataModel).Property(p => p.Password).IsModified = true;
+                }
                 await _context.SaveChangesAsync();
 
             }

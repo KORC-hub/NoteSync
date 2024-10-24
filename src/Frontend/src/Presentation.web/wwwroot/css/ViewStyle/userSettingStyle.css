@@ -23,13 +23,11 @@
 
 .setting-password .input-text {
     flex: 1;
-    width: 50%;
 }
 
 .settings .input-text {
     display: block;
 }
-
 
 .settings .delete-account {
     background-color: transparent;
@@ -40,7 +38,7 @@
 .settings .delete-account a {
     text-decoration: none;
     color: var(--delete-color);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .settings .delete-account:hover a {

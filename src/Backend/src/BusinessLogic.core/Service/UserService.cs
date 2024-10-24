@@ -5,6 +5,7 @@ using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
 using DomainModel;
 using DTOs;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BusinessLogic.core.Service
 {
@@ -44,9 +45,23 @@ namespace BusinessLogic.core.Service
 
             await _userRepository.CreateAsync(_user);
         }
-        public async Task<UserDto> UpdateDataAsync(UserDto userDto)
+        public async Task UpdateAccountAsync(UserDto userDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
+
+                // Mapeo de DomainModel a DataModel (User)
+                _user = await _userRepository.GetUserByEmailAsync(userDomainModel.Email);
+                _user.Nickname = (userDomainModel.Nickname.IsNullOrEmpty()) ? _user.Nickname : userDomainModel.Nickname;
+                _user.Password = (userDomainModel.Password.IsNullOrEmpty()) ? _user.Password : userDomainModel.Password;
+
+                await _userRepository.UpdateAsync(_user);
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("An error occurred while updating the user");
+            }
         }
 
         public async Task DeleteAccountAsync(int id)

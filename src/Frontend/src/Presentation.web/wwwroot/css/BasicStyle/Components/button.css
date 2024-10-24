@@ -10,6 +10,10 @@
     cursor: pointer;
 }
 
+.button:disabled {
+    cursor: default;
+}
+
 .primary-button {
     background-color: var(--primary-color);
     color: var(--text-button-color);
@@ -22,6 +26,10 @@
 
 .primary-button:hover {
     background-color: var(--primary-button-hover);
+}
+
+.primary-button:disabled:hover {
+    background-color: var(--primary-color);
 }
 
 .transparent-button:hover {

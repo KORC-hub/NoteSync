@@ -1,24 +1,26 @@
 ﻿.input {
     padding: 20px;
+    width: 100%;
 }
 
 .input-message {
     width: auto;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--error-color);
 }
 
 .input-text,
 .input-error,
 .input-correct {
-    width: auto; 
+    width: 100%;
     background-color: var(--textbox-background);
     color: var(--text-color);
     font-size: 16px;
     padding: 0.7em 1em;
     border-radius: 4px;
-    border: solid 2px var(--second-background); 
+    border: solid 2px var(--second-background);
 }
+
 
 .input-text::placeholder,
 .input-error::placeholder,
