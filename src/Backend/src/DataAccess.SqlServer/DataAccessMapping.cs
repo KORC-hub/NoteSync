@@ -4,9 +4,9 @@ using DataAccess.SqlServer.Models;
 
 namespace DataAccess.SqlServer
 {
-    public class DataAccessMappingProfile : Profile
+    public class DataAccessMapping : Profile
     {
-        public DataAccessMappingProfile()
+        public DataAccessMapping()
         {
             CreateMap<IUser, User>();
             CreateMap<User, IUser>();
