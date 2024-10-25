@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using DataAccess.Abstractions.Models;
-using DataAccess.SqlServer.Models;
 using DomainModel;
 using DTOs;
 
 namespace BusinessLogic.core
 {
-    public class MappingProfile : Profile
+    public class BusinessLogicMapping : Profile
     {
-        public MappingProfile()
+        public BusinessLogicMapping()
         {
             // DTO's to DomainModels
             CreateMap<UserDto, UserDomainModel>();
@@ -17,10 +16,10 @@ namespace BusinessLogic.core
             CreateMap<UserDomainModel, UserDto>();
 
             // DM(Data Models) to DomainModels
-            CreateMap<User, UserDomainModel>();
+            CreateMap<IUser, UserDomainModel>();
 
             // DomainModels to DM(Data Models)
-            CreateMap<UserDomainModel, User>();
+            CreateMap<UserDomainModel, IUser>();
 
         }
     }

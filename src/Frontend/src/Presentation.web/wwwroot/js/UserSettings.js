@@ -8,7 +8,7 @@ function DeleteUser(event, url) {
     //}
     Swal.fire({
         title: 'Delete user',
-        text: "Are you sure to delete your account, this will also delete all your folders.",
+        text: "Are you sure to delete your account?, this will also delete all your folders.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -24,3 +24,17 @@ function DeleteUser(event, url) {
         }
     });
 }
+
+
+window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        Toastify({
+            text: "the user's data was updated correctly!",
+            duration: 3000,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: "green",
+        }).showToast();
+    }
+};

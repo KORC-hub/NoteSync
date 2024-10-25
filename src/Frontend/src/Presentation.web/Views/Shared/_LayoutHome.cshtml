@@ -18,7 +18,9 @@
                     <img src="https://cdn.pixabay.com/photo/2017/07/18/23/23/user-2517433_1280.png" alt="" />
                 </div>
                 <div class="user-details">
-                    <p class="user-membership">Basic</p>
+                    <p class="user-membership">
+                    @User.Claims.Where(u => u.Type == "Membership").Select(u => u.Value).SingleOrDefault()
+                    </p>
                     <p class="user-name">
                         @User.Claims.Where(u => u.Type == ClaimTypes.Name).Select(u => u.Value).SingleOrDefault()
                     </p>
@@ -75,9 +77,9 @@
                     <li>
                         <a asp-controller="UserSettings" asp-action="Index">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 width="18"
-                                 height="18"
-                                 viewBox="0 0 24 24"
+                                 width="20"
+                                 height="20"
+                                 viewBox="0 0 20 24"
                                  fill="none"
                                  stroke="currentColor"
                                  stroke-width="2"

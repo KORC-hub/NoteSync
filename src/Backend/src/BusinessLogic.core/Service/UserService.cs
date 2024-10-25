@@ -2,9 +2,11 @@
 using BusinessLogic.core.UseCases;
 using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
+using DataAccess.Abstractions.UoW;
 using DataAccess.SqlServer.Models;
 using DomainModel;
 using DTOs;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BusinessLogic.core.Service
 {
@@ -12,16 +14,20 @@ namespace BusinessLogic.core.Service
     {
         #region Private Variable
 
-        private readonly IUserRepository<User> _userRepository;
+        private readonly IRepositoriesManager _repositoriesManager;
         private readonly IMapper _mapper;
+        private IUser _user;
+        private IMembership _membership;
 
         #endregion
 
         #region Constructor
-        public UserService(IUserRepository<User> userRepository, IMapper mapper)
+        public UserService(IRepositoriesManager repositoriesManager, IMapper mapper, IUser user, IMembership membership)
         {
-            _userRepository = userRepository;
+            _repositoriesManager = repositoriesManager;
             _mapper = mapper;
+            _user = user;
+            _membership = membership;
         }
 
         #endregion
@@ -34,20 +40,39 @@ namespace BusinessLogic.core.Service
             UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
 
             // Mapeo de DomainModel a DataModel (User)
-            User _user = _mapper.Map<User>(userDomainModel);
+            _user.Nickname = userDomainModel.Nickname;
+            _user.Email = userDomainModel.Email;
+            _user.Password = userDomainModel.Password;
 
-            await _userRepository.CreateAsync(_user);
+            await _repositoriesManager.Users.CreateAsync(_user);
+            await _repositoriesManager.CommitAsync();
         }
-        public async Task<UserDto> UpdateDataAsync(UserDto userDto)
+        public async Task UpdateAccountAsync(UserDto userDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
+
+                // Mapeo de DomainModel a DataModel (User)
+                _user = await _repositoriesManager.Users.GetUserByEmailAsync(userDomainModel.Email);
+                _user.Nickname = (userDomainModel.Nickname.IsNullOrEmpty()) ? _user.Nickname : userDomainModel.Nickname;
+                _user.Password = (userDomainModel.Password.IsNullOrEmpty()) ? _user.Password : userDomainModel.Password;
+
+                await _repositoriesManager.Users.UpdateAsync(_user);
+                await _repositoriesManager.CommitAsync();
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("An error occurred while updating the user");
+            }
         }
 
         public async Task DeleteAccountAsync(int id)
         {
             try
             {
-                await _userRepository.DeleteAsync(id);
+                await _repositoriesManager.Users.DeleteAsync(id);
+                await _repositoriesManager.CommitAsync();
             }
             catch (Exception ex)
             {
@@ -62,17 +87,16 @@ namespace BusinessLogic.core.Service
             try
             {
                 UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
-                User user = null;
                 
-                bool isCorrectCredentials = await _userRepository.AuthenticateUserAsync(userDomainModel.Email, userDomainModel.Password);
+                bool isCorrectCredentials = await _repositoriesManager.Users.AuthenticateUserAsync(userDomainModel.Email, userDomainModel.Password);
 
                 if (isCorrectCredentials) 
                 {
-                    user = await _userRepository.GetUserByEmailAsync(userDomainModel.Email);
+                    _user = await _repositoriesManager.Users.GetUserByEmailAsync(userDomainModel.Email);
                 }
                 else
                 {
-                    bool isCorrectEmail = await _userRepository.VerifyUserByEmailAsync(userDomainModel.Email);
+                    bool isCorrectEmail = await _repositoriesManager.Users.VerifyUserByEmailAsync(userDomainModel.Email);
 
                     if (!isCorrectEmail)
                     {
@@ -82,7 +106,13 @@ namespace BusinessLogic.core.Service
                     throw new Exception("the password is incorrect.");
                 }
 
-                userDomainModel = _mapper.Map<UserDomainModel>(user);
+                _membership = await _repositoriesManager.Memberships.GetByIdAsync(_user.MembershipId);
+
+                userDomainModel.UserId = Convert.ToUInt32(_user.UserId);
+                userDomainModel.Nickname = _user.Nickname;
+                userDomainModel.Email = _user.Email;
+                userDomainModel.Membership = _membership.MembershipName;
+                userDomainModel.ProfilePictureURL = _user.ProfilePictureUrl;
 
                 return _mapper.Map<UserDto>(userDomainModel);
             }

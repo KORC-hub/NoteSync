@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using DataAccess.Abstractions.Models;
 namespace DataAccess.SqlServer.Models;
 
-public partial class FolderTag
+public partial class FolderTag : IFolderTag
 {
     public int FolderId { get; set; }
 

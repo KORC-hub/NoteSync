@@ -14,10 +14,12 @@ namespace Presentation.web
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("SQLServer");
             builder.Services.AddDataAccessServices(connectionString);
+            builder.Services.AddBusinessLogicServices();
 
             builder.Services.AddScoped<IUserUseCases, UserService>();
 
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            builder.Services.AddAutoMapper(typeof(BusinessLogicMapping));
+            builder.Services.AddAutoMapper(typeof(DataAccessMapping));
 
             // autenticación basada en cookies.
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

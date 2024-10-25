@@ -11,8 +11,9 @@
     margin: 20px 0;
 }
 
-.input-text {
+.Search-files .input-text {
     flex-grow: 1; /* hace que el input ocupe el espacio disponible*/
+    width: auto;
 }
 
 .filters form {
@@ -139,4 +140,111 @@
 
 .drop-menu ul li:hover {
     background-color: var(--second-background);
+}
+
+dialog {
+    background-color: var(--background);
+    border: solid 2px var(--second-background);
+    color: var(--text-color);
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para el diálogo */
+
+dialog[open] {
+    scale: 1;
+    transition: scale 0.3s ease-in-out;
+
+    @starting-style {
+        scale: 0;
+    }
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+}
+
+.dialog-content .title {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.dialog-content .subtitle {
+    text-align: start;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dialog-content .tag-section {
+    display: flex;
+    gap: 10px;
+}
+
+.dialog-content .tags {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 30px;
+    border: 2px solid var(--second-background);
+    border-radius: 8px;
+}
+
+.dialog-content .tags .tag {
+    display: flex;
+}
+
+.add-tag {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 8px;
+    align-items: start;
+    border: 2px solid var(--second-background);
+}
+
+.select-tag {
+    display: flex;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+.new-tag {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+.create-tag {
+    display: flex;
+    gap: 10px;
+}
+
+.existing-tag {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border-left: 2px solid var(--second-background);
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+.tag-button-add {
+    margin-left: 10px;
+    height: 50px;
 }

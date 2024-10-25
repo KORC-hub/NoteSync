@@ -7,7 +7,69 @@
     <h1>Files</h1>
     <div class="container">
         <input class="input-text" type="text" placeholder="Search" />
-        <button class="button primary-button">New file</button>
+        <button id ="openModalBtn" class="button primary-button">New file</button>
+        <dialog id="myDialog">
+            <span class="close" id="closeDialogBtn" hidden></span>
+            <form class="dialog-content">
+                <div class="title">New Book</div>
+                <input type="text" id="name" class="input-text" name="name" placeholder="Name" />
+                <div class="subtitle">Tags:</div>
+                <div class="tag-section">
+                    <div class="tags">
+                        <div class="tag" style="--tag-color: #8b5a2b">In progress</div>
+                        <div class="tag" style="--tag-color: #5f9ea0">Completed</div>
+                        <div class="tag" style="--tag-color: #6b8e23">Pending</div>
+                    </div>
+                    <button class="button primary-button" id="addTag">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="add-tag">
+                    <div class="select-tag">
+                        <div class="new-tag">
+                            <div class="subtitle">New tag:</div>
+                            <input type="text" class="input-text" />
+                            <input type="color" value="#ff0000" />
+                        </div>
+                        <div class="existing-tag">
+                            <div class="subtitle">Existing tag:</div>
+                            <div class="custom-select">
+                                <div class="select">
+                                    <span class="selected"> </span>
+                                    <div class="caret"></div>
+                                </div>
+                                <ul class="select-menu">
+                                    <li data-value="tag">
+                                        <div class="tag" style="--tag-color: #ff8c00">To do</div>
+                                    </li>
+                                    <li data-value="tag">
+                                        <div class="tag" style="--tag-color: #fff">Programming</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" id="TagSelectedValue" name="tagSelectedValue" value="recent" />
+                        </div>
+                    </div>
+                    <div class="tag-button-add">
+                        <input type="button" class="primary-button" value="Add tag" />
+                    </div>
+                </div>
+                <button id="saveBtn" class="button primary-button">Guardar</button>
+            </form>
+        </dialog>
         <button class="button transparent-button">
             <svg xmlns="http://www.w3.org/2000/svg"
                  width="24"
@@ -150,4 +212,5 @@
 </div>
 
 <script src="~/js/customSelectInteractive.js"></script>
+<script src="~/js/dialog.js"></script>
 <script src="~/js/drop-menu.js"></script>

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstractions.Models;
+﻿using AutoMapper;
+using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
 using Microsoft.Data.SqlClient;
@@ -6,18 +7,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.SqlServer.Repositories
 {
-    public class UserRepository : IUserRepository<User>
+    public class UserRepository : IUserRepository<IUser>
     {
         private readonly NoteSyncDbContext _context;
+        private readonly IMapper _mapper;
 
-        public UserRepository(NoteSyncDbContext context)
+        public UserRepository(NoteSyncDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         #region CRUD
 
-        public async Task<User> GetByIdAsync(int id)
+        public async Task<IUser> GetByIdAsync(int id)
         {
             try
             {
@@ -36,7 +39,7 @@ namespace DataAccess.SqlServer.Repositories
                 throw new Exception("An error occurred while retrieving the user from the database.", ex);
             }
         }       
-        public async Task<User> GetUserByEmailAsync(string email)
+        public async Task<IUser> GetUserByEmailAsync(string email)
         {
             try
             {
@@ -52,17 +55,18 @@ namespace DataAccess.SqlServer.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while retrieving the user from the database.", ex);
+                throw new Exception("An error occurred while retrieving the user by email from the database.", ex);
             }
         }
 
 
-        public async Task CreateAsync(User user)
+        public async Task CreateAsync(IUser user)
         {
             try
             {
-                await _context.Users.AddAsync(user);
-                await _context.SaveChangesAsync();
+                User userDataModel = _mapper.Map<User>(user);
+
+                await _context.Users.AddAsync(userDataModel);
             }
             catch (Exception ex)
             {
@@ -70,12 +74,23 @@ namespace DataAccess.SqlServer.Repositories
             }
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateAsync(IUser user)
         {
             try
             {
-                _context.Users.Update(user);
-                await _context.SaveChangesAsync();
+                User? userDataModel = _context.Users.Local.FirstOrDefault(e => e.Email == user.Email);
+                if (userDataModel != null)
+                {
+                    userDataModel.Nickname = user.Nickname;
+                    userDataModel.Password = user.Password;
+                } 
+                else
+                { 
+                    userDataModel = _mapper.Map<User>(user);
+                    _context.Attach(userDataModel);
+                    _context.Entry(userDataModel).Property(p => p.Nickname).IsModified = true;
+                    _context.Entry(userDataModel).Property(p => p.Password).IsModified = true;
+                }
 
             }
             catch (Exception ex)
@@ -89,9 +104,8 @@ namespace DataAccess.SqlServer.Repositories
         {
             try
             {
-                User user = await GetByIdAsync(id);
+                User user = new User { UserId = id};
                 _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)

@@ -69,7 +69,6 @@ namespace Presentation.web.Controllers
             try
             {
                 user = await _userService.LoginAsync(user);
-                user.Membership = "basic";
                 user.ProfilePictureURL = "";
             }
             catch (Exception ex) 
@@ -90,6 +89,7 @@ namespace Presentation.web.Controllers
                 new Claim("Id", user.UserId),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.Nickname),
+                new Claim("Membership", user.Membership),
                 new Claim("ProfilePictureURL", user.ProfilePictureURL),
             };
 
