@@ -67,7 +67,6 @@ namespace DataAccess.SqlServer.Repositories
                 User userDataModel = _mapper.Map<User>(user);
 
                 await _context.Users.AddAsync(userDataModel);
-                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -79,7 +78,7 @@ namespace DataAccess.SqlServer.Repositories
         {
             try
             {
-                User userDataModel = _context.Users.Local.FirstOrDefault(e => e.Email == user.Email);
+                User? userDataModel = _context.Users.Local.FirstOrDefault(e => e.Email == user.Email);
                 if (userDataModel != null)
                 {
                     userDataModel.Nickname = user.Nickname;
@@ -92,7 +91,6 @@ namespace DataAccess.SqlServer.Repositories
                     _context.Entry(userDataModel).Property(p => p.Nickname).IsModified = true;
                     _context.Entry(userDataModel).Property(p => p.Password).IsModified = true;
                 }
-                await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)
@@ -108,7 +106,6 @@ namespace DataAccess.SqlServer.Repositories
             {
                 User user = new User { UserId = id};
                 _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
 
             }
             catch (Exception ex)

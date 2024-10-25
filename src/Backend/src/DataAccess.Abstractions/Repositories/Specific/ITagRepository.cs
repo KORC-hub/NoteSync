@@ -9,5 +9,6 @@ namespace DataAccess.Abstractions.Repositories.Specific
 {
     public interface ITagRepository<T> : ICreateRepository<T>, IUpdateRepository<T>, IDeleteRepository<T>, IReadRepository<T>, IListRepository<T>
     {
+
     }
 }
