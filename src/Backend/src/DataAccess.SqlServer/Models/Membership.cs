@@ -1,5 +1,4 @@
 ﻿using DataAccess.Abstractions.Models;
-
 namespace DataAccess.SqlServer.Models;
 
 public partial class Membership : IMembership

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using DataAccess.Abstractions.Models;
 namespace DataAccess.SqlServer.Models;
 
-public partial class Folder
+public partial class Folder : IFolder
 {
     public int FolderId { get; set; }
 

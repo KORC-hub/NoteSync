@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using DataAccess.Abstractions.Models;
 namespace DataAccess.SqlServer.Models;
 
-public partial class Page
+public partial class Page : IPage
 {
     public int PageId { get; set; }
 

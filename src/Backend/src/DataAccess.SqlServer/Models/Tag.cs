@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DataAccess.Abstractions.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DataAccess.SqlServer.Models;
 
-public partial class Tag
+public partial class Tag : ITag
 {
     public int TagId { get; set; }
 
