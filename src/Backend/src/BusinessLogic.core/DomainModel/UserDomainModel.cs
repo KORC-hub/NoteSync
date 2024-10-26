@@ -5,7 +5,7 @@ namespace DomainModel
     {
         #region Private Vriable
 
-        private uint _userId;
+        private int _userId;
         private string _nickname;
         private string _email;
         private string _password;
@@ -16,7 +16,7 @@ namespace DomainModel
         #endregion
 
         #region Public Variable
-        public uint UserId { get => _userId; set => _userId = value; }
+        public int UserId { get => _userId; set => _userId = value; }
         public string Nickname { get => _nickname; set => _nickname = value; }
         public string Email { get => _email; set => _email = value; }
         public string Password { get => _password; set => _password = value; }
@@ -29,7 +29,7 @@ namespace DomainModel
         #region Constructors
         public UserDomainModel() { }
 
-        public UserDomainModel(uint userId, string nickname, string email, string password, string? profilePictureURL, string membership, DateTime? createdAt)
+        public UserDomainModel(int userId, string nickname, string email, string password, string? profilePictureURL, string membership, DateTime? createdAt)
         {
             _userId = userId;
             _nickname = nickname;

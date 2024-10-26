@@ -9,17 +9,14 @@ namespace BusinessLogic.core
     {
         public BusinessLogicMapping()
         {
-            // DTO's to DomainModels
+            // User Mapping
             CreateMap<UserDto, UserDomainModel>();
-
-            // DomainModels to DTO's
             CreateMap<UserDomainModel, UserDto>();
 
-            // DM(Data Models) to DomainModels
-            CreateMap<IUser, UserDomainModel>();
 
-            // DomainModels to DM(Data Models)
-            CreateMap<UserDomainModel, IUser>();
+            // Folder Mapping
+            CreateMap<FolderDto, FolderDomainModel>();
+            CreateMap<FolderDomainModel, FolderDto>();
 
         }
     }

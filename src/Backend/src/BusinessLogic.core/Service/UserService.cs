@@ -34,26 +34,36 @@ namespace BusinessLogic.core.Service
 
         #region CRUD Method
 
-        public async Task RegisterAsync(UserDto userDto)
+        public async Task<int> RegisterAsync(UserDto userDto)
         {
-            // Mapeo de DTO (UserDto) a DomainModel (UserDomainModel)
-            UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
+            try
+            {
+                // Mapeo de DTO (UserDto) a DomainModel (UserDomainModel)
+                UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
 
-            // Mapeo de DomainModel a DataModel (User)
-            _user.Nickname = userDomainModel.Nickname;
-            _user.Email = userDomainModel.Email;
-            _user.Password = userDomainModel.Password;
+                // Mapeo de DomainModel a DataModel (User)
+                _user.Nickname = userDomainModel.Nickname;
+                _user.Email = userDomainModel.Email;
+                _user.Password = userDomainModel.Password;
 
-            await _repositoriesManager.Users.CreateAsync(_user);
-            await _repositoriesManager.CommitAsync();
+                //_user.UserId = await _repositoriesManager.Users.CreateAsync(_user);
+                await _repositoriesManager.CommitAsync();
+
+                return _user.UserId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while register the user");
+            }
+
         }
         public async Task UpdateAccountAsync(UserDto userDto)
         {
             try
             {
+                // Mapeo de DomainModel a DataModel (User)
                 UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
 
-                // Mapeo de DomainModel a DataModel (User)
                 _user = await _repositoriesManager.Users.GetUserByEmailAsync(userDomainModel.Email);
                 _user.Nickname = (userDomainModel.Nickname.IsNullOrEmpty()) ? _user.Nickname : userDomainModel.Nickname;
                 _user.Password = (userDomainModel.Password.IsNullOrEmpty()) ? _user.Password : userDomainModel.Password;
@@ -87,12 +97,20 @@ namespace BusinessLogic.core.Service
             try
             {
                 UserDomainModel userDomainModel = _mapper.Map<UserDomainModel>(userDto);
-                
+
                 bool isCorrectCredentials = await _repositoriesManager.Users.AuthenticateUserAsync(userDomainModel.Email, userDomainModel.Password);
 
-                if (isCorrectCredentials) 
+                if (isCorrectCredentials)
                 {
-                    _user = await _repositoriesManager.Users.GetUserByEmailAsync(userDomainModel.Email);
+                    if (userDomainModel.UserId != 0)
+                    {
+                        _user = await _repositoriesManager.Users.GetByIdAsync(userDomainModel.UserId);
+
+                    }
+                    else
+                    {
+                        _user = await _repositoriesManager.Users.GetUserByEmailAsync(userDomainModel.Email);
+                    }
                 }
                 else
                 {
@@ -108,7 +126,7 @@ namespace BusinessLogic.core.Service
 
                 _membership = await _repositoriesManager.Memberships.GetByIdAsync(_user.MembershipId);
 
-                userDomainModel.UserId = Convert.ToUInt32(_user.UserId);
+                userDomainModel.UserId = _user.UserId;
                 userDomainModel.Nickname = _user.Nickname;
                 userDomainModel.Email = _user.Email;
                 userDomainModel.Membership = _membership.MembershipName;

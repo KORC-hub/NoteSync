@@ -5,7 +5,8 @@ namespace DomainModel
     {
         #region Private Variable
 
-        private int _fileId;
+        private int _folderId;
+        private string _folderName;
         private DateTime _CreatedAt;
         private DateTime _LastModifiedAt;
         private int _userId;
@@ -14,7 +15,8 @@ namespace DomainModel
 
         #region Public Variable
 
-        public int FileId { get => _fileId; set => _fileId = value; }
+        public int FolderId { get => _folderId; set => _folderId = value; }
+        public string FolderName { get => _folderName; set => _folderName = value; }
         public DateTime CreatedAt { get => _CreatedAt; set => _CreatedAt = value; }
         public DateTime LastModifiedAt { get => _LastModifiedAt; set => _LastModifiedAt = value; }
         public int UserId { get => _userId; set => _userId = value; }
@@ -27,12 +29,13 @@ namespace DomainModel
 
         }
 
-        public FolderDomainModel(int fileId, DateTime createdAt, DateTime lastModifiedAt, int userId)
+        public FolderDomainModel(int folderId, DateTime createdAt, DateTime lastModifiedAt, int userId, string folderName)
         {
-            _fileId = fileId;
+            _folderId = folderId;
             _CreatedAt = createdAt;
             _LastModifiedAt = lastModifiedAt;
             _userId = userId;
+            _folderName = folderName;
         }
 
         #endregion

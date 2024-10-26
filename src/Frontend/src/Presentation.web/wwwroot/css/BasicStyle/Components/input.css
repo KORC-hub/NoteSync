@@ -88,6 +88,7 @@ input[type="color"] {
     border: 2px solid var(--second-background);
     border-radius: 8px;
     height: auto;
+    width: 55px;
     justify-content: center;
     aspect-ratio: 1 / 1;
 }
