@@ -4,8 +4,8 @@ namespace DTOs
     public class TagDto
     {
         #region Private Variable
-
-        private int _tagId;
+        private string _type;
+        private string _tagId;
         private int _userId;
         private string _tagContent;
         private string _color;
@@ -13,7 +13,7 @@ namespace DTOs
         #endregion
 
         #region Public Variable
-        public int TagId { get => _tagId; set => _tagId = value; }
+        public string TagId { get; set; }
         public int UserId { get => _userId; set => _userId = value; }
         public string TagContent 
         {
@@ -23,9 +23,9 @@ namespace DTOs
             set
             {
                 _tagContent = value;
-                if (value.Length > 10)
+                if (value.Length > 20)
                 {
-                    throw new ArgumentException("Tag content cannot exceed 45 characters.");
+                    throw new ArgumentException("Tag content cannot exceed 10 characters.");
                 }
 
             }
@@ -46,17 +46,20 @@ namespace DTOs
             }
         }
 
+        public string Type { get => _type; set => _type = value; }
+
         #endregion
 
         #region Constructors
         public TagDto() { }
 
-        public TagDto(int tagId, int userId, string tagContent, string color)
+        public TagDto(string tagId, int userId, string tagContent, string color, string type)
         {
             _tagId = tagId;
             _userId = userId;
             _tagContent = tagContent;
             _color = color;
+            _type = type;
         }
         #endregion
     }
