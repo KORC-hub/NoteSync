@@ -8,8 +8,21 @@ namespace DataAccess.SqlServer
     {
         public DataAccessMapping()
         {
+            // User Mapping
             CreateMap<IUser, User>();
             CreateMap<User, IUser>();
+
+            // Folder Mapping
+            CreateMap<IFolder, Folder>();
+            CreateMap<Folder, IFolder>();
+
+            // Tag Mapping
+            CreateMap<ITag, Tag>();
+            CreateMap<Tag, ITag>();
+
+            // FolderTag Mapping
+            CreateMap<IFolderTag, FolderTag>();
+            CreateMap<FolderTag, IFolderTag>();
         }
     }
 }

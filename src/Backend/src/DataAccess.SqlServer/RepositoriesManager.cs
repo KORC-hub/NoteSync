@@ -1,12 +1,19 @@
-﻿using DataAccess.Abstractions.Models;
+﻿using AutoMapper;
+using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.Abstractions.UoW;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DataAccess.SqlServer
 {
     public class RepositoriesManager : IRepositoriesManager
     {
         private readonly NoteSyncDbContext _context;
+
         public IUserRepository<IUser> Users { get; private set; }
         public IMembershipRepository<IMembership> Memberships { get; private set; }
         public ITagRepository<ITag> Tags { get; private set; }
@@ -35,9 +42,5 @@ namespace DataAccess.SqlServer
             return await _context.SaveChangesAsync();
         }
 
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

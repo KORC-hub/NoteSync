@@ -8,7 +8,7 @@ namespace DataAccess.SqlServer;
 public partial class NoteSyncDbContext : DbContext
 {
     public NoteSyncDbContext(DbContextOptions<NoteSyncDbContext> options)
-        : base(options)
+         : base(options)
     {
     }
 
@@ -28,14 +28,19 @@ public partial class NoteSyncDbContext : DbContext
     {
         modelBuilder.Entity<Folder>(entity =>
         {
-            entity.HasKey(e => e.FolderId).HasName("PK__Folder__ACD7107F29B271EC");
+            entity.HasKey(e => e.FolderId).HasName("PK__Folder__ACD7107F929E4ACB");
 
             entity.ToTable("Folder");
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.LastModifiedDate).HasColumnType("datetime");
+            entity.Property(e => e.FolderName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.LastModifiedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
 
             entity.HasOne(d => d.User).WithMany(p => p.Folders)
                 .HasForeignKey(d => d.UserId)
@@ -45,16 +50,18 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<FolderTag>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("FolderTag");
+            entity.HasKey(e => e.Id).HasName("PK__FolderTa__3214EC074A2476A4");
 
-            entity.HasOne(d => d.Folder).WithMany()
+            entity.ToTable("FolderTag");
+
+            entity.HasIndex(e => new { e.FolderId, e.TagId }, "uc_FolderTag").IsUnique();
+
+            entity.HasOne(d => d.Folder).WithMany(p => p.FolderTags)
                 .HasForeignKey(d => d.FolderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fileid_fk");
+                .HasConstraintName("folderid_fk");
 
-            entity.HasOne(d => d.Tag).WithMany()
+            entity.HasOne(d => d.Tag).WithMany(p => p.FolderTags)
                 .HasForeignKey(d => d.TagId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("tagid_fk");
@@ -62,7 +69,7 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<Membership>(entity =>
         {
-            entity.HasKey(e => e.MembershipId).HasName("PK__Membersh__92A78679AC877227");
+            entity.HasKey(e => e.MembershipId).HasName("PK__Membersh__92A786798756BF28");
 
             entity.ToTable("Membership");
 
@@ -75,7 +82,7 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<Page>(entity =>
         {
-            entity.HasKey(e => e.PageId).HasName("PK__Page__C565B1042A4A2A12");
+            entity.HasKey(e => e.PageId).HasName("PK__Page__C565B10430775451");
 
             entity.ToTable("Page");
 
@@ -87,19 +94,19 @@ public partial class NoteSyncDbContext : DbContext
             entity.HasOne(d => d.Folder).WithMany(p => p.Pages)
                 .HasForeignKey(d => d.FolderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fileid2_fk");
+                .HasConstraintName("folderid2_fk");
         });
 
         modelBuilder.Entity<Tag>(entity =>
         {
-            entity.HasKey(e => e.TagId).HasName("PK__Tag__657CF9ACCE152A3B");
+            entity.HasKey(e => e.TagId).HasName("PK__Tag__657CF9AC8A085609");
 
             entity.ToTable("Tag");
 
             entity.Property(e => e.Color)
                 .HasMaxLength(7)
                 .IsUnicode(false);
-            entity.Property(e => e.TagContent).HasMaxLength(10);
+            entity.Property(e => e.TagContent).HasMaxLength(20);
 
             entity.HasOne(d => d.User).WithMany(p => p.Tags)
                 .HasForeignKey(d => d.UserId)
@@ -109,11 +116,11 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4C78CA4DEE");
+            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CC1982303");
 
             entity.ToTable("User");
 
-            entity.HasIndex(e => e.Email, "UQ__User__A9D105349B882E9F").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__User__A9D105340A3BE14C").IsUnique();
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")

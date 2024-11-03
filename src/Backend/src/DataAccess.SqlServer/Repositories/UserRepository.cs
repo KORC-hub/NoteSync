@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.Abstractions.Models;
+using DataAccess.Abstractions.Repositories.Generic;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
 using Microsoft.Data.SqlClient;
@@ -60,13 +61,14 @@ namespace DataAccess.SqlServer.Repositories
         }
 
 
-        public async Task CreateAsync(IUser user)
+        public async Task<int> CreateAsync(IUser user)
         {
             try
             {
                 User userDataModel = _mapper.Map<User>(user);
-
                 await _context.Users.AddAsync(userDataModel);
+                await _context.SaveChangesAsync();
+                return userDataModel.UserId;
             }
             catch (Exception ex)
             {

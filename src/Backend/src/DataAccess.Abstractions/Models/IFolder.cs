@@ -9,6 +9,7 @@ namespace DataAccess.Abstractions.Models
     public interface IFolder
     {
         int FolderId { get; set; }
+        string FolderName { get; set; }
         DateTime CreatedAt { get; set; }
         DateTime LastModifiedDate { get; set; }
         int UserId { get; set; }

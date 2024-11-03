@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.SqlServer.Repositories
 {
-    class TagRepository : ITagRepository<ITag>
+    public class TagRepository : ITagRepository<ITag>
     {
         private readonly NoteSyncDbContext _context;
         private readonly IMapper _mapper;
@@ -21,9 +21,20 @@ namespace DataAccess.SqlServer.Repositories
             _mapper = mapper;
         }
 
-        public Task CreateAsync(ITag model)
+        public async Task<int> CreateAsync(ITag tag)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Tag tagDataModel = _mapper.Map<Tag>(tag);
+                await _context.Tags.AddAsync(tagDataModel);
+                await _context.SaveChangesAsync();
+                return tagDataModel.TagId;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to add the tag to the database.", ex);
+            }
         }
 
         public Task DeleteAsync(int id)

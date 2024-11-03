@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
 using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccess.SqlServer.Models;
 
 namespace DataAccess.SqlServer.Repositories
 {
-    internal class FolderRepository : IFolderRepository<IFolder>
+    public class FolderRepository : IFolderRepository<IFolder>
     {
         private readonly NoteSyncDbContext _context;
         private readonly IMapper _mapper;
@@ -30,9 +26,19 @@ namespace DataAccess.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task CreateAsync(IFolder model)
+        public async Task<int> CreateAsync(IFolder folder)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Folder folderDataModel = _mapper.Map<Folder>(folder);
+                await _context.Folders.AddAsync(folderDataModel);
+                await _context.SaveChangesAsync();
+                return folderDataModel.FolderId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to add the folder to the database.", ex);
+            }
         }
 
         public Task UpdateAsync(IFolder model)

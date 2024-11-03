@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.SqlServer.Repositories
 {
-    class MembershipRepository : IMembershipRepository<IMembership>
+    public class MembershipRepository : IMembershipRepository<IMembership>
     {
         private readonly NoteSyncDbContext _context;
 

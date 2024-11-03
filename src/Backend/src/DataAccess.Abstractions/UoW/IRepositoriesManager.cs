@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstractions.UoW
 {
-    public interface IRepositoriesManager : IDisposable
-    {
+    public interface IRepositoriesManager 
+    { 
         //These repositories represent collections of entities
         IUserRepository<IUser> Users { get; }
         IMembershipRepository<IMembership> Memberships { get; }

@@ -11,7 +11,7 @@ namespace DataAccess.SqlServer
         public static IServiceCollection AddDataAccessServices(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<NoteSyncDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString),ServiceLifetime.Scoped);
 
             // Registro de UserRepository
             services.AddScoped<IUserRepository<IUser>, UserRepository>();

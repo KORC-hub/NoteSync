@@ -2,7 +2,8 @@
 
 namespace DataAccess.Abstractions.Repositories.Specific
 {
-    public interface IFolderTagRepository<T> : ICreateRepository<T>, IDeleteRepository<T>, IListRepository<T>
+    public interface IFolderTagRepository<T> : ICreateRepository<T>, IDeleteRepository<T>
     {
+        Task<IEnumerable<T>> GetByFolderIdAsync();
     }
 }

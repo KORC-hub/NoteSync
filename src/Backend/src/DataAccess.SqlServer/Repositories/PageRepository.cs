@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.SqlServer.Repositories
 {
-    internal class PageRepository : IPageRepository<IPage>
+    public class PageRepository : IPageRepository<IPage>
     {
         private readonly NoteSyncDbContext _context;
         private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace DataAccess.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task CreateAsync(IPage model)
+        public Task<int> CreateAsync(IPage model)
         {
             throw new NotImplementedException();
         }

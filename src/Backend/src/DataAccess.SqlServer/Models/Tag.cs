@@ -14,5 +14,7 @@ public partial class Tag : ITag
 
     public string Color { get; set; } = null!;
 
+    public virtual ICollection<FolderTag> FolderTags { get; set; } = new List<FolderTag>();
+
     public virtual User User { get; set; } = null!;
 }
