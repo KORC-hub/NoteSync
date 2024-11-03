@@ -17,6 +17,7 @@ namespace Presentation.web
             builder.Services.AddBusinessLogicServices();
 
             builder.Services.AddScoped<IUserUseCases, UserService>();
+            builder.Services.AddScoped<IFolderUseCases, FolderService>();
 
             builder.Services.AddAutoMapper(typeof(BusinessLogicMapping));
             builder.Services.AddAutoMapper(typeof(DataAccessMapping));

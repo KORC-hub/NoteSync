@@ -1,4 +1,8 @@
-﻿@{
+﻿@using DTOs;
+@model FolderDto;
+@model List<FolderDto>
+
+@{
     ViewData["Title"] = "My Files";
     Layout = "_LayoutHome";
 }
@@ -10,16 +14,17 @@
         <button id ="openModalBtn" class="button primary-button">New file</button>
         <dialog id="myDialog">
             <span class="close" id="closeDialogBtn" hidden></span>
-            <form class="dialog-content">
+            <form id="createFolderForm" class="dialog-content" asp-controller="SearchFiles" asp-action="CreateFolder" method="post">
                 <div class="title">New folder</div>
                 <div class="input">
                     <input type="text"
-                           id="folderName"
+                           id="name"
                            class="input-text"
-                           name="name"
+                           name="FolderName"
                            placeholder="Name"
-                           autocomplete="off" />
-                    <div id="folderNameMessage" class="input-message" role="alert"></div>
+                           autocomplete="off" 
+                           asp-for="FolderName"/>
+                    <div id="fileNameMessage" class="input-message" role="alert"></div>
                 </div>
                 <div class="subtitle">Add tag:</div>
                 <div class="add-tag" id="addTag">
@@ -35,16 +40,10 @@
 
                             <ul class="select-menu">
                                 <li data-value="tag">
-                                    <div class="tag" style="--tag-color: #ff8c00">To do</div>
+                                    <div id="1" class="tag" style="--tag-color: #ff8c00">To do</div>
                                 </li>
                                 <li data-value="tag">
-                                    <div class="tag" style="--tag-color: #fff">Programming</div>
-                                </li>
-                                <li data-value="tag">
-                                    <div class="tag" style="--tag-color: #a5eeff">In Process</div>
-                                </li>
-                                <li data-value="tag">
-                                    <div class="tag" style="--tag-color: #87e69a">Finish</div>
+                                    <div id="2" class="tag" style="--tag-color: #ff8c00">Progress</div>
                                 </li>
                             </ul>
                         </div>
@@ -70,8 +69,9 @@
                 <div class="tag-section">
                     <div id="tagsContainer" class="tags"></div>
                 </div>
+                <input type="hidden" id="tagList" name="tagList" asp-for="Taglist"/>
                 <div class="buttonContainer">
-                    <button id="saveBtn" class="button primary-button" type="submit" disabled>Guardar</button>
+                    <button id="saveBtn" class="button primary-button" type="submit">Guardar</button>
                     <button id="CancelBtn" class="button primary-button" type="button">Cancelar</button>
                 </div>
             </form>

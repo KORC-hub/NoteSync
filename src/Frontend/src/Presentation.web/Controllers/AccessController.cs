@@ -43,8 +43,8 @@ namespace Presentation.web.Controllers
         {
             try
             {
-                await _userService.RegisterAsync(user);
-                return RedirectToAction(nameof(Login));
+                user.UserId = Convert.ToString(await _userService.RegisterAsync(user));
+                return await Login(user);
             }
             catch(Exception ex) 
             { 
