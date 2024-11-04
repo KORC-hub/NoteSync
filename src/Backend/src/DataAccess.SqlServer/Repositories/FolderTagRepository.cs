@@ -2,6 +2,7 @@
 using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,22 @@ namespace DataAccess.SqlServer.Repositories
             _context = context;
             _mapper = mapper;
         }
+        public async Task<List<int>> GetAllByFolderAsync(int folderId)
+        {
+            List<FolderTag> foldersTagFromDataBase = await _context.FolderTags
+           .Where(folderTag => folderTag.FolderId == folderId)
+           .ToListAsync();
 
-        public Task<IEnumerable<IFolderTag>> GetByFolderIdAsync()
+            List<int> foldersTag = new List<int>();
+
+            foreach (FolderTag folderTag in foldersTagFromDataBase)
+            {
+                foldersTag.Add(folderTag.TagId);
+            }
+
+            return foldersTag;
+        }
+        public Task<List<int>> GetAllByTagAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -45,5 +60,6 @@ namespace DataAccess.SqlServer.Repositories
         {
             throw new NotImplementedException();
         }
+
     }
 }

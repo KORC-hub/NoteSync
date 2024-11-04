@@ -37,7 +37,7 @@ namespace DataAccess.SqlServer.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while retrieving the user from the database.", ex);
+                throw new Exception("An error occurred while retrieving the user with id="+ id +"  from the database.", ex);
             }
         }       
         public async Task<IUser> GetUserByEmailAsync(string email)
