@@ -18,6 +18,10 @@ namespace BusinessLogic.core
             CreateMap<FolderDto, FolderDomainModel>();
             CreateMap<FolderDomainModel, FolderDto>();
 
+            // Tag Mapping
+            CreateMap<TagDto, TagDomainModel>();
+            CreateMap<TagDomainModel, TagDto>();
+
         }
     }
 }
