@@ -1,0 +1,81 @@
+﻿@using DTOs
+@using Presentation.web.Models.ViewModels
+@model FolderViewModel
+
+<form id="createFolderForm" class="createFolderDialog-content" asp-controller="Folders" asp-action="CreateFolder" method="post">
+
+    <div class="title">New folder</div> <!-- Title -->
+
+    <div class="input">
+        <!-- Folder Name-->
+        <input type="text"
+                id="name"
+                class="input-text"
+                name="FolderName"
+                placeholder="Name"
+                autocomplete="off"
+                asp-for="FolderName" />
+        <div id="fileNameMessage" class="input-message" role="alert"></div>
+    </div>
+
+    <div class="subtitle">Add tag:</div>
+    <div class="add-tag" id="addTag">
+        <div class="new-tag">
+            <div class="searchTag">
+                <div class="input">
+                    <!-- Tag Name -->
+                    <input id="tagName"
+                            class="input-text"
+                            type="text"
+                            placeholder="Tag name"
+                            autocomplete="off" />
+                </div>
+
+                <ul class="select-menu">
+                    @if (Model.Tags != null)
+                    {
+                        @foreach (TagDto tag in Model.Tags)
+                        {
+                            <li data-value="tag">
+                                <div id="@tag.TagId" class="tag" style="--tag-color: @tag.Color">@tag.TagContent</div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <input id="tagColor" value="#ff0000" type="color" /> <!-- Color Picker -->
+            <button id="addTagBtn" class="button primary-button" type="button">
+                <!-- Created tag button -->
+                <svg xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="2 0 20 20"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 5l0 14" />
+                    <path d="M5 12l14 0" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="tag-section">
+        <!-- Here are the tags that the folder will have when it is created -->
+        <div id="tagsContainer" class="tags"></div>
+    </div>
+
+    <input type="hidden" id="tagList" name="tagList" asp-for="Taglist" /> <!-- this input is used to send a JSON to the controller -->
+
+    <div class="buttonContainer">
+        <button id="saveBtn" class="button primary-button" type="submit">Create Folder</button>
+        <button id="CancelBtn" class="button primary-button" type="button">Cancelar</button>
+    </div>
+</form>
+
+
+<script src="~/js/dialog.js"></script>
