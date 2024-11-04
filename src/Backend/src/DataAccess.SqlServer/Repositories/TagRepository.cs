@@ -2,11 +2,7 @@
 using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.SqlServer.Repositories
 {
@@ -42,9 +38,15 @@ namespace DataAccess.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ITag>> GetAllAsync()
+        public async Task<List<ITag>> GetAllAsync(int userId)
         {
-            throw new NotImplementedException();
+            List<Tag> tagsFromDataBase = await _context.Tags
+           .Where(tag => tag.UserId == userId)
+           .ToListAsync();
+
+            List<ITag> tags = tagsFromDataBase.Cast<ITag>().ToList();
+
+            return tags;
         }
 
         public Task<ITag> GetByIdAsync(int id)

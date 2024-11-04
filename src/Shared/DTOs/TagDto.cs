@@ -25,7 +25,7 @@ namespace DTOs
                 _tagContent = value;
                 if (value.Length > 20)
                 {
-                    throw new ArgumentException("Tag content cannot exceed 10 characters.");
+                    throw new ArgumentException("Tag content cannot exceed 20 characters.");
                 }
 
             }

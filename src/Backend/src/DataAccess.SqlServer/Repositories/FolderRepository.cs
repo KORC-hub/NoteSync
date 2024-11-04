@@ -2,6 +2,7 @@
 using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.SqlServer.Repositories
 {
@@ -16,14 +17,47 @@ namespace DataAccess.SqlServer.Repositories
             _mapper = mapper;
         }
 
-        public Task<IFolder> GetByIdAsync(int id)
+        public async Task<IFolder> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Folder? folder = await _context.Folders.FindAsync(id);
+
+                if (folder == null)
+                {
+                    throw new Exception();
+                }
+
+                return folder;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the folder with id="+ id +" from the database.", ex);
+            }
         }
 
-        public Task<IEnumerable<IFolder>> GetAllAsync()
+        public async Task<List<IFolder>> GetAllAsync(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Folder> foldersFromDataBase = await _context.Folders
+                   .Where(folder => folder.UserId == userId)
+                   .ToListAsync();
+
+                List<IFolder> folders = new List<IFolder>();
+
+                foreach (Folder folder in foldersFromDataBase)
+                {
+                    folders.Add(folder);
+                }
+
+                return folders;
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<int> CreateAsync(IFolder folder)

@@ -1,0 +1,36 @@
+﻿@using Presentation.web.Models.ViewModels
+@model FolderViewModel
+
+<form id="filterForm" action="/Files/ApplyFilter" method="post">
+    <div class="custom-select">
+        <div class="select">
+            <span class="selected">Recent Documents</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="select-menu">
+            <li class="active" data-value="recent">Recent Documents</li>
+            <li data-value="alphabetical-asc">Alphabetical (A-Z)</li>
+            <li data-value="alphabetical-desc">Alphabetical (Z-A)</li>
+            <li data-value="date-created-newest">Date Created (Newest First)</li>
+            <li data-value="date-created-oldest">Date Created (Oldest First)</li>
+            <li data-value="date-modified-newest">Date Modified (Newest First)</li>
+            <li data-value="date-modified-oldest">Date Modified (Oldest First)</li>
+        </ul>
+    </div>
+    <input type="hidden" id="SortSelectedValue" name="SortSelectedValue" value="recent" />
+    <div class="custom-select">
+        <div class="select">
+            <span class="selected"><div class="tag" style="">All</div></span>
+            <div class="caret"></div>
+        </div>
+        <ul class="select-menu">
+            <li class="active" data-value="tag">
+                <div class="tag">All</div>
+            </li>
+            <li data-value="tag">
+                <div class="tag" style="background-color: brown">To do</div>
+            </li>
+        </ul>
+    </div>
+    <input type="hidden" id="TagSelectedValue" name="tagSelectedValue" value="recent" />
+</form>

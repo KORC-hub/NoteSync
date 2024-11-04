@@ -2,18 +2,12 @@
 using Azure;
 using BusinessLogic.core.UseCases;
 using DataAccess.Abstractions.Models;
-using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.Abstractions.UoW;
 using DataAccess.SqlServer.Models;
 using DomainModel;
 using DTOs;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using System.Formats.Asn1;
 
 namespace BusinessLogic.core.Service
 {
@@ -32,6 +26,70 @@ namespace BusinessLogic.core.Service
             _folder = folder;
             _tag = tag;
             _folderTag = folderTag;
+        }
+        public async Task<List<FolderDto>> GetAllFoldersAsync(int UserId)
+        {
+            try
+            {
+                List<IFolder> foldersFromDataBase = await _repositoriesManager.Folders.GetAllAsync(UserId);
+                List<FolderDto> folders = new List<FolderDto>();
+                FolderDomainModel folderDomainModel = new FolderDomainModel();
+
+                foreach (IFolder folder in foldersFromDataBase) 
+                {
+                    folderDomainModel.FolderId = folder.FolderId;
+                    folderDomainModel.FolderName = folder.FolderName;
+                    folderDomainModel.CreatedAt = folder.CreatedAt;
+                    folderDomainModel.LastModifiedAt = folder.LastModifiedDate;
+                    folderDomainModel.UserId = folder.UserId;
+
+                    folders.Add(_mapper.Map<FolderDto>(folderDomainModel));   
+                }
+
+                List<TagDto> tags = await GetAllTagsAsync(UserId);
+
+                foreach (FolderDto folder in folders)
+                {
+                    List<int> folderTagsId = await _repositoriesManager.FolderTags.GetAllByFolderAsync(folder.FolderId);
+
+                    foreach (int tagId in folderTagsId)
+                    {
+                        folder.Tags.Add(tags.Find(tag => tag.TagId == tagId.ToString()));
+                    }
+                }
+
+                return folders;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<TagDto>> GetAllTagsAsync(int UserId)
+        {
+            try
+            {
+                List<ITag> tagsFromDatabase = await _repositoriesManager.Tags.GetAllAsync(UserId);
+                List<TagDto> tags = new List<TagDto>();
+                TagDomainModel tagDomainModel = new TagDomainModel();
+
+                foreach (ITag tag in tagsFromDatabase)
+                {
+                    tagDomainModel.TagId = tag.TagId;
+                    tagDomainModel.TagContent = tag.TagContent;
+                    tagDomainModel.Color = tag.Color;
+                    tagDomainModel.UserId = tag.UserId;
+
+                    tags.Add(_mapper.Map<TagDto>(tagDomainModel));
+                }
+
+                return tags;
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<int> CreateFolder(FolderDto folder, List<TagDto>? tags)

@@ -20,7 +20,7 @@ namespace DataAccess.SqlServer.Repositories
             _mapper = mapper;
         }
 
-        public Task<IEnumerable<IPage>> GetAllAsync()
+        public Task<List<IPage>> GetAllAsync(int folderId)
         {
             throw new NotImplementedException();
         }

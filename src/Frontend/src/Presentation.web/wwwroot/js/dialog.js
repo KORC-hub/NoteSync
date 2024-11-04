@@ -1,5 +1,5 @@
-﻿const dialog = document.getElementById("myDialog");
-const openBtn = document.getElementById("openModalBtn");
+﻿const dialog = document.getElementById("dialog");
+const openBtn = document.getElementById("openDialogBtn");
 const closeBtn = document.getElementById("closeDialogBtn");
 const searchTag = document.getElementById("tagName");
 const tagsContainer = document.getElementById("tagsContainer");
@@ -22,38 +22,38 @@ dialog.addEventListener("click", (event) => {
 });
 
 
-const FolderName = document.getElementById("folderName");
-const FolderNameMessage = document.getElementById("folderNameMessage");
+const FolderName = document.getElementById("name");
+//const FolderNameMessage = document.getElementById("folderNameMessage");
 
-function updateInputClasses(element, addClass, removeClass) {
-    element.classList.add(addClass);
-    element.classList.remove(removeClass);
-}
-function ValidatFoldeName() {
-    if (FolderName.value.length < 5 || FolderName.value.length > 50) {
-        savetBtn.disabled = true;
-        updateInputClasses(FolderName, "input-error", "input-text");
-        updateInputClasses(FolderName, "input-error", "input-correct");
-        FolderNameMessage.textContent = "Folder name must be greater than 5 and less than 50";
-    } else {
-        savetBtn.disabled = false;
-        updateInputClasses(FolderName, "input-correct", "input-text");
-        updateInputClasses(FolderName, "input-correct", "input-error");
-        FolderNameMessage.textContent = "";
-    }
-    if (FolderName.value == "")
-    {
-        savetBtn.disabled = true;
-        updateInputClasses(FolderName, "input-text", "input-error");
-        updateInputClasses(FolderName, "input-text", "input-correct");
-        FolderNameMessage.textContent = "";
-    }
+//function updateInputClasses(element, addClass, removeClass) {
+//    element.classList.add(addClass);
+//    element.classList.remove(removeClass);
+//}
+//function ValidatFolderName() {
+//    if (FolderName.value.length < 5 || FolderName.value.length > 50) {
+//        savetBtn.disabled = true;
+//        updateInputClasses(FolderName, "input-error", "input-text");
+//        updateInputClasses(FolderName, "input-error", "input-correct");
+//        FolderNameMessage.textContent = "Folder name must be greater than 5 and less than 50";
+//    } else {
+//        savetBtn.disabled = false;
+//        updateInputClasses(FolderName, "input-correct", "input-text");
+//        updateInputClasses(FolderName, "input-correct", "input-error");
+//        FolderNameMessage.textContent = "";
+//    }
+//    if (FolderName.value == "")
+//    {
+//        savetBtn.disabled = true;
+//        updateInputClasses(FolderName, "input-text", "input-error");
+//        updateInputClasses(FolderName, "input-text", "input-correct");
+//        FolderNameMessage.textContent = "";
+//    }
 
-}
+//}
 
-FolderName.addEventListener("input", () => {
-    ValidatFoldeName();
-});
+//FolderName.addEventListener("input", () => {
+//    ValidatFolderName();
+//});
 
 CancelBtn.addEventListener("click", () => {
     FolderName.value = "";
@@ -71,24 +71,6 @@ CancelBtn.addEventListener("click", () => {
     });
     ValidatFoldeName();
     dialog.close();
-});
-
-document.getElementById("addTagBtn").addEventListener("click", function () {
-    var tagText = document.getElementById("tagName").value;
-    var tagColor = document.getElementById("tagColor").value;
-    if (tagText != "") {
-        var newTag = document.createElement("div");
-        newTag.classList.add("tag");
-        newTag.style.setProperty("--tag-color", tagColor);
-        newTag.textContent = tagText;
-
-        newTag.addEventListener("click", function () {
-            newTag.remove();
-        });
-
-        document.getElementById("tagsContainer").appendChild(newTag);
-        document.querySelector(".select-menu").classList.remove("menu-open");
-    }
 });
 
 document.getElementById("addTagBtn").addEventListener("click", function () {
