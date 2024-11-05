@@ -64,24 +64,48 @@
     background-color: var(--textbox-background);
 }
 
+/* ------------------------------------------- */
+
 .folder-list {
-    margin-top: 20px;
-    width: 95%;
+    width: 100%;
 }
 
 .folder-item {
     color: var(--text-color);
     display: flex;
-    padding: 20px;
-    border-left: 10px solid transparent;
-    border-bottom: 1px solid var(--second-background);
     border-radius: 8px;
     gap: 10px;
     margin-bottom: 20px;
 }
 
+.folder-item .primary-button {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: width 0.5s ease, opacity 0.5s ease;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.folder-item .primary-button svg {
+    opacity: 0;
+}
+
+.folder-item:hover .primary-button {
+    width: 80px;
+    opacity: 1;
+}
+
+.folder-item:hover .primary-button svg {
+    opacity: 1;
+}
+
+.folder-Container {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+}
+
 .folder-item:hover {
-    border-left: 10px solid var(--primary-color);
     background-color: var(--select-background);
 }
 
@@ -90,12 +114,16 @@
 }
 
 .folder-item .title {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0px;
+    margin: 0px 0px 10px 0px;
+}
+
+.folder-item .title .name {
+    font-size: 25px;
 }
 
 .folder-item .title .date {
+    font-size: 15px;
+    margin-top: auto;
     color: var(--unselect-text);
 }
 
@@ -108,9 +136,7 @@
     align-content: center;
 }
 
-.folder-buttons .button {
-    margin-left: 15px;
-}
+/* ------------------------------------------- */
 
 .drop-menu-container {
     position: relative;

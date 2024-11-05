@@ -21,7 +21,7 @@
 
 .transparent-button {
     background-color: transparent;
-    color: var(--text-color);
+    color: var(--unselect-text);
 }
 
 .primary-button:hover {
@@ -32,6 +32,14 @@
     background-color: var(--primary-color);
 }
 
-.transparent-button:hover {
+.btn-transparent-primary:hover {
     color: var(--primary-color);
+}
+
+.btn-transparent-red:hover {
+    color: var(--delete-color);
+}
+
+.btn-transparent-blue:hover {
+    color: var(--edit-color);
 }

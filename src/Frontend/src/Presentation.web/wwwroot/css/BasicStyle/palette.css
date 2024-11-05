@@ -34,7 +34,8 @@
     --error-color-focus: #b21b1b;
     --correct-color: #76c175;
     --correct-color-focus: #22c120;
-    --delete-color: #d51a1aa7;
+    --delete-color: #cc3333f2;
+    --edit-color: #5183df;
     --scrollbar-track: #404040;
     --scrollbar-thumb: #727272;
     --scrollbar-thumb-hover: #9e9e9e;
