@@ -1,28 +1,9 @@
-﻿const dialog = document.getElementById("dialog");
-const openBtn = document.getElementById("openDialogBtn");
-const closeBtn = document.getElementById("closeDialogBtn");
+﻿const CreateFolderForm = document.getElementById("createFolderForm");
 const searchTag = document.getElementById("tagName");
 const tagsContainer = document.getElementById("tagsContainer");
+const addTagBtn = document.getElementById("addTagBtn");
 
-// Abre el diálogo
-openBtn.addEventListener("click", () => {
-    dialog.showModal(); // Muestra el diálogo como modal
-});
-
-// Cierra el diálogo al hacer clic en el botón de cerrar
-closeBtn.addEventListener("click", () => {
-    dialog.close(); // Cierra el diálogo
-});
-
-// Cierra el diálogo al hacer clic fuera del área del diálogo
-dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) {
-        dialog.close();
-    }
-});
-
-
-const FolderName = document.getElementById("name");
+let FolderName = document.getElementById("name");
 //const FolderNameMessage = document.getElementById("folderNameMessage");
 
 //function updateInputClasses(element, addClass, removeClass) {
@@ -55,25 +36,7 @@ const FolderName = document.getElementById("name");
 //    ValidatFolderName();
 //});
 
-CancelBtn.addEventListener("click", () => {
-    FolderName.value = "";
-    searchTag.value = "";
-    const tagsContainer = document.getElementById("tagsContainer");
-    const selectMenu = document.querySelector(".select-menu");
-    const existingTags = tagsContainer.querySelectorAll(".tag");
-    existingTags.forEach(tagDiv => {
-        const li = document.createElement("li");
-        const tagColor = getComputedStyle(tagDiv).getPropertyValue("--tag-color");
-        const tagName = tagDiv.textContent;
-        li.innerHTML = `<div class="tag" style="--tag-color: ${tagColor}">${tagName}</div>`;
-        selectMenu.appendChild(li);
-        tagDiv.remove();
-    });
-    ValidatFoldeName();
-    dialog.close();
-});
-
-document.getElementById("addTagBtn").addEventListener("click", function () {
+addTagBtn.addEventListener("click", function () {
     var tagText = document.getElementById("tagName").value;
     var tagColor = document.getElementById("tagColor").value;
     if (tagText != "") {
@@ -135,7 +98,7 @@ searchTag.addEventListener("focusout", () => {
     selectMenu.classList.remove("menu-open");
 });
 
-document.getElementById("createFolderForm").addEventListener("submit", function (event) {
+CreateFolderForm.addEventListener("submit", function (event) {
     const tags = document.querySelectorAll("#tagsContainer .tag");
     const tagListInput = document.getElementById("tagList");
     let TagList = [];
@@ -156,4 +119,39 @@ document.getElementById("createFolderForm").addEventListener("submit", function 
     });
 
     tagListInput.value = JSON.stringify(TagList);
+});
+
+const createFodlerDialog = document.getElementById("createFolderDialog");
+const createFolderOpenBtn = document.getElementById("createFolderOpenDialogBtn");
+const createFolderCancelBtn = document.getElementById("createFolderCancelBtn");
+
+createFolderOpenBtn.addEventListener("click", () => {
+    createFodlerDialog.showModal();
+});
+
+createFodlerDialog.addEventListener("click", (event) => {
+    if (event.target === createFodlerDialog) {
+        createFodlerDialog.close();
+    }
+});
+
+createFolderCancelBtn.addEventListener("click", () => {
+    document.getElementById("name").value = "";
+    searchTag.value = "";
+    const tagsContainer = document.getElementById("tagsContainer");
+    const selectMenu = document.querySelector(".select-menu");
+    const existingTags = tagsContainer.querySelectorAll(".tag");
+    existingTags.forEach(tagDiv => {
+        if (tagDiv > 0) {
+            const li = document.createElement("li");
+            const tagColor = getComputedStyle(tagDiv).getPropertyValue("--tag-color");
+            const tagName = tagDiv.textContent;
+            li.innerHTML = `<div class="tag" style="--tag-color: ${tagColor}">${tagName}</div>`;
+            selectMenu.appendChild(li);
+            tagDiv.remove();
+        }
+    });
+    tagsContainer.innerHTML = "";
+    /*ValidatFoldeName();*/
+    createFodlerDialog.close();
 });
