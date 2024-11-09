@@ -1,7 +1,5 @@
 ﻿using BusinessLogic.core.UseCases;
 using DTOs;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.web.Models.ViewModels;
@@ -58,6 +56,46 @@ namespace Presentation.web.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateFolder(FolderViewModel folderViewModel)
+        {
+            try
+            {
+                FolderDto folder = new FolderDto();
+                folder.FolderName = folderViewModel.FolderName;
+                folder.LastModifiedAt = DateTime.Now;
+                folder.FolderId = (int)folderViewModel.FolderId;
+                folder.UserId = Convert.ToInt32(User.FindFirst("Id")?.Value);
+                List<TagDto>? tags = JsonSerializer.Deserialize<List<TagDto>>(folderViewModel.Taglist);
+                await _folderService.UpdateFolder(folder, tags);
+                return RedirectToAction("Index", "Folders");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFolder(FolderViewModel folderViewModel)
+        {
+            try
+            {
+                await _folderService.DeleteFolder(folderViewModel.FolderId);
+                return RedirectToAction("Index", "Folders");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ViewFolderPages(FolderViewModel folderViewModel)
+        {
+            return RedirectToAction("Index", "Page");
         }
 
     }
