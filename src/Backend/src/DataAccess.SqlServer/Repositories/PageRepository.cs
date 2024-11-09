@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
+using DataAccess.SqlServer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,45 @@ namespace DataAccess.SqlServer.Repositories
             _mapper = mapper;
         }
 
-        public Task<List<IPage>> GetAllAsync(int folderId)
+        public async Task<List<IPage>> GetAllAsync(int folderId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Page> pageFromDataBase = await _context.Pages
+                .Where(page => page.FolderId == folderId)
+                .ToListAsync();
+
+                List<IPage> pages = pageFromDataBase.Cast<IPage>().ToList();
+
+                return pages;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to find Page by FolderId to the database.", ex);
+            }
+        }
+
+        public async Task<List<int>> GetAllByFolderAsync(int folderId)
+        {
+            try
+            {
+                List<Page> pagegFromDataBase = await _context.Pages
+                .Where(page => page.FolderId == folderId)
+                .ToListAsync();
+
+                List<int> pageIds = new List<int>();
+
+                foreach (Page page in pagegFromDataBase)
+                {
+                    pageIds.Add(page.PageId);
+                }
+
+                return pageIds;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to find Page by FolderId to the database.", ex);
+            }
         }
 
         public Task<int> CreateAsync(IPage model)
@@ -34,10 +72,20 @@ namespace DataAccess.SqlServer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Page page = await _context.Pages.FindAsync(id);
+                if (page != null)
+                {
+                    _context.Pages.Remove(page);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Page could not be deleted from database", ex);
+            }
         }
-
     }
 }

@@ -4,6 +4,6 @@ namespace DataAccess.Abstractions.Repositories.Specific
 {
     public interface IPageRepository<T> : ICreateRepository<T>, IUpdateRepository<T>, IDeleteRepository<T>, IListRepository<T> 
     {
-
+        Task<List<int>> GetAllByFolderAsync(int id);
     }
 }
