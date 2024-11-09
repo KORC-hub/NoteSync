@@ -4,6 +4,7 @@ namespace Presentation.web.Models.ViewModels
 {
     public class FolderViewModel
     {
+        public int FolderId { get; set; }
         public string? FolderName { get; set; }
 
         public string? Taglist { get; set; }
