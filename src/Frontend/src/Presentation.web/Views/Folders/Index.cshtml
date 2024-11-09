@@ -13,8 +13,8 @@
         <input class="input-text" type="text" placeholder="Search" />
 
         <!--  folder creation  -->
-        <button id="openDialogBtn" class="button primary-button">New Folder</button>
-        <dialog id="dialog">
+        <button id="createFolderOpenDialogBtn" class="button primary-button">New Folder</button>
+        <dialog id="createFolderDialog">
             <span class="close" id="closeDialogBtn" hidden></span>
             @await Html.PartialAsync("_CreateFolder", Model)    
         </dialog>
@@ -48,12 +48,27 @@
     </div>
 
     <div class="folder-list">
+        <form id="deleteFolderForm" asp-controller="Folders" asp-action="DeleteFolder" method="post">
+            <input id="deleteFolderId" type="text" name="FolderId" value="" asp-for="FolderId" hidden />
+        </form>
+        <form id="viewFolderPageForm" asp-controller="Folders" asp-action="ViewFolderPages" method="post">
+            <input id="viewdFolderId" type="text" name="FolderId" value="" asp-for="FolderId" hidden />
+        </form>
+        <dialog id="updateFolderDialog">
+            <span class="close" id="closeDialogBtn" hidden></span>
+            @await Html.PartialAsync("_UpdateFolder", Model)
+        </dialog>
         @await Html.PartialAsync("_FolderList",Model.Folders)
     </div>
 
 </div>
 
 <script src="~/js/customSelectInteractive.js"></script>
-<script src="~/js/dialog.js"></script>
+<script src="~/js/ViewScript/createFolderDialog.js"></script>
+<script src="~/js/ViewScript/updateFolderDialog.js"></script>
+
+<script src="/js/ViewScript/FolderViewScript.js"></script>
 <script src="~/js/folderFilters.js"></script>
 <script src="~/js/drop-menu.js"></script>
+<script src="~/js/BasicScript/warningPopUp.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

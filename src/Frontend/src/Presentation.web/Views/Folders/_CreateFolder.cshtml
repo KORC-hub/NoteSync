@@ -2,7 +2,7 @@
 @using Presentation.web.Models.ViewModels
 @model FolderViewModel
 
-<form id="createFolderForm" class="createFolderDialog-content" asp-controller="Folders" asp-action="CreateFolder" method="post">
+<form id="createFolderForm" class="dialog-content" asp-controller="Folders" asp-action="CreateFolder" method="post">
 
     <div class="title">New folder</div> <!-- Title -->
 
@@ -73,9 +73,7 @@
 
     <div class="buttonContainer">
         <button id="saveBtn" class="button primary-button" type="submit">Create Folder</button>
-        <button id="CancelBtn" class="button primary-button" type="button">Cancelar</button>
+        <button id="createFolderCancelBtn" class="button primary-button" type="button">Cancelar</button>
     </div>
 </form>
 
-
-<script src="~/js/dialog.js"></script>
