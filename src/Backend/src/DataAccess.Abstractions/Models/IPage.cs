@@ -9,7 +9,7 @@ namespace DataAccess.Abstractions.Models
     public interface IPage
     {
         int PageId { get; set; }
-        string Title { get; set; }
+        string? Title { get; set; }
         string? Content { get; set; }
         int FolderId { get; set; }
     }

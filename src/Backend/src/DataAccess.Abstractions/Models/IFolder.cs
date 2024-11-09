@@ -12,6 +12,7 @@ namespace DataAccess.Abstractions.Models
         string FolderName { get; set; }
         DateTime CreatedAt { get; set; }
         DateTime LastModifiedDate { get; set; }
+        bool IsPinned { get; set; }
         int UserId { get; set; }
     }
 }

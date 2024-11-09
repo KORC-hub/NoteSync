@@ -8,7 +8,7 @@ namespace DataAccess.Abstractions.Models
 {
     public interface IFolderTag
     {
-        int Id { get; set; }
+        int FolderTagId { get; set; }
         int FolderId { get; set; }
         int TagId { get; set; }
     }

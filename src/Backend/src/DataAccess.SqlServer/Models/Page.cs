@@ -8,11 +8,13 @@ public partial class Page : IPage
 {
     public int PageId { get; set; }
 
+    public string? Title { get; set; }
+
     public string? Content { get; set; }
 
-    public int FolderId { get; set; }
+    public DateTime CreatedAt { get; set; }
 
-    public string Title { get; set; } = null!;
+    public int FolderId { get; set; }
 
     public virtual Folder Folder { get; set; } = null!;
 }

@@ -14,6 +14,8 @@ public partial class Folder : IFolder
 
     public DateTime LastModifiedDate { get; set; }
 
+    public bool IsPinned { get; set; }
+
     public int UserId { get; set; }
 
     public virtual ICollection<FolderTag> FolderTags { get; set; } = new List<FolderTag>();
