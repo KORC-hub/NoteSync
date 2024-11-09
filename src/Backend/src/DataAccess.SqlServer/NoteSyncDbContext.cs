@@ -11,7 +11,6 @@ public partial class NoteSyncDbContext : DbContext
          : base(options)
     {
     }
-
     public virtual DbSet<Folder> Folders { get; set; }
 
     public virtual DbSet<FolderTag> FolderTags { get; set; }
@@ -28,9 +27,9 @@ public partial class NoteSyncDbContext : DbContext
     {
         modelBuilder.Entity<Folder>(entity =>
         {
-            entity.HasKey(e => e.FolderId).HasName("PK__Folder__ACD7107F929E4ACB");
+            entity.HasKey(e => e.FolderId).HasName("PK__Folder__ACD7107F32B9D4BA");
 
-            entity.ToTable("Folder");
+            entity.ToTable("Folder", tb => tb.HasTrigger("trg_InsertFolder"));
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -50,11 +49,9 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<FolderTag>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__FolderTa__3214EC074A2476A4");
+            entity.HasKey(e => e.FolderTagId).HasName("PK__FolderTa__113E4E7FAE3A0162");
 
             entity.ToTable("FolderTag");
-
-            entity.HasIndex(e => new { e.FolderId, e.TagId }, "uc_FolderTag").IsUnique();
 
             entity.HasOne(d => d.Folder).WithMany(p => p.FolderTags)
                 .HasForeignKey(d => d.FolderId)
@@ -82,11 +79,14 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<Page>(entity =>
         {
-            entity.HasKey(e => e.PageId).HasName("PK__Page__C565B10430775451");
+            entity.HasKey(e => e.PageId).HasName("PK__Page__C565B104FDC638FD");
 
             entity.ToTable("Page");
 
             entity.Property(e => e.Content).IsUnicode(false);
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
             entity.Property(e => e.Title)
                 .HasMaxLength(45)
                 .IsUnicode(false);
@@ -99,7 +99,7 @@ public partial class NoteSyncDbContext : DbContext
 
         modelBuilder.Entity<Tag>(entity =>
         {
-            entity.HasKey(e => e.TagId).HasName("PK__Tag__657CF9AC8A085609");
+            entity.HasKey(e => e.TagId).HasName("PK__Tag__657CF9ACCA6BBBE6");
 
             entity.ToTable("Tag");
 
@@ -118,7 +118,7 @@ public partial class NoteSyncDbContext : DbContext
         {
             entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CC1982303");
 
-            entity.ToTable("User");
+            entity.ToTable("User", tb => tb.HasTrigger("trg_InsertUser"));
 
             entity.HasIndex(e => e.Email, "UQ__User__A9D105340A3BE14C").IsUnique();
 
