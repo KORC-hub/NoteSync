@@ -32,8 +32,10 @@ CREATE TABLE [User] (
 
 CREATE TABLE [Folder] (
     [FolderId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [FolderName] VARCHAR(50) NOT NULL,
     [CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(),
     [LastModifiedDate] DATETIME NOT NULL DEFAULT GETDATE(),
+	[IsPinned] BIT NOT NULL DEFAULT 0,
     [UserId] INT NOT NULL,
     CONSTRAINT userid_fk FOREIGN KEY ([UserId]) REFERENCES [User]([UserId])
 )
@@ -43,7 +45,7 @@ CREATE TABLE [Folder] (
 CREATE TABLE [Tag](
 	[TagId] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	[UserId] INT NOT NULL,
-	[TagContent] NVARCHAR(10) NOT NULL,
+	[TagContent] NVARCHAR(20) NOT NULL,
 	[Color] VARCHAR(7) NOT NULL,
     CONSTRAINT userid2_fk FOREIGN KEY ([UserId]) REFERENCES [User]([UserId])
 )
@@ -51,6 +53,7 @@ CREATE TABLE [Tag](
 -- FileTag Table
 
 CREATE TABLE [FolderTag](
+	[FolderTagId] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	[FolderId] INT NOT NULL,
 	[TagId] INT NOT NULL,
 	CONSTRAINT folderid_fk FOREIGN KEY ([FolderId]) REFERENCES [Folder]([FolderId]),
@@ -61,9 +64,9 @@ CREATE TABLE [FolderTag](
 
 CREATE TABLE [Page](
 	[PageId] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	[Title] VARCHAR(45),
 	[Content] VARCHAR(MAX),
+	[CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(),
 	[FolderId] INT NOT NULL,
-	[Title] VARCHAR(45) NOT NULL,
 	CONSTRAINT folderid2_fk FOREIGN KEY ([FolderId]) REFERENCES [Folder]([FolderId])
 )
-
