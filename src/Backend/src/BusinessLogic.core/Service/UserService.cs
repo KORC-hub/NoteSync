@@ -46,7 +46,7 @@ namespace BusinessLogic.core.Service
                 _user.Email = userDomainModel.Email;
                 _user.Password = userDomainModel.Password;
 
-                //_user.UserId = await _repositoriesManager.Users.CreateAsync(_user);
+                _user.UserId = await _repositoriesManager.Users.CreateAsync(_user);
                 await _repositoriesManager.CommitAsync();
 
                 return _user.UserId;
