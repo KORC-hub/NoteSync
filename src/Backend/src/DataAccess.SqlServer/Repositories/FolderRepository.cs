@@ -3,6 +3,7 @@ using DataAccess.Abstractions.Models;
 using DataAccess.Abstractions.Repositories.Specific;
 using DataAccess.SqlServer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DataAccess.SqlServer.Repositories
 {
@@ -75,14 +76,45 @@ namespace DataAccess.SqlServer.Repositories
             }
         }
 
-        public Task UpdateAsync(IFolder model)
+        public async Task UpdateAsync(IFolder folder)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Folder? folderDataModel = _context.Folders.Local.FirstOrDefault(e => e.FolderId == folder.FolderId);
+                if (folderDataModel != null)
+                {
+                    folderDataModel.FolderName = folder.FolderName;
+                    folderDataModel.LastModifiedDate = folder.LastModifiedDate;
+                }
+                else
+                {
+                    folderDataModel = _mapper.Map<Folder>(folder);
+                    _context.Attach(folderDataModel);
+                    _context.Entry(folderDataModel).Property(p => p.FolderName).IsModified = true;
+                    _context.Entry(folderDataModel).Property(p => p.LastModifiedDate).IsModified = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not update folder from database", ex);
+            }
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Folder folder = await _context.Folders.FindAsync(id);
+                if (folder != null)
+                {
+                    _context.Folders.Remove(folder);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Folder could not be deleted from database", ex);
+            }
         }
 
     }

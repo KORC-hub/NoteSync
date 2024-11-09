@@ -33,11 +33,6 @@ namespace DataAccess.SqlServer.Repositories
             }
         }
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<ITag>> GetAllAsync(int userId)
         {
             List<Tag> tagsFromDataBase = await _context.Tags
@@ -49,14 +44,40 @@ namespace DataAccess.SqlServer.Repositories
             return tags;
         }
 
-        public Task<ITag> GetByIdAsync(int id)
+        public async Task<ITag> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Tag? tag = await _context.Tags.FindAsync(id);
+
+                if (tag == null)
+                {
+                    throw new Exception();
+                }
+
+                return tag;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving the tag with id=" + id + " from the database.", ex);
+            }
         }
 
-        public Task UpdateAsync(ITag model)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Tag tag = await _context.Tags.FindAsync(id);
+                if (tag != null) 
+                { 
+                    _context.Tags.Remove(tag);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Tag could not be deleted from database", ex);
+            }
         }
     }
 }

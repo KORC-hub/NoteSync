@@ -108,7 +108,6 @@ namespace DataAccess.SqlServer.Repositories
             {
                 User user = new User { UserId = id};
                 _context.Users.Remove(user);
-
             }
             catch (Exception ex)
             {

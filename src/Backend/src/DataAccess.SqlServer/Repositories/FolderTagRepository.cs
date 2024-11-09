@@ -21,24 +21,76 @@ namespace DataAccess.SqlServer.Repositories
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<int>> GetAllByFolderAsync(int folderId)
+
+        public async Task<List<int[]>> GetAllByFolderAsync(int folderId)
         {
-            List<FolderTag> foldersTagFromDataBase = await _context.FolderTags
-           .Where(folderTag => folderTag.FolderId == folderId)
-           .ToListAsync();
-
-            List<int> foldersTag = new List<int>();
-
-            foreach (FolderTag folderTag in foldersTagFromDataBase)
+            try
             {
-                foldersTag.Add(folderTag.TagId);
+                List<FolderTag> foldersTagFromDataBase = await _context.FolderTags
+                .Where(folderTag => folderTag.FolderId == folderId)
+                .ToListAsync();
+
+                List<int[]> FolderTagIds = new List<int[]>();
+
+                foreach (FolderTag folderTag in foldersTagFromDataBase)
+                {
+                    int[] ids = { folderTag.FolderTagId, folderTag.FolderId,folderTag.TagId };
+
+                    FolderTagIds.Add(ids);
+                }
+
+                return FolderTagIds;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to find FolderTagId to the database.", ex);
+            }
+        }
+
+        public async Task<List<int>> GetAllTagIdByFolderAsync(int folderId)
+        {
+            try
+            {
+                List<FolderTag> foldersTagFromDataBase = await _context.FolderTags
+                .Where(folderTag => folderTag.FolderId == folderId)
+                .ToListAsync();
+
+                List<int> folderTags = new List<int>();
+
+                foreach (FolderTag folderTag in foldersTagFromDataBase)
+                {
+                    folderTags.Add(folderTag.TagId);
+                }
+
+                return folderTags;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to find tags id from folderTag table to the database.", ex);
             }
 
-            return foldersTag;
         }
-        public Task<List<int>> GetAllByTagAsync(int id)
+        public async Task<List<int>> GetAllFolderIdByTagAsync(int tagId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<FolderTag> foldersTagFromDataBase = await _context.FolderTags
+                .Where(folderTag => folderTag.TagId == tagId)
+                .ToListAsync();
+
+                List<int> foldersTag = new List<int>();
+
+                foreach (FolderTag folderTag in foldersTagFromDataBase)
+                {
+                    foldersTag.Add(folderTag.FolderId);
+                }
+
+                return foldersTag;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occurred when trying to find folder id from folderTag table to the database.", ex);
+            }
         }
 
         public async Task<int> CreateAsync(IFolderTag folderTag)
@@ -47,7 +99,7 @@ namespace DataAccess.SqlServer.Repositories
             {
                 FolderTag folderTagDataModel = _mapper.Map<FolderTag>(folderTag);
                 await _context.FolderTags.AddAsync(folderTagDataModel);
-                return folderTagDataModel.Id;
+                return folderTagDataModel.FolderTagId;
 
             }
             catch (Exception ex)
@@ -56,9 +108,20 @@ namespace DataAccess.SqlServer.Repositories
             }
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                FolderTag folderTag = await _context.FolderTags.FindAsync(id);
+                if (folderTag != null) 
+                { 
+                    _context.FolderTags.Remove(folderTag);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("The relation folderTag could not be deleted from database", ex);
+            }
         }
 
     }
