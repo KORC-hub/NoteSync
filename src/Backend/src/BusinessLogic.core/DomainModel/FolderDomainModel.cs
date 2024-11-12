@@ -9,6 +9,7 @@ namespace DomainModel
         private string _folderName;
         private DateTime _CreatedAt;
         private DateTime _LastModifiedAt;
+        private bool _isPinned;
         private int _userId;
 
         #endregion
@@ -20,6 +21,7 @@ namespace DomainModel
         public DateTime CreatedAt { get => _CreatedAt; set => _CreatedAt = value; }
         public DateTime LastModifiedAt { get => _LastModifiedAt; set => _LastModifiedAt = value; }
         public int UserId { get => _userId; set => _userId = value; }
+        public bool IsPinned { get => _isPinned; set => _isPinned = value; }
 
         #endregion
 
@@ -29,13 +31,14 @@ namespace DomainModel
 
         }
 
-        public FolderDomainModel(int folderId, DateTime createdAt, DateTime lastModifiedAt, int userId, string folderName)
+        public FolderDomainModel(int folderId, DateTime createdAt, DateTime lastModifiedAt, int userId, string folderName, bool isPinned = false)
         {
             _folderId = folderId;
             _CreatedAt = createdAt;
             _LastModifiedAt = lastModifiedAt;
             _userId = userId;
             _folderName = folderName;
+            _isPinned = isPinned;
         }
 
         #endregion

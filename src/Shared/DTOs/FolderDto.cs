@@ -9,6 +9,7 @@ namespace DTOs
         private string _folderName;
         private DateTime _CreatedAt;
         private DateTime _LastModifiedAt;
+        private bool _isPinned;
         private int _userId;
         private List<TagDto> _tags;
 
@@ -19,6 +20,7 @@ namespace DTOs
         public string FolderName { get => _folderName; set => _folderName = value; }
         public DateTime CreatedAt { get => _CreatedAt; set => _CreatedAt = value; }
         public DateTime LastModifiedAt { get => _LastModifiedAt; set => _LastModifiedAt = value; }
+        public bool IsPinned { get => _isPinned;  set => _isPinned = value; }
         public int UserId { get => _userId; set => _userId = value; }
         public List<TagDto> Tags { get => _tags; set => _tags = value; }
 
@@ -30,7 +32,7 @@ namespace DTOs
 
         }
 
-        public FolderDto(int folderId, DateTime createdAt, DateTime lastModifiedAt, string folderName, int userId, List<TagDto> tags = null)
+        public FolderDto(int folderId, DateTime createdAt, DateTime lastModifiedAt, string folderName, int userId, List<TagDto> tags = null, bool isPinned = false)
         {
             _folderId = folderId;
             _CreatedAt = createdAt;
@@ -38,6 +40,7 @@ namespace DTOs
             _folderName = folderName;
             _userId = userId;
             _tags = tags;
+            _isPinned = isPinned;
         }
 
         #endregion
