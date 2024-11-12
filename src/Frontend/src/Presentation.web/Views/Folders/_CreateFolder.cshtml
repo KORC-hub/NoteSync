@@ -14,8 +14,9 @@
                 name="FolderName"
                 placeholder="Name"
                 autocomplete="off"
+                maxlength="50"
                 asp-for="FolderName" />
-        <div id="fileNameMessage" class="input-message" role="alert"></div>
+        <div id="folderNameMessage" class="input-message" role="alert"></div>
     </div>
 
     <div class="subtitle">Add tag:</div>
@@ -28,7 +29,8 @@
                             class="input-text"
                             type="text"
                             placeholder="Tag name"
-                            autocomplete="off" />
+                            autocomplete="off"
+                            maxlength="20" />
                 </div>
 
                 <ul class="select-menu">
