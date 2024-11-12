@@ -51,13 +51,13 @@
 }
 
 .input-password .input-text {
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 4px 0px 0px 4px;
 }
 
 .view-password {
     background-color: var(--second-background);
     border: none;
-    border-radius: 0px 8px 8px 0px;
+    border-radius: 0px 4px 4px 0px;
     padding: 0px 10px;
     cursor: pointer;
 }

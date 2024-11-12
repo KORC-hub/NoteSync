@@ -11,7 +11,7 @@
         <div class="settings">
             <h3>Nickname:</h3>
             <div class="input">
-                <input id="nickname" class="input-text" type="text" maxlength=15 placeholder="@ViewBag.User.Nickname   (max. 15 characters) " asp-for="Nickname" />
+                <input id="nickname" class="input-text" type="text" maxlength=15 autocomplete="off" placeholder="@ViewBag.User.Nickname" asp-for="Nickname" />
                 <div id="nicknameMessage" class="input-message" role="alert"></div>
             </div>
             <h3>Email:</h3>
@@ -101,7 +101,7 @@
                 <input class="input-text" type="file" />
                 -->
             <div class="delete-account">
-                <a href="#" onclick="WarningPopUp(event, '/UserSettings/DeleteUser', 'Delete user','Are you sure to delete your account?, this will also delete all your folders.')">Delete Account</a>
+                <a href="#" onclick="WarningPopUp(event, '', '/UserSettings/DeleteUser', 'Delete user','Are you sure to delete your account?, this will also delete all your folders.')">Delete Account</a>
             </div>
             <div class="setting-buttons">
                 <button class="button primary-button" id="submitButton" type="submit" disabled>Save changes</button>

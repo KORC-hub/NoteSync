@@ -1,6 +1,6 @@
 ﻿// Pop-up window for warning to delete the account
 
-function WarningPopUp(event, form, title, message) {
+function WarningPopUp(event, form, url, title, message) {
 
     Swal.fire({
         title: title,
@@ -16,7 +16,11 @@ function WarningPopUp(event, form, title, message) {
         iconColor: '#ffd6a5',
     }).then((result) => {
         if (result.isConfirmed) {
-            document.getElementById(form).submit();
+            if (url == "") {
+                document.getElementById(form).submit();
+            } else {
+                window.location.href = url;
+            }
         }
     }); 
 }
