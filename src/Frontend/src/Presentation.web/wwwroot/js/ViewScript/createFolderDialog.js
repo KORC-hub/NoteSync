@@ -1,40 +1,31 @@
-﻿const CreateFolderForm = document.getElementById("createFolderForm");
+﻿import * as input from '../BasicScript/inputValidation.js';
+
+const CreateFolderForm = document.getElementById("createFolderForm");
 const searchTag = document.getElementById("tagName");
 const tagsContainer = document.getElementById("tagsContainer");
 const addTagBtn = document.getElementById("addTagBtn");
 
 let FolderName = document.getElementById("name");
-//const FolderNameMessage = document.getElementById("folderNameMessage");
+const FolderNameMessage = document.getElementById("folderNameMessage");
+const saveBtn = document.getElementById("saveBtn");
 
-//function updateInputClasses(element, addClass, removeClass) {
-//    element.classList.add(addClass);
-//    element.classList.remove(removeClass);
-//}
-//function ValidatFolderName() {
-//    if (FolderName.value.length < 5 || FolderName.value.length > 50) {
-//        savetBtn.disabled = true;
-//        updateInputClasses(FolderName, "input-error", "input-text");
-//        updateInputClasses(FolderName, "input-error", "input-correct");
-//        FolderNameMessage.textContent = "Folder name must be greater than 5 and less than 50";
-//    } else {
-//        savetBtn.disabled = false;
-//        updateInputClasses(FolderName, "input-correct", "input-text");
-//        updateInputClasses(FolderName, "input-correct", "input-error");
-//        FolderNameMessage.textContent = "";
-//    }
-//    if (FolderName.value == "")
-//    {
-//        savetBtn.disabled = true;
-//        updateInputClasses(FolderName, "input-text", "input-error");
-//        updateInputClasses(FolderName, "input-text", "input-correct");
-//        FolderNameMessage.textContent = "";
-//    }
+FolderName.addEventListener("input", () => {
+    saveBtn.disabled = true;
+    let ErrorMessage = input.ValidationByRange(FolderName, 5, 50);
+    FolderNameMessage.textContent = (ErrorMessage == "") ? "" : "Folder name " + ErrorMessage; 
 
-//}
-
-//FolderName.addEventListener("input", () => {
-//    ValidatFolderName();
-//});
+    if (FolderName.value == "") {
+        saveBtn.disabled = true;
+        input.reset(FolderName);
+        FolderNameMessage.textContent = "";
+    } else
+    {
+        if (!FolderNameMessage.textContent)
+        {
+            saveBtn.disabled = false;
+        }
+    }
+});
 
 addTagBtn.addEventListener("click", function () {
     var tagText = document.getElementById("tagName").value;

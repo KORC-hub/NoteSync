@@ -77,3 +77,31 @@ confirmPassword.addEventListener("input", () => {
     ValidatePassword();
     resetPasswordinputs();
 });
+
+const showPasswordButton = document.getElementById("showPassword");
+const showConfirmPasswordButton = document.getElementById("showConfirmPassword");
+
+showPasswordButton.addEventListener("click", function (event) {
+    const showSVG = document.querySelector("#showPassword .icon-tabler-eye");
+    const hiddenSVG = document.querySelector("#showPassword .icon-tabler-eye-off");
+    showSVG.classList.toggle("hidden-svg");
+    hiddenSVG.classList.toggle("hidden-svg");
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+});
+
+showConfirmPasswordButton.addEventListener("click", function (event) {
+    const inputPasswordConfirm = document.getElementById("confirmPassword");
+    const showSVG = document.querySelector("#showConfirmPassword .icon");
+    const hiddenSVG = document.querySelector("#showConfirmPassword .icon-tabler-eye-off");
+    showSVG.classList.toggle("hidden-svg");
+    hiddenSVG.classList.toggle("hidden-svg");
+    if (confirmPassword.type === "password") {
+        confirmPassword.type = "text";
+    } else {
+        confirmPassword.type = "password";
+    }
+});

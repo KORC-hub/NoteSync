@@ -9,3 +9,5 @@ document.querySelectorAll('.folder-item').forEach(folderItem => {
         updateFolderId.value = folderItem.id;
     });
 });
+
+

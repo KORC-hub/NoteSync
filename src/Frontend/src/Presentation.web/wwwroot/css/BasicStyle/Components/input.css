@@ -7,7 +7,9 @@
     width: auto;
     font-size: 14px;
     color: var(--error-color);
+    padding-left: 5px;
 }
+
 
 .input-text,
 .input-error,

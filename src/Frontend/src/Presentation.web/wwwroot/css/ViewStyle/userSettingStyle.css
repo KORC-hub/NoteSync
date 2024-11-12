@@ -46,3 +46,30 @@
     opacity: 1;
 }
 
+.input-password {
+    display: flex;
+}
+
+.input-password .input-text {
+    border-radius: 8px 0px 0px 8px;
+}
+
+.view-password {
+    background-color: var(--second-background);
+    border: none;
+    border-radius: 0px 8px 8px 0px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.view-password .icon-tabler-eye-off {
+    color: var(--unselect-text);
+}
+
+.view-password .icon-tabler-eye {
+    color: var(--primary-color);
+}
+
+.hidden-svg {
+    display: none;
+}
