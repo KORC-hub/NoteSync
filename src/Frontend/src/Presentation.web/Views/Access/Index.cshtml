@@ -1,0 +1,145 @@
+﻿@using DTOs;
+@model UserDto;
+@{
+    ViewData["Title"] = "Access";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/BasicStyle/componentsStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ViewStyle/accessStyle.css" asp-append-version="true" />
+</head>
+<body style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2o1eUvJHqgd2dVX3CvOEQIPa3OK1-4eQ2qQ&s);">
+    <div class="container">
+        <div class="left-panel">
+            <img src="~/img/accessLogo.png" alt="logo" class="logo" width="80px" />
+            <p class="webname">
+                Note <br />
+                Sync
+            </p>
+        </div>
+        <div class="right-panel">
+            <h1 id="form-title">Sign In</h1>
+            <div class="acces-data">
+
+                <div class="hidden extra-input">
+                    <div class="acces-input">
+                        <input id="AccessNickName" class="input-text" type="text" maxlength="15" autocomplete="off" placeholder="NickName" />
+                        <div id="nicknameMessage" class="suggest-message" role="alert">Maximum length is 15</div>
+                    </div>
+                </div>
+
+                <div class="acces-input">
+                    <input id="AccessEmail" class="input-text" type="email" maxlength="100" placeholder="Email" required />
+                    <div id="emailMessage" class="input-message" role="alert"></div>
+                </div>
+
+                <div class="acces-input">
+                    <div class="input-password">
+                        <input id="AccessPassword" class="input-text" type="Password" maxlength="20" placeholder="Password" required />
+                        <button id="showPassword" class="view-password" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-eye hidden-svg">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                                <path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" />
+                                <path d="M3 3l18 18" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="passwordMessage" class="input-message" role="alert"></div>
+                </div>
+
+                <div class="hidden extra-input">
+                    <div class="acces-input">
+                        <div class="input-password">
+                            <input id="AccessConfirmPassword" class="input-text" maxlength="20" type="password" placeholder="Confirm Password" />
+                            <button id="showConfirmPassword" class="view-password" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-outline icon-tabler-eye hidden-svg">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     width="24"
+                                     height="24"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+                                    <path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" />
+                                    <path d="M3 3l18 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="confirmPasswordMessage" class="input-message" role="alert"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            @if (ViewData["Message"] != null)
+            {
+                <div class="error-view">
+                    <div class="error-message">
+                        <b>Oops! </b>@ViewData["Message"]
+                    </div>
+                </div>
+            }
+            <p id="toggle-text">Don't have an account yet? <a href="#" id="toggle-link">Sign up</a></p>
+            <button id="submitBtn" class="button primary-button" type="submit" form="signIn" disabled>Sign In</button>
+        </div>
+    </div>
+    <form id="signIn" asp-controller="Access" asp-action="Login" method="post" >
+        <input id="loginEmail" type="email" placeholder="Correo" asp-for="Email" hidden/>
+        <input id="loginPassword" type="password" placeholder="Password" asp-for="Password" hidden />
+    </form>
+    <form id="signUp" asp-controller="Access" asp-action="Register" method="post" >
+        <input id="registerNickName" type="text" placeholder="Nickname" asp-for="Nickname" hidden />
+        <input id="registerEmail" type="email" placeholder="Correo" asp-for="Email" hidden />
+        <input id="registerPassword" type="password" placeholder="Password" asp-for="Password" hidden  />
+    </form>
+</body>
+</html>
+
+<script type="module" src="~/js/ViewScript/accessScript.js"></script>

@@ -59,3 +59,18 @@ export function ValidationByEqualFields(input1, input2) {
     }
     return ErrorMessage;
 }
+
+export function EmailValidation(input) {
+    let ErrorMessage;
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!regex.test(input.value)) {
+        updateInputClasses(input, "input-error", "input-text");
+        updateInputClasses(input, "input-error", "input-correct");
+        ErrorMessage = "The email is invalid!";
+    } else {
+        updateInputClasses(input, "input-correct", "input-text");
+        updateInputClasses(input, "input-correct", "input-error");
+        ErrorMessage = "";
+    }
+    return ErrorMessage;
+}

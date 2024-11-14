@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using BusinessLogic.core.UseCases;
 using DTOs;
+using BusinessLogic.core.Service;
 
 
 namespace Presentation.web.Controllers
@@ -30,6 +31,12 @@ namespace Presentation.web.Controllers
 
         #endregion
 
+        public IActionResult Index()
+        {
+            ViewData["Message"] = TempData["ErrorMessage"];
+            return View();
+        }
+
         #region Register methods
 
         [HttpGet]
@@ -47,9 +54,9 @@ namespace Presentation.web.Controllers
                 return await Login(user);
             }
             catch(Exception ex) 
-            { 
-                ViewData["Message"] = ex.Message;
-                return View();
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Access");
             }
         }
 
@@ -70,16 +77,17 @@ namespace Presentation.web.Controllers
             {
                 user = await _userService.LoginAsync(user);
                 user.ProfilePictureURL = "";
+
+                await Authentication(user);;
+
+                return RedirectToAction("Index", "Home");
+
             }
             catch (Exception ex) 
             {
-                ViewData["Message"] = ex.Message;
-                return View();
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Access");
             }
-
-            await Authentication(user);
-
-            return RedirectToAction("Index","Home");
         }
 
         public async Task Authentication(UserDto user) 

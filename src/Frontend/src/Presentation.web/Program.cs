@@ -60,7 +60,7 @@ namespace Presentation.web
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Landing}/{action=Index}/{id?}"
+                pattern: "{controller=Access}/{action=Index}/{id?}"
             );
 
             app.Run();

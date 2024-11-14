@@ -10,6 +10,13 @@
     padding-left: 5px;
 }
 
+.suggest-message {
+    width: auto;
+    font-size: 12px;
+    color: var(--unselect-text);
+    padding-left: 5px;
+}
+
 
 .input-text,
 .input-error,
@@ -55,6 +62,10 @@
 
 .input-correct:focus {
     border-color: var(--correct-color-focus);
+}
+
+input:-webkit-autofill {
+    background-color: var(--textbox-background) !important;
 }
 
 input[type="button"] {
