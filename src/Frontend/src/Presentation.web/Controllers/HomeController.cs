@@ -24,7 +24,7 @@ namespace Presentation.web.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Folders");
+            return View();
         }
 
         public async Task<IActionResult> Logout()

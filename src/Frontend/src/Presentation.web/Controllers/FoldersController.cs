@@ -20,18 +20,25 @@ namespace Presentation.web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            try 
+            {
+                int UserId = Convert.ToInt32(User.FindFirst("Id")?.Value);
 
-            int UserId = Convert.ToInt32(User.FindFirst("Id")?.Value);
+                List<FolderDto> folders = new List<FolderDto>();
+                folders = await _folderService.GetAllFoldersAsync(UserId);
 
-            List<FolderDto> folders = new List<FolderDto>();
-            folders = await _folderService.GetAllFoldersAsync(UserId);
+                List<TagDto> tags = new List<TagDto>();
+                tags = await _folderService.GetAllTagsAsync(UserId);
 
-            List<TagDto> tags = new List<TagDto>();
-            tags = await _folderService.GetAllTagsAsync(UserId);
+                FolderViewModel folderViewModel = new FolderViewModel(folders, tags);
 
-            FolderViewModel folderViewModel = new FolderViewModel(folders, tags);
+                return View(folderViewModel);
+            }
+            catch (Exception ex) 
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            return View(folderViewModel);
         }
 
         [HttpPost]
@@ -74,7 +81,7 @@ namespace Presentation.web.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return RedirectToAction("Index", "Folders");
             }
         }
 
@@ -88,14 +95,14 @@ namespace Presentation.web.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return RedirectToAction("Index", "Folders");
             }
         }
 
         [HttpPost]
         public async Task<IActionResult> ViewFolderPages(FolderViewModel folderViewModel)
         {
-            return RedirectToAction("Index", "Page");
+            return RedirectToAction("Index", "Folders");
         }
 
     }

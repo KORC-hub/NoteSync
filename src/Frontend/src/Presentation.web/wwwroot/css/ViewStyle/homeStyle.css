@@ -24,6 +24,10 @@ body {
     height: 100vh;
 }
 
+.text-center {
+    margin: 40px;
+}
+
 .sidebar {
     width: 256px;
     height: 96vh;

@@ -27,7 +27,7 @@ namespace Presentation.web
                 .AddCookie( options =>
                 {
                     options.Cookie.Name = Constants.AuthCookie;
-                    options.LoginPath = "/Access/Login"; // la ruta de la vista que el usuario utiliza para hacer log in
+                    options.LoginPath = "/Access/Index"; // la ruta de la vista que el usuario utiliza para hacer log in
 
                     options.Cookie.HttpOnly = true; // solo se podrá acceder a ella a través de peticiones HTTP, lo que mejora la seguridad frente a ataques Cross-Site Scripting
                     options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // la cookie solo se enviará a través de conexiones HTTPS,previene que se transmita en texto plano a través de HTTP
@@ -60,7 +60,7 @@ namespace Presentation.web
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Access}/{action=Index}/{id?}"
+                pattern: "{controller=Folders}/{action=Index}/{id?}"
             );
 
             app.Run();

@@ -23,12 +23,20 @@ namespace Presentation.web.Controllers
 
         public IActionResult Index()
         {
-            userSession.Email = User.FindFirst(ClaimTypes.Email)?.Value;
-            userSession.Nickname = User.FindFirst(ClaimTypes.Name)?.Value;
-            userSession.ProfilePictureURL = User.FindFirst("ProfilePictureURL")?.Value;
+            try
+            {
+                userSession.Email = User.FindFirst(ClaimTypes.Email)?.Value;
+                userSession.Nickname = User.FindFirst(ClaimTypes.Name)?.Value;
+                userSession.ProfilePictureURL = User.FindFirst("ProfilePictureURL")?.Value;
 
-            ViewBag.User = userSession;
-            return View();
+                ViewBag.User = userSession;
+                return View();
+            }
+            catch (Exception ex) 
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         [HttpGet]
@@ -41,7 +49,8 @@ namespace Presentation.web.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("the user could not be deleted", ex);
+                //throw new Exception("the user could not be deleted", ex);
+                return RedirectToAction("Index", "UserSettings");
             }
         }
 
@@ -54,41 +63,49 @@ namespace Presentation.web.Controllers
 
                 if (user.Nickname != null)
                 {
-                    UpdateNicknameClaim(user.Nickname);
+                    await UpdateNicknameClaim(user.Nickname);
                 }
 
                 return RedirectToAction("Index", "UserSettings");
             }
             catch (Exception ex) 
             {
-                throw; 
+                return RedirectToAction("Index", "UserSettings");
             }
         }
 
 
         public async Task UpdateNicknameClaim(string newNickname) 
         {
-            var UserIdentity = User.Identity as ClaimsIdentity;
-            if (UserIdentity != null)
+            try
             {
-                var claims = User.Claims.ToList();
-
-                var ExistentClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-
-                if (ExistentClaim != null)
+                var UserIdentity = User.Identity as ClaimsIdentity;
+                if (UserIdentity != null)
                 {
-                    claims.Remove(ExistentClaim);
+                    var claims = User.Claims.ToList();
+
+                    var ExistentClaim = claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+
+                    if (ExistentClaim != null)
+                    {
+                        claims.Remove(ExistentClaim);
+                    }
+
+                    claims.Add(new Claim(ClaimTypes.Name, newNickname));
+
+                    var NewIdentity = new ClaimsIdentity(claims, UserIdentity.AuthenticationType);
+
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(NewIdentity)
+                    );
                 }
-
-                claims.Add(new Claim(ClaimTypes.Name, newNickname));
-
-                var NewIdentity = new ClaimsIdentity(claims, UserIdentity.AuthenticationType);
-
-                await HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(NewIdentity)
-                );
             }
+            catch (Exception ex) 
+            {
+                throw new Exception("An error occurred, please try again later.", ex);
+            }
+
         }
 
 
