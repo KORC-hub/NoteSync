@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using BusinessLogic.core.UseCases;
 using DTOs;
 using BusinessLogic.core.Service;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Text;
+using System.Security.Cryptography;
 
 
 namespace Presentation.web.Controllers
@@ -50,6 +54,8 @@ namespace Presentation.web.Controllers
         {
             try
             {
+                user.Email = ConvertirToSha256(user.Email);
+                user.Password = ConvertirToSha256(user.Password);
                 user.UserId = Convert.ToString(await _userService.RegisterAsync(user));
                 return await Login(user);
             }
@@ -75,12 +81,19 @@ namespace Presentation.web.Controllers
         {
             try
             {
+
+                if (user.UserId is null)
+                {
+                    user.Email = ConvertirToSha256(user.Email);
+                    user.Password = ConvertirToSha256(user.Password);
+                }
+
                 user = await _userService.LoginAsync(user);
                 user.ProfilePictureURL = "";
 
-                await Authentication(user);;
+                await Authentication(user);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Folders");
 
             }
             catch (Exception ex) 
@@ -101,19 +114,37 @@ namespace Presentation.web.Controllers
                 new Claim("ProfilePictureURL", user.ProfilePictureURL),
             };
 
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            AuthenticationProperties properties = new AuthenticationProperties()
+            try
             {
-                AllowRefresh = true,
-            };
-
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
-                properties
-                );
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                AuthenticationProperties properties = new AuthenticationProperties()
+                {
+                    AllowRefresh = true,
+                };
+                await HttpContext.SignInAsync( CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),properties);
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("An error occurred, please try again later.",ex);
+            }
         }
 
         #endregion
+
+        public static string ConvertirToSha256(string texto)
+        {
+            StringBuilder Sb = new StringBuilder();
+            using (SHA256 hash = SHA256.Create())
+            {
+                Encoding encoding = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(encoding.GetBytes(texto));
+                foreach (byte b in result)
+                {
+                    Sb.Append(b.ToString("x2"));
+                }
+            }
+            return Sb.ToString();
+        }
+
     }
 }
