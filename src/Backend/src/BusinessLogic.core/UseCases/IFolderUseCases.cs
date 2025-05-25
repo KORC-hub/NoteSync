@@ -11,7 +11,7 @@ namespace BusinessLogic.core.UseCases
     {
         Task<List<FolderDto>> GetAllFoldersAsync(int UserId);
         Task<List<TagDto>> GetAllTagsAsync(int UserId);
-        Task<int> CreateFolder(FolderDto folder, List<TagDto>? tags);
+        Task<int> CreateFolder(FolderDto folder);
         Task UpdateFolder(FolderDto folder, List<TagDto>? tags);
         Task DeleteFolder(int id);
     }

@@ -93,19 +93,20 @@ namespace BusinessLogic.core.Service
             }
         }
 
-        public async Task<int> CreateFolder(FolderDto folder, List<TagDto>? tags)
+        public async Task<int> CreateFolder(FolderDto folder)
         {
             FolderDomainModel folderDomainModel = _mapper.Map<FolderDomainModel>(folder);
             List<int> newTagsId = new List<int>();
             List<int> existingTagsId = new List<int>();
+            List<TagDto> tags = folder.Tags;
 
-            try 
+            try
             {
 
                 _folder.FolderName = folderDomainModel.FolderName;
                 _folder.UserId = folderDomainModel.UserId;
 
-                folderDomainModel.FolderId =  await _repositoriesManager.Folders.CreateAsync(_folder);
+                folderDomainModel.FolderId = await _repositoriesManager.Folders.CreateAsync(_folder);
 
                 if (tags.Count != 0)
                 {
