@@ -29,7 +29,7 @@ namespace API.core.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<FolderDto>> Post(FolderVM folder)
+        public async Task<ActionResult<FolderDto>> Post(Folder folder)
         {
             try
             {
@@ -37,6 +37,20 @@ namespace API.core.Controllers
                 newfolder.FolderName = folder.FolderName;
                 newfolder.UserId = folder.UserId;
                 newfolder.Tags = new List<TagDto>();
+
+                if (folder.Tags != null && folder.Tags.Count > 0)
+                {
+                    folder.Tags.ForEach(tag =>
+                    {
+                        TagDto newTag = new TagDto(); 
+                        newTag.TagContent = tag.TagContent;
+                        newTag.Color = tag.Color;
+                        newTag.UserId = folder.UserId;
+                        newTag.Type = tag.Type;
+                        newfolder.Tags.Add(newTag);
+                    });
+                }
+
                 newfolder.FolderId = await _folderService.CreateFolder(newfolder);
                 return Ok(newfolder.FolderId);
             }
