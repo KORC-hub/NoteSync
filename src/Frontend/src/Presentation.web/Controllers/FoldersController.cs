@@ -56,7 +56,8 @@ namespace Presentation.web.Controllers
                 folder.FolderName = folderViewModel.FolderName;
                 folder.UserId = Convert.ToInt32(User.FindFirst("Id")?.Value);
                 List<TagDto>? tags = JsonSerializer.Deserialize<List<TagDto>>(folderViewModel.Taglist);
-                folder.FolderId = await _folderService.CreateFolder(folder, tags);
+                folder.Tags = tags ?? new List<TagDto>();
+                folder.FolderId = await _folderService.CreateFolder(folder);
                 return RedirectToAction("Index", "Folders");
             }
             catch (Exception ex) 
