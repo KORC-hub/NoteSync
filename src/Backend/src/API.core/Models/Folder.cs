@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.core.Models
 {
-    public class FolderVM
+    public class Folder
     {
         [Required]
         public int UserId { get; set; }
@@ -12,14 +12,15 @@ namespace API.core.Models
         [MaxLength(50)]
         public string FolderName { get; set; }
 
-        //public List<TagDto>? Tags { get; set; }
+        public List<Tag>? Tags { get; set; }
 
         #region Constructors
 
-        public FolderVM(int userId, string folderName)
+        public Folder(int userId, string folderName, List<Tag>? tags)
         {
             UserId = userId;
             FolderName = folderName;
+            Tags = tags ?? new List<Tag>();
         }
 
         #endregion
